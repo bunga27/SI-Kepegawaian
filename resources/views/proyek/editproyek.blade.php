@@ -10,7 +10,7 @@
             <div class="form-group">
                 <label for="client" class="col-md-3 control-label">Client</label>
                 <div class="col-md-9">
-                    <input value="{{ $proyek->client}}" type="text" class="form-control" id="client" name="client" placeholder="Masukan Nama Client">
+                   <input required value="{{ $proyek->client}}" type="text" class="form-control" id="client" name="client" placeholder="Masukan Nama Client">
                 </div>
             </div>
             <div class="form-group">
@@ -29,20 +29,20 @@
             <div class="form-group">
                 <label for="nama" class="col-md-3 control-label">Nama Proyek</label>
                 <div class="col-md-9">
-                    <input value="{{ $proyek->nama}}" type="text" class="form-control" id="nama" name="nama" placeholder="Masukan Nama Proyek">
+                   <input required value="{{ $proyek->nama}}" type="text" class="form-control" id="nama" name="nama" placeholder="Masukan Nama Proyek">
                 </div>
             </div>
             <div class="form-group">
                 <label for="alamat" class="col-md-3 control-label">Alamat</label>
                 <div class="col-md-9">
-                    <input value="{{ $proyek->alamat}}" type="text" class="form-control" id="alamat" name="alamat"> </textarea>
+                   <input required value="{{ $proyek->alamat}}" type="text" class="form-control" id="alamat" name="alamat"> </textarea>
                 </div>
             </div>
             <div class="form-group">
                 <label for="tanggalpengerjaan" class="col-md-3 control-label">Tanggal Pengerjaan</label>
                 <div class="col-md-9">
                     <div class="input-group">
-                        <input value="{{ $proyek->tanggalpengerjaan}}" type="date" class="form-control" id="tanggalpengerjaan" name="tanggalpengerjaan"
+                       <input required value="{{ $proyek->tanggalpengerjaan}}" type="date" class="form-control" id="tanggalpengerjaan" name="tanggalpengerjaan"
                             placeholder="mm/dd/yyyy">
                         <span class="input-group-addon bg-custom b-0 text-white"><i class="icon-calender"></i></span>
                     </div>

@@ -10,7 +10,7 @@
             <div class="form-group">
                 <label for="nama" class="col-md-3 control-label">Nama</label>
                 <div class="col-md-9">
-                    <input type="text" class="form-control" id="nama" name="nama" value="{{ $pegawai->nama}}">
+                    <input required type="text" class="form-control" id="nama" name="nama" value="{{ $pegawai->nama}}">
                 </div>
             </div>
             <div class="form-group">
@@ -18,28 +18,28 @@
                 <div class="col-md-9">
                     <img class="col-form-label text-md-right col-12 col-md-3 col-lg-3" id="output" width="100px"
                         src="{{  $pegawai->pasfoto }}" />
-                    <input onchange="loadFile(event)" type="file" class="filestyle" id="pasfoto" name="pasfoto" value="{{ $pegawai->pasfoto}}"
+                    <input required onchange="loadFile(event)" type="file" class="filestyle" id="pasfoto" name="pasfoto" value="{{ $pegawai->pasfoto}}"
                         data-iconname="fa fa-cloud-upload">
                 </div>
             </div>
             <div class="form-group">
                 <label for="nik" class="col-md-3 control-label">NIK</label>
                 <div class="col-md-9">
-                    <input type="number" class="form-control" id="nik" name="nik" value="{{ $pegawai->nik}}"
+                    <input required type="number" class="form-control" id="nik" name="nik" value="{{ $pegawai->nik}}"
                         placeholder="Masukan No.NIK">
                 </div>
             </div>
             <div class="form-group">
                 <label for="jeniskelamin" class="col-md-3 control-label">Jenis Kelamin</label>
                 <div class="col-md-9">
-                    <input type="text" class="form-control" id="jeniskelamin" name="jeniskelamin"
+                    <input required type="text" class="form-control" id="jeniskelamin" name="jeniskelamin"
                         value="{{ $pegawai->jeniskelamin}}" placeholder="Perempuan atau Laki-Laki">
                 </div>
             </div>
             <div class="form-group">
                 <label for="tempatlahir" class="col-md-3 control-label">Tempat Lahir</label>
                 <div class="col-md-9">
-                    <input type="text" class="form-control" id="tempatlahir" name="tempatlahir"
+                    <input required type="text" class="form-control" id="tempatlahir" name="tempatlahir"
                         value="{{ $pegawai->tempatlahir}}" placeholder="Masukan Tempat Lahir">
                 </div>
             </div>
@@ -47,7 +47,7 @@
                 <label for="tanggallahir" class="col-md-3 control-label">Tanggal Lahir</label>
                 <div class="col-md-9">
                     <div class="input-group">
-                        <input type="date" class="form-control" id="tanggallahir" name="tanggallahir"
+                        <input required type="date" class="form-control" id="tanggallahir" name="tanggallahir"
                             value="{{ $pegawai->tanggallahir}}" placeholder="mm/dd/yyyy">
                         <span class="input-group-addon bg-custom b-0 text-white"><i class="icon-calender"></i></span>
                     </div>
@@ -56,28 +56,28 @@
             <div class="form-group">
                 <label for="alamat" class="col-md-3 control-label">Alamat</label>
                 <div class="col-md-9">
-                    <input type="text" class="form-control" id="alamat" name="alamat" value="{{ $pegawai->alamat}}">
+                    <input required type="text" class="form-control" id="alamat" name="alamat" value="{{ $pegawai->alamat}}">
                     </textarea>
                 </div>
             </div>
             <div class="form-group">
                 <label for="agama" class="col-md-3 control-label">Agama</label>
                 <div class="col-md-9">
-                    <input type="text" class="form-control" id="agama" name="agama" value="{{ $pegawai->agama}}"
+                    <input required type="text" class="form-control" id="agama" name="agama" value="{{ $pegawai->agama}}"
                         placeholder="Masukan Nama Agama">
                 </div>
             </div>
             <div class="form-group">
                 <label for="telp" class="col-md-3 control-label">No. Telephone</label>
                 <div class="col-md-9">
-                    <input type="number" class="form-control" id="telp" name="telp" value="{{ $pegawai->telp}}"
+                    <input required type="number" class="form-control" id="telp" name="telp" value="{{ $pegawai->telp}}"
                         placeholder="Masukan No.Telephone">
                 </div>
             </div>
             <div class="form-group">
                 <label for="email" class="col-md-3 control-label">E-Mail</label>
                 <div class="col-md-9">
-                    <input type="email" class="form-control" id="email" name="email" value="{{ $pegawai->email}}"
+                    <input required type="email" class="form-control" id="email" name="email" value="{{ $pegawai->email}}"
                         placeholder="Masukan E-Mail">
                 </div>
             </div>
@@ -98,7 +98,7 @@
                 <label for="tanggalgabung" class="col-md-3 control-label">Tanggal Gabung</label>
                 <div class="col-md-9">
                     <div class="input-group">
-                        <input type="date" id="tanggalgabung" name="tanggalgabung" value="{{ $pegawai->tanggalgabung}}"
+                        <input required type="date" id="tanggalgabung" name="tanggalgabung" value="{{ $pegawai->tanggalgabung}}"
                             class="form-control" placeholder="mm/dd/yyyy">
                         <span class="input-group-addon bg-custom b-0 text-white"><i class="icon-calender"></i></span>
                     </div>
@@ -120,28 +120,28 @@
             <div class="form-group">
                 <label for="sd" class="col-md-3 control-label">Nama SD</label>
                 <div class="col-md-9">
-                    <input type="text" id="sd" name="sd" class="form-control" value="{{ $pegawai->sd}}"
+                    <input required type="text" id="sd" name="sd" class="form-control" value="{{ $pegawai->sd}}"
                         placeholder="Masukan Nama SD">
                 </div>
             </div>
             <div class="form-group">
                 <label for="smp" class="col-md-3 control-label">Nama SMP</label>
                 <div class="col-md-9">
-                    <input type="text" id="smp" name="smp" class="form-control" value="{{ $pegawai->smp}}"
+                    <input required type="text" id="smp" name="smp" class="form-control" value="{{ $pegawai->smp}}"
                         placeholder="Masukan Nama SMP">
                 </div>
             </div>
             <div class="form-group">
                 <label for="sma" class="col-md-3 control-label">Nama SMA</label>
                 <div class="col-md-9">
-                    <input type="text" name="sma" id="sma" class="form-control" value="{{ $pegawai->sma}}"
+                    <input required type="text" name="sma" id="sma" class="form-control" value="{{ $pegawai->sma}}"
                         placeholder="Masukan Nama SMA">
                 </div>
             </div>
             <div class="form-group">
                 <label for="lanjutan" class="col-md-3 control-label"> Pendidikan Lanjutan</label>
                 <div class="col-md-9">
-                    <input type="text" id="lanjutan" name="lanjutan" class="form-control"
+                    <input required type="text" id="lanjutan" name="lanjutan" class="form-control"
                         value="{{ $pegawai->lanjutan}}" placeholder="Masukan Nama Pendidikan Lanjutan">
                 </div>
             </div>
@@ -149,21 +149,21 @@
             <div class="form-group">
                 <label for="riwayatpenyakit" class="col-md-3 control-label">Riwayat Penyakit</label>
                 <div class="col-md-9">
-                    <input type="text" id="riwayatpenyakit" name="riwayatpenyakit" class="form-control"
+                    <input required type="text" id="riwayatpenyakit" name="riwayatpenyakit" class="form-control"
                         value="{{ $pegawai->riwayatpenyakit}}" placeholder="Masukan Riwayat Penyakit">
                 </div>
             </div>
             <div class="form-group">
                 <label for="tinggi" class="col-md-3 control-label">Tinggi Badan</label>
                 <div class="col-md-3">
-                    <input type="number" id="tinggi" name="tinggi" class="form-control" value="{{ $pegawai->tinggi}}"
+                    <input required type="number" id="tinggi" name="tinggi" class="form-control" value="{{ $pegawai->tinggi}}"
                         placeholder="cm">
                 </div>
             </div>
             <div class="form-group">
                 <label for="berat" class="col-md-3 control-label">Berat Badan</label>
                 <div class="col-md-3">
-                    <input type="number" id="berat" name="berat" class="form-control" value="{{ $pegawai->berat}}"
+                    <input required type="number" id="berat" name="berat" class="form-control" value="{{ $pegawai->berat}}"
                         placeholder="kg">
                 </div>
             </div>
@@ -183,7 +183,7 @@
             <div class="form-group ">
                 <label for="tanggungan" class="col-md-3 control-label">Tanggungan</label>
                 <div class="col-md-3">
-                    <input name="tanggungan" id="tanggungan" type="number" class="form-control"
+                    <input required name="tanggungan" id="tanggungan" type="number" class="form-control"
                         value="{{ $pegawai->tanggungan}}" placeholder="orang">
                 </div>
             </div>
@@ -191,28 +191,28 @@
             <div class="form-group">
                 <label for="namawali" class="col-md-3 control-label">Nama Wali</label>
                 <div class="col-md-9">
-                    <input name="namawali" id="namawali" type="text" value="{{ $pegawai->namawali}}"
+                    <input required name="namawali" id="namawali" type="text" value="{{ $pegawai->namawali}}"
                         class="form-control" placeholder="Masukan Nama Wali">
                 </div>
             </div>
             <div class="form-group">
                 <label for="hubungan" class="col-md-3 control-label">Hubungan</label>
                 <div class="col-md-9">
-                    <input name="hubungan" id="hubungan" type="text" class="form-control"
+                    <input required name="hubungan" id="hubungan" type="text" class="form-control"
                         value="{{ $pegawai->hubungan}}" placeholder="Masukan Hubungan Wali">
                 </div>
             </div>
             <div class="form-group">
                 <label for="telpwali" class="col-md-3 control-label">No. Telephone Wali</label>
                 <div class="col-md-9">
-                    <input type="number" id="telpwali" name="telpwali" class="form-control"
+                    <input required type="number" id="telpwali" name="telpwali" class="form-control"
                         value="{{ $pegawai->telpwali}}" placeholder="Masukan No.Telephone Wali">
                 </div>
             </div>
             <div class="form-group">
                 <label for="alamatwali" class="col-md-3 control-label">Alamat Wali</label>
                 <div class="col-md-9">
-                    <input type="text" id="alamatwali" name="alamatwali" value="{{ $pegawai->alamatwali}}"
+                    <input required type="text" id="alamatwali" name="alamatwali" value="{{ $pegawai->alamatwali}}"
                         class="form-control"></textarea>
                 </div>
             </div>

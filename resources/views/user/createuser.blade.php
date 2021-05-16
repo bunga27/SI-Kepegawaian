@@ -17,6 +17,19 @@
                     </select>
                 </div>
             </div>
+
+            <div class="form-group">
+                <label for="level" class="col-md-3 control-label">Level</label>
+                <div class="col-md-9">
+                    <div class="form-select-list">
+                        <select id="level" type="text" class="form-control custom-select-value" name="level">
+                            <option value="super">Super Admin</option>
+                            <option value="admin">Admin</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
             <div class="form-group">
                 <label for="email" class="col-md-3 control-label">E-Mail</label>
                 <div class="col-md-9">

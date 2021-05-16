@@ -15,6 +15,7 @@ class UsersTableSeeder extends Seeder
       [
         'email'  => 'admin@gmail.com',
         'password' => bcrypt('admin'),
+        'level' => 'admin',
         'pegawai_id'  => '1',
         'created_at'      => \Carbon\Carbon::now('Asia/Jakarta')
          ],

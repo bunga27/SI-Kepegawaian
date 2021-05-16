@@ -43,6 +43,7 @@ class UserController extends Controller
         User::create([
             'pegawai_id' => $request->idPegawai,
             'email' => $request->email,
+            'level' => $request->level,
             'password' => Hash::make($request->password)
         ]);
         return redirect('/user')->with(['success' => 'Data User Berhasil Ditambahkan!']);

@@ -42,7 +42,7 @@
             <div class="form-group">
                 <label for="keterangan" class="col-md-3 control-label">Keterangan</label>
                 <div class="col-md-9">
-                    <input type="text" class="form-control" id="keterangan" name="keterangan" placeholder="Masukan keterangan">
+                    <input required type="text" class="form-control" id="keterangan" name="keterangan" placeholder="Masukan keterangan">
                 </div>
             </div>
 

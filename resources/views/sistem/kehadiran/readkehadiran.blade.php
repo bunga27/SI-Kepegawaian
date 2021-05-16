@@ -10,7 +10,7 @@
                 <label for="tanggalkehadiran" class="col-md-4 control-label">Tanggal Kehadiran</label>
                 <div class="col-md-8">
                     <div class="input-group">
-                        <input type="date" class="form-control" id="tanggalkehadiran" name="tanggalkehadiran"
+                        <input required type="date" class="form-control" id="tanggalkehadiran" name="tanggalkehadiran"
                             placeholder="mm/dd/yyyy">
                         <span class="input-group-addon bg-custom b-0 text-white"><i class="icon-calender"></i></span>
                     </div>
