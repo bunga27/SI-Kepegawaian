@@ -25,6 +25,7 @@
                         <select id="level" type="text" class="form-control custom-select-value" name="level">
                             <option value="super">Super Admin</option>
                             <option value="admin">Admin</option>
+                            <option value="owner">Pemilik</option>
                         </select>
                     </div>
                 </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Pegawai;
 use App\User;
+use App\Proyek;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Ramsey\Uuid\Uuid;
@@ -86,8 +87,17 @@ class PegawaiController extends Controller
 
     public function show(Pegawai $pegawai)
     {
-        return view('pegawai.detailpegawai', compact('pegawai'));
+        $proyek = Proyek::all();
+        return view('pegawai.detailpegawai', compact('pegawai', 'proyek'));
     }
+
+    public function lap(Pegawai $pegawai)
+    {
+        $pegawai = Pegawai::all();
+        return view('laporan.lappegawai', compact('pegawai'));
+    }
+
+
 
     /**
      * Show the form for editing the specified resource.

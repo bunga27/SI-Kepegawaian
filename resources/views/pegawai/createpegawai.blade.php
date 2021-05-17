@@ -26,7 +26,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="jeniskelamin" class="col-md-3 control-label">Jabatan</label>
+                <label for="jeniskelamin" class="col-md-3 control-label">Jenis Kelamin</label>
                 <div class="col-md-9">
                     <div class="form-select-list">
                         <select id="jeniskelamin" type="text" class="form-control custom-select-value" name="jeniskelamin">
@@ -71,24 +71,7 @@
                     <input required type="number" class="form-control" id="telp" name="telp" placeholder="Masukan No.Telephone">
                 </div>
             </div>
-            <div class="form-group">
-                <label for="email" class="col-md-3 control-label">E-Mail</label>
-                <div class="col-md-9">
-                    <input required type="email" class="form-control" id="email" name="email" placeholder="Masukan E-Mail">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="jabatan" class="col-md-3 control-label">Jabatan</label>
-                <div class="col-md-9">
-                    <div class="form-select-list">
-                        <select id="jabatan" type="text" class="form-control custom-select-value" name="jabatan">
-                            <option value="pemilik">Pemilik</option>
-                            <option value="admin">Administrator</option>
-                            <option value="pegawai">Pegawai</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
+
             <div class="form-group">
                 <label for="tanggalgabung" class="col-md-3 control-label">Tanggal Gabung</label>
                 <div class="col-md-9">
@@ -163,8 +146,8 @@
                 <div class="col-md-9">
                     <div class="form-select-list">
                         <select name="status" id="status" type="text" class="form-control custom-select-value">
-                            <option value="pemilik">Kawin</option>
-                            <option value="admin">Belum Kawin</option>
+                            <option value="kawin">Kawin</option>
+                            <option value="belum kawin">Belum Kawin</option>
                         </select>
                     </div>
                 </div>

@@ -9,14 +9,14 @@
             <div class="panel-body">
                 <div class="clearfix">
                     <div class="pull-left">
-                        <img src="{{ asset('menu_2') }}/assets/images/users/logo.png" width="120px">
+                        <img src="{{ asset('menu_2') }}/assets/images/build.png" width="100px">
                     </div>
-                    <div class="pull-left">
-                        <h4 class="text-right">
+
+                    <div class="center">
+                        <h4 class="text-center">
                             <strong>Laporan Kehadiran Pegawai CV. Hasil Utama Konsultan</strong>
-                            <h5>Jl. Sendang 16b Kota Madiun | Kode Pos : 63116</h5>
-                            <h5>hasilutamamadiun@gmail.com </h5>
-                            <h5>081 216 116 623</h5>
+                            <br>Jl. Sendang 16b Kota Madiun | Kode Pos : 63116
+                            <br>hasilutamamadiun@gmail.com
 
                         </h4>
 
@@ -26,8 +26,8 @@
                 <div class="m-h-50"></div>
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="table-responsive">
-                            <table class="table m-t-30">
+                        <div class="card-box table-responsive">
+                            <table id="datatable-buttons" class="table table-striped table-bordered">
                                 <thead>
 
                                     <tr>
@@ -67,4 +67,5 @@
     </div>
 
 </div>
+
 @endsection

@@ -8,17 +8,20 @@
                 <a href="/home" class="logo"><span><i class="md md-location-city"></i> CV. Hasil Utama Konsultan</span></a>
             </div>
             <!-- End Logo container-->
-
-
             <div class="menu-extras">
 
                 <ul class="nav navbar-nav navbar-right pull-right">
 
                     <li class="dropdown navbar-c-items">
+
                         <a href="" class="dropdown-toggle waves-effect waves-light profile" data-toggle="dropdown"
                             aria-expanded="true"><img src="{{ asset('menu_2') }}/assets/images/users/user.png"
-                                alt="user-img" class="img-circle"> </a>
+                                alt="user-img" class="img-circle"> <span>{{ auth()->user()->pegawai->nama }}</span> </a>
                         <ul class="dropdown-menu">
+                            <li>
+                                <a href="/profil ">
+                                <span> Profil </span>
+                            </li>
                             <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> <i class="ti-power-off text-danger m-r-10"></i>
                                     {{ __('Logout') }}</a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -52,13 +55,18 @@
                     <li class="has-submenu">
                         <a href="/"><i class="md md-dashboard"></i>Beranda</a>
                     </li>
+                    @if (auth()->user()->level=="super" || "admin")
                     <li class="has-submenu">
                         <a><i class="md md-account-child"></i>Master Data</a>
                         <ul class="submenu">
-                            <li><a href="/user">Data User</a></li>
+                            @if (auth()->user()->level=="super")
+                               <li><a href="/user">Data User</a></li>
+                            @endif
                             <li><a href="/pegawai">Data Pegawai</a></li>
                         </ul>
                     </li>
+                    @endif
+                    @if (auth()->user()->level=="super" || "admin")
                     <li class="has-submenu">
                         <a><i class="md md-location-city"></i>Aktivitas</a>
                         <ul class="submenu">
@@ -67,13 +75,17 @@
                             <li><a href="/pembiayaan">Pembiayaan</a></li>
                         </ul>
                     </li>
+                    @endif
+                    @if (auth()->user()->level=="super" || "owner")
                     <li class="has-submenu">
                         <a><i class="md md-my-library-books"></i>Laporan</a>
                         <ul class="submenu">
                             <li><a href="/lapkehadiran">Laporan Kehadiran</a></li>
                             <li><a href="/lappembiayaan">Laporan Pembiayaan</a></li>
+                            <li><a href="/lappegawai">Laporan Data Pegawai</a></li>
                         </ul>
                     </li>
+                    @endif
                 </ul>
                 <!-- End navigation menu        -->
             </div>

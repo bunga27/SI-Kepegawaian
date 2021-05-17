@@ -4,140 +4,141 @@
 @section('content')
 
 <div class="row" >
-@csrf
-    <div class="col-sm-4">
-
-        <div class="sp-loading"><img src="{{ asset('menu_2') }}/assets/images/sp-loading.gif" alt=""><br>LOADING
-            IMAGES
-        </div>
-        <div class="sp-wrap">
-            <a href="{{ asset('menu_2') }}/assets/images/products/big/1.jpg"><img src="{{ asset('menu_2') }}/assets/images/products/big/1.jpg" alt=""></a>
+<form class="form-horizontal" method="GET" action="/pegawai/{{ auth()->user()->pegawai->idPegawai }}" enctype="multipart/form-data">
+    @csrf
+    @method('get')
+    <div class="col-sm-4 center">
+        <div><img width="3 00" src="{{ auth()->user()->pegawai->pasfoto }}" alt=""></a>
         </div>
     </div>
 
     <div class="col-sm-8">
         <div class="product-right-info">
-            <h3><b>Mens Fedora Hat CODEblack</b></h3>
-            <div class="rating">
-                <ul class="list-inline">
-                    <li><a class="fa fa-star" href=""></a></li>
-                    <li><a class="fa fa-star" href=""></a></li>
-                    <li><a class="fa fa-star" href=""></a></li>
-                    <li><a class="fa fa-star" href=""></a></li>
-                    <li><a class="fa fa-star-o" href=""></a></li>
-                </ul>
-            </div>
+            <h3><b>{{ auth()->user()->pegawai->nama }}</b></h3>
+            <a href="{{ url('/user/'.auth()->user()->id.'/edit') }}"
+                class="btn btn-primary btn-custom waves-effect waves-light pull-right m-r-5">
+                <i class="fa fa-pencil"></i>
+                <span> Ubah Data User</span>
+            </a>
+            <a href="{{ url('/user/'.auth()->user()->pegawai->idPegawai.'/edit') }}"
+                class="btn btn-primary btn-custom waves-effect waves-light pull-right m-r-5">
+                <i class="fa fa-pencil"></i>
+                <span> Ubah Data Pegawai</span>
+            </a>
 
-            <h2> <b>$42</b><small class="text-muted m-l-10"><del>$62</del> </small></b></h2>
+            <h5> <b>{{ auth()->user()->email }}</b></h5>
 
-            <h5 class="m-t-20"><b>Stock: </b> 256pcs. <span class="label label-default m-l-5">In Stock</span></h5>
+            <h5 class="m-t-20"><b>Kehadiran : </b> 99 %. <span class="label label-default m-l-5">{{ auth()->user()->level}}</span></h5>
+
+
 
             <hr />
 
-            <h5 class="font-600">Product Description</h5>
+            <div class="row m-t-30">
+                <div class="col-xs-12">
+                    <h4><b>Data Pegawai</b></h4>
+                    <div class="table-responsive m-t-20">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td width="400">Nama</td>
+                                    <td>{{ auth()->user()->pegawai->nama }}</td>
+                                </tr>
+                                <tr>
+                                    <td width="400">NIK</td>
+                                    <td>{{ auth()->user()->pegawai->nik }}</td>
+                                </tr>
+                                <tr>
+                                    <td width="400">Jenis Kelamin</td>
+                                    <td>{{ auth()->user()->pegawai->jeniskelamin }}</td>
+                                </tr>
+                                <tr>
+                                    <td width="400">Tempat, Tanggal Lahir</td>
+                                    <td>{{ auth()->user()->pegawai->tempatlahir }} , {{ auth()->user()->pegawai->tanggallahir }}</td>
+                                </tr>
+                                <tr>
+                                    <td width="400">Alamat</td>
+                                    <td>{{ auth()->user()->pegawai->alamat }}</td>
+                                </tr>
+                                <tr>
+                                    <td width="400">Agama</td>
+                                    <td>{{ auth()->user()->pegawai->agama }}</td>
+                                </tr>
+                                <tr>
+                                    <td width="400">No Telpon</td>
+                                    <td>{{ auth()->user()->pegawai->telp }}</td>
+                                </tr>
+                                <tr>
+                                    <td width="400">Tanggal Bergabung</td>
+                                    <td>{{ auth()->user()->pegawai->tanggalgabung }}</td>
+                                </tr>
+                                <tr>
+                                    <td width="400">Pendidikan</td>
+                                    <td>{{ auth()->user()->pegawai->sd }}</td>
+                                </tr>
+                                <tr>
+                                    <td width="400"></td>
+                                    <td>{{ auth()->user()->pegawai->smp }}</td>
+                                </tr>
+                                <tr>
+                                    <td width="400"></td>
+                                    <td>{{ auth()->user()->pegawai->sma }}</td>
+                                </tr>
+                                <tr>
+                                    <td width="400"></td>
+                                    <td>{{ auth()->user()->pegawai->lanjutan }}</td>
+                                </tr>
 
-            <p class="text-muted">Dantes remained confused and silent by this
-                explanation of the thoughts which had unconsciously been working in
-                his mind, or rather soul; for there are two distinct sorts of ideas,
-                those that proceed from the head and those from the heart.</p>
+                                <tr>
+                                    <td width="400">Data Fisik</td>
+                                    <td>Riwayat Penyakit : {{ auth()->user()->pegawai->riwayatpenyakit }}</td>
+                                </tr>
+                                <tr>
+                                    <td width="400"></td>
+                                    <td>Tinggi Badan : {{ auth()->user()->pegawai->tinggi }}</td>
+                                </tr>
+                                <tr>
+                                    <td width="400"></td>
+                                    <td>Berat Badan: {{ auth()->user()->pegawai->berat }}</td>
+                                </tr>
+                                <tr>
+                                    <td width="400">Status Perkawinan</td>
+                                    <td>{{ auth()->user()->pegawai->status }}</td>
+                                </tr>
+                                <tr>
+                                    <td width="400">Tanggungan</td>
+                                    <td>{{ auth()->user()->pegawai->tanggungan }}</td>
+                                </tr>
+                                <tr>
+                                    <td width="400">Data Wali</td>
+                                    <td>{{ auth()->user()->pegawai->namawali }}</td>
+                                </tr>
+                                <tr>
+                                    <td width="400"></td>
+                                    <td>{{ auth()->user()->pegawai->hubungan }}</td>
+                                </tr>
+                                <tr>
+                                    <td width="400"></td>
+                                    <td>{{ auth()->user()->pegawai->alamatwali }}</td>
+                                </tr>
+                                <tr>
+                                    <td width="400"></td>
+                                    <td>{{ auth()->user()->pegawai->telpwali }}</td>
+                                </tr>
 
-            <p class="text-muted">Unconsciously been working in
-                his mind, or rather soul; for there are two distinct sorts of ideas,
-                those that proceed from the head and those from the heart.</p>
-
-            <div class="m-t-30">
-                <button type="button" class="btn btn-white" title="Add to Wish List"><i class="fa fa-heart-o"></i></button>
-                <button type="button" class="btn btn-danger waves-effect waves-light m-l-10">
-                    <span class="btn-label"><i class="fa fa-shopping-cart"></i>
-                    </span>Buy Now</button>
-
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
+
+
         </div>
     </div>
-    <div class="row m-t-30">
-        <div class="col-xs-12">
-            <h4><b>Specifications:</b></h4>
-            <div class="table-responsive m-t-20">
-                <table class="table">
-                    <tbody>
-                        <tr>
-                            <td width="400">Brand</td>
-                            <td>
-                                TheBrandStore
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Color</td>
-                            <td>
-                                Black
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Length</td>
-                            <td>
-                                9 Centimeters
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Width</td>
-                            <td>
-                                20 Centimeters
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Height</td>
-                            <td>
-                                13 Centimeters
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Weight</td>
-                            <td>
-                                400 Grams
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Item part number:</td>
-                            <td>
-                                ABC2016
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Design</td>
-                            <td>
-                                Over-the-head
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Head Support</td>
-                            <td>
-                                No
-                            </td>
-                        </tr>
-                        <tr>
-                            <td width="400">Brand</td>
-                            <td>
-                                TheBrandStore
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Color</td>
-                            <td>
-                                Black
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Length</td>
-                            <td>
-                                9 Centimeters
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
+
+</form>
 </div>
+
 
 @endsection
 

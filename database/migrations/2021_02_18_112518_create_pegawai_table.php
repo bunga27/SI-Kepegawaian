@@ -25,8 +25,6 @@ class CreatePegawaiTable extends Migration
             $table->string('alamat');
             $table->string('agama');
             $table->string('telp');
-            $table->string('email');
-            $table->string('jabatan');
             $table->date('tanggalgabung');
             $table->string('statuskerja');
 

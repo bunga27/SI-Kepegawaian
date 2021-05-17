@@ -74,26 +74,7 @@
                         placeholder="Masukan No.Telephone">
                 </div>
             </div>
-            <div class="form-group">
-                <label for="email" class="col-md-3 control-label">E-Mail</label>
-                <div class="col-md-9">
-                    <input required type="email" class="form-control" id="email" name="email" value="{{ $pegawai->email}}"
-                        placeholder="Masukan E-Mail">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="jabatan" class="col-md-3 control-label">Jabatan</label>
-                <div class="col-md-9">
-                    <div class="form-select-list">
-                        <select id="jabatan" type="text" class="form-control custom-select-value" name="jabatan"
-                            value="{{ $pegawai->jabatan}}">
-                            <option value="pemilik">Pemilik</option>
-                            <option value="admin">Administrator</option>
-                            <option value="pegawai">Pegawai</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
+
             <div class="form-group">
                 <label for="tanggalgabung" class="col-md-3 control-label">Tanggal Gabung</label>
                 <div class="col-md-9">

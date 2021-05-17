@@ -22,8 +22,6 @@ class PegawaisTableSeeder extends Seeder
                 'alamat'=>'Jl. Arga Manis 1A no 7',
                 'agama'=>'Islam',
                 'telp'=>'082134288397',
-                'email'=>'bungatiani@gmail.com',
-                'jabatan'=>'Pemilik',
                 'tanggalgabung'=>'2000-01-01',
                 'statuskerja'=>'Aktif',
 

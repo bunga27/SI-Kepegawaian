@@ -18,8 +18,6 @@ class Pegawai extends Model
         'alamat',
         'agama',
         'telp',
-        'email',
-        'jabatan',
         'tanggalgabung',
         'statuskerja',
 

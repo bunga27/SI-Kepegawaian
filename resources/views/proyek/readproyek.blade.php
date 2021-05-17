@@ -30,7 +30,7 @@
             <h5>Pekerja :{{ $pgw->nama }}</h5>
             @endforeach
             <h5>{{ $proyek->alamat }}</h5>
-
+            @if (auth()->user()->level=="super")
             <a>
                 <form action="{{ url('/proyek/'.$proyek->idProyek) }}" method="post">
                     @method('delete')
@@ -42,6 +42,7 @@
                     </button>
                 </form>
             </a>
+            @endif
 
             <a href="{{ url('/proyek/'.$proyek->idProyek.'/edit') }}"
                 class="btn btn-primary btn-custom waves-effect waves-light pull-right m-r-5">

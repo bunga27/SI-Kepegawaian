@@ -24,9 +24,10 @@
                 <label for="level" class="col-md-3 control-label">Level</label>
                 <div class="col-md-9">
                     <div class="form-select-list">
-                        <select id="level" type="text" class="form-control custom-select-value" name="level">
+                        <select id="level" type="text" class="form-control custom-select-value" name="level" value="{{ $user->level}}">
                             <option value="super">Super Admin</option>
                             <option value="admin">Admin</option>
+                            <option value="owner">Pemilik</option>
                         </select>
                     </div>
                 </div>

@@ -3,11 +3,13 @@
 @section('ket','Lihat Detail Proyek')
 @section('content')
 <div class="col-md-12 pull-left">
+    @if (auth()->user()->level=="super")
     <a href="{{ url('/detailproyek/create') }}"
         class="btn btn-default btn-custom  waves-effect waves-light pull-right m-r-5">
         <i class="fa fa-plus"></i>
         <span>Tambah Detail Progress Proyek</span>
     </a>
+    @endif
 </div>
 <div class="card-box table-responsive">
     <table id="datatable-buttons" class="table table-striped table-bordered">
@@ -20,7 +22,9 @@
                 <th data-field="progres">Progres</th>
                 <th data-field="keterangan">Keterangan</th>
                 <th data-field="gambar">Gambar</th>
+                @if (auth()->user()->level=="super")
                 <th data-field="action">Action</th>
+                @endif
 
             </tr>
         </thead>
@@ -34,6 +38,7 @@
                 <td>{{ $detailproyek->progres }}%</td>
                 <td>{{ $detailproyek->keterangan }}</td>
                 <td><img src="{{ asset($detailproyek->gambar) }}" width="100"></td>
+                @if (auth()->user()->level=="super")
                 <td>
                     <form action="{{ url('/detailproyek/'.$detailproyek->idDetailProyek) }}" method="post">
                         @method('delete')
@@ -46,6 +51,7 @@
                     </form>
 
                 </td>
+                @endif
             </tr>
 
             @endforeach

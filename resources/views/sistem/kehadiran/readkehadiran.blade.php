@@ -1,6 +1,6 @@
 @extends('master.master')
-@section('title','Lihat Kehadiran | CV Hasil Utama Konsultan')
-@section('ket','Lihat Data Kehadiran')
+@section('title','Data Kehadiran | CV Hasil Utama Konsultan')
+@section('ket','Tambahkan Data untuk Tanggal Kehadiran Pegawai')
 @section('content')
 <div class="row">
     <div class="col-md-6 pull-left">
