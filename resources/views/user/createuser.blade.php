@@ -26,6 +26,7 @@
                             <option value="super">Super Admin</option>
                             <option value="admin">Admin</option>
                             <option value="owner">Pemilik</option>
+                            <option value="karyawan">Karyawan</option>
                         </select>
                     </div>
                 </div>

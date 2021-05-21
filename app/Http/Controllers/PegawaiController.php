@@ -8,6 +8,7 @@ use App\Proyek;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Ramsey\Uuid\Uuid;
+use Illuminate\Support\Facades\Auth;
 
 class PegawaiController extends Controller
 {
@@ -16,13 +17,20 @@ class PegawaiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function mobile()
+    {
+        $user = User::all();
+        $pegawai = Pegawai::all();
+        return view('mobile.profil', compact('user', 'pegawai'));
+    }
+
     public function index()
     {
         $user = User::all();
         $pegawai = Pegawai::all();
         return view('pegawai.readpegawai', compact('user','pegawai'));
     }
-
 
     /**
      * Show the form for creating a new resource.
@@ -42,27 +50,7 @@ class PegawaiController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
-        // $request->validate([
-        //     'nama' => 'required',
-        //     'pasfoto' => 'required|image:jpg,png',
-        //     'nik' => 'required',
-        //     'jeniskelamin' => 'required',
-        //     'tempatlahir' => 'required',
-        //     'tanggallahir' => 'required',
-        //     'alamat' => 'required',
-        //     'agama' => 'required',
-        //     'telp' => 'required',
-        //     'email' => 'required',
-        //     'jabatan' => 'required',
-        //     'tanggalgabung' => 'required',
-        //     'statuskerja' => 'required',
-        //     'sd' => 'required',
-        //     'smp' => 'required',
-        //     'sma' => 'required',
-        //     'lanjutan' => 'required',
 
-        // ]);
         $request->validate([
             'pasfoto' => 'required|image:jpg,png',
         ]);
@@ -97,8 +85,6 @@ class PegawaiController extends Controller
         return view('laporan.lappegawai', compact('pegawai'));
     }
 
-
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -107,7 +93,11 @@ class PegawaiController extends Controller
      */
     public function edit(Pegawai $pegawai)
     {
-        return view('pegawai.editpegawai', compact('pegawai'));
+        if (Auth::user()->level=="karyawan") {
+            return view('mobile.editpegawai', compact('pegawai'));
+        } else {
+            return view('pegawai.editpegawai', compact('pegawai'));
+        }
     }
 
     /**
@@ -119,9 +109,7 @@ class PegawaiController extends Controller
      */
     public function update(Request $request, Pegawai $pegawai)
     {
-        $request->validate([
-            'pasfoto' => 'required|image:jpg,png',
-        ]);
+
 
         $data = $request->except(['pasfoto']);
 
@@ -137,8 +125,13 @@ class PegawaiController extends Controller
         $pegawai->fill($data);
         $pegawai->save();
 
+        if (Auth::user()->level=="karyawan"){
 
-        return redirect('/pegawai');
+            return redirect('/mobileprofil');
+        } else {
+
+            return redirect('/pegawai');
+        }
     }
 
     /**

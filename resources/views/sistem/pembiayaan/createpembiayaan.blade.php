@@ -79,7 +79,12 @@
 
             <div class="pull-right inline-remember-me">
                 <button class="btn btn-primary btn-custom waves-effect waves-light" type="submit">Simpan</button>
-                <a class="btn btn-danger btn-custom waves-effect waves-light" href="/proyek">Cancel</a>
+                @if (auth()->user()->level=="karyawan")
+                    <a class="btn btn-danger btn-custom waves-effect waves-light" href="/home">Cancel</a>
+                @else
+                    <a class="btn btn-danger btn-custom waves-effect waves-light" href="/pembiayaan">Cancel</a>
+                @endif
+
             </div>
 
         </form>

@@ -8,7 +8,7 @@
     @csrf
     @method('get')
     <div class="col-sm-4 center">
-        <div><img width="3 00" src="{{ auth()->user()->pegawai->pasfoto }}" alt=""></a>
+        <div><img width="400" src="{{ auth()->user()->pegawai->pasfoto }}" alt=""></a>
         </div>
     </div>
 
@@ -28,7 +28,7 @@
 
             <h5> <b>{{ auth()->user()->email }}</b></h5>
 
-            <h5 class="m-t-20"><b>Kehadiran : </b> 99 %. <span class="label label-default m-l-5">{{ auth()->user()->level}}</span></h5>
+            <h5 class="m-t-20"> <span class="label label-default m-l-5">{{ auth()->user()->level}}</span></h5>
 
 
 

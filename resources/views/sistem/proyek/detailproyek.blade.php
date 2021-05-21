@@ -3,7 +3,7 @@
 @section('ket','Lihat Detail Proyek')
 @section('content')
 <div class="col-md-12 pull-left">
-    @if (auth()->user()->level=="super")
+    @if (auth()->user()->level=="super" || auth()->user()->level=="karyawan")
     <a href="{{ url('/detailproyek/create') }}"
         class="btn btn-default btn-custom  waves-effect waves-light pull-right m-r-5">
         <i class="fa fa-plus"></i>

@@ -13,7 +13,7 @@
 
     <link rel="shortcut icon" href="{{ asset('menu_2') }}/assets/images/users/user.png">
 
-<!-- Plugin Css-->
+    <!-- Plugin Css-->
     <link rel="stylesheet" href="{{ asset('menu_2') }}/assets/plugins/magnific-popup/css/magnific-popup.css" />
     <link rel="stylesheet" href="{{ asset('menu_2') }}/assets/plugins/jquery-datatables-editable/datatables.css" />
 
@@ -52,10 +52,8 @@
     <link href="{{ asset('menu_2') }}/assets/plugins/switchery/css/switchery.min.css" rel="stylesheet" />
     <link href="{{ asset('menu_2') }}/assets/plugins/multiselect/css/multi-select.css" rel="stylesheet"
         type="text/css" />
-    <link href="{{ asset('menu_2') }}/assets/plugins/select2/css/select2.min.css" rel="stylesheet"
-        type="text/css" />
-    <link href="{{ asset('menu_2') }}/assets/plugins/bootstrap-select/css/bootstrap-select.min.css"
-        rel="stylesheet" />
+    <link href="{{ asset('menu_2') }}/assets/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('menu_2') }}/assets/plugins/bootstrap-select/css/bootstrap-select.min.css" rel="stylesheet" />
     <link href="{{ asset('menu_2') }}/assets/plugins/bootstrap-touchspin/css/jquery.bootstrap-touchspin.min.css"
         rel="stylesheet" />
 
@@ -64,10 +62,8 @@
         rel="stylesheet">
     <link href="{{ asset('menu_2') }}/assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css"
         rel="stylesheet">
-    <link href="{{ asset('menu_2') }}/assets/plugins/clockpicker/css/bootstrap-clockpicker.min.css"
-        rel="stylesheet">
-    <link href="{{ asset('menu_2') }}/assets/plugins/bootstrap-daterangepicker/daterangepicker.css"
-        rel="stylesheet">
+    <link href="{{ asset('menu_2') }}/assets/plugins/clockpicker/css/bootstrap-clockpicker.min.css" rel="stylesheet">
+    <link href="{{ asset('menu_2') }}/assets/plugins/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
 
 
     <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -83,9 +79,50 @@
 
 
 <body>
+<!-- Navigation Bar-->
+<header id="topnav">
+    <div class="topbar-main">
+        <div class="container">
 
-@include('master.head')
+            <!-- Logo container-->
+            <div class="logo">
+                <a href="/home" class="logo"><span><i class="md md-home" ></i>Hasil Utama</span></a>
+            </div>
+            <!-- End Logo container-->
+            <div class="menu-extras">
 
+                <ul class="nav navbar-nav navbar-right pull-right">
+
+                    <li class="dropdown navbar-c-items">
+
+                        <a href="" class="dropdown-toggle waves-effect waves-light profile" data-toggle="dropdown"
+                            aria-expanded="true"><img src="{{ asset('menu_2') }}/assets/images/users/user.png"
+                                alt="user-img" class="img-circle"> <span>{{ auth()->user()->pegawai->nama }}</span> </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="/profil ">
+                                <span> Profil </span>
+                            </li>
+                            <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> <i class="ti-power-off text-danger m-r-10"></i>
+                                    {{ __('Logout') }}</a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="menu-item">
+                    <!-- Mobile menu toggle-->
+
+                    <!-- End mobile menu toggle-->
+                </div>
+            </div>
+
+        </div>
+    </div>
+</header>
+<!-- End Navigation Bar-->
 
     <div class="wrapper">
         <div class="container">
@@ -95,11 +132,6 @@
             <div class="row">
                 <div class="col-sm-12">
 
-                    @if (auth()->user()->level=="super")
-                    <h4 class="page-title">@yield('title')</h4>
-                    <p class="text-muted page-title-alt">@yield('ket')</p>
-                    @endif
-
                     <div class="card-box">
 
                         @yield('content')
@@ -108,7 +140,24 @@
                 </div>
             </div>
 
-            @include('master.foot')
+            <!-- Footer -->
+            <footer class="footer text-right">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            CV. Hasil Utama Konsultan
+                        </div>
+                        <div class="col-xs-6">
+                            <ul class="pull-right list-inline m-b-0">
+                                <li>
+                                    <a>Bunga Nanda Tiani</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <!-- End Footer -->
 
         </div>
     </div>
@@ -164,8 +213,8 @@
     <script src="{{ asset('menu_2') }}/assets/plugins/switchery/js/switchery.min.js"></script>
     <script type="text/javascript" src="{{ asset('menu_2') }}/assets/plugins/multiselect/js/jquery.multi-select.js">
     </script>
-    <script type="text/javascript"
-        src="{{ asset('menu_2') }}/assets/plugins/jquery-quicksearch/jquery.quicksearch.js"></script>
+    <script type="text/javascript" src="{{ asset('menu_2') }}/assets/plugins/jquery-quicksearch/jquery.quicksearch.js">
+    </script>
     <script src="{{ asset('menu_2') }}/assets/plugins/select2/js/select2.min.js" type="text/javascript"></script>
     <script src="{{ asset('menu_2') }}/assets/plugins/bootstrap-select/js/bootstrap-select.min.js"
         type="text/javascript"></script>
@@ -178,8 +227,8 @@
 
     <script type="text/javascript" src="{{ asset('menu_2') }}/assets/plugins/autocomplete/jquery.mockjax.js">
     </script>
-    <script type="text/javascript"
-        src="{{ asset('menu_2') }}/assets/plugins/autocomplete/jquery.autocomplete.min.js"></script>
+    <script type="text/javascript" src="{{ asset('menu_2') }}/assets/plugins/autocomplete/jquery.autocomplete.min.js">
+    </script>
     <script type="text/javascript" src="{{ asset('menu_2') }}/assets/plugins/autocomplete/countries.js"></script>
     <script type="text/javascript" src="{{ asset('menu_2') }}/assets/pages/autocomplete.js"></script>
 
@@ -202,7 +251,7 @@
 
     <script src="assets/pages/datatables.editable.init.js"></script>
     <script>
-    $('#mainTable').editableTableWidget().numericInputExample().find('td:first').focus();
+        $('#mainTable').editableTableWidget().numericInputExample().find('td:first').focus();
     </script>
 
     <script type="text/javascript">

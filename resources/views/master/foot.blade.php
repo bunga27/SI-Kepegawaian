@@ -3,18 +3,12 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-6">
-                © 2016. All rights reserved.
+                CV. Hasil Utama Konsultan
             </div>
             <div class="col-xs-6">
                 <ul class="pull-right list-inline m-b-0">
                     <li>
-                        <a href="#">About</a>
-                    </li>
-                    <li>
-                        <a href="#">Help</a>
-                    </li>
-                    <li>
-                        <a href="#">Contact</a>
+                        <a>Bunga Nanda Tiani</a>
                     </li>
                 </ul>
             </div>

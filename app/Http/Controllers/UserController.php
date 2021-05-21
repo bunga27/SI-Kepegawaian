@@ -6,6 +6,7 @@ use App\User;
 use App\Pegawai;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -71,7 +72,13 @@ class UserController extends Controller
 
         $user = User::find($id);
         $pegawai = Pegawai::all();
-        return view('user.edituser', compact('user', 'pegawai'));
+
+        if (Auth::user()->level == "karyawan") {
+            return view('mobile.edituser', compact('user','pegawai'));
+        } else {
+            return view('user.edituser', compact('user', 'pegawai'));
+        }
+
     }
 
     /**
@@ -83,14 +90,24 @@ class UserController extends Controller
      */
     public function update(Request $request,  $id)
     {
-        User::where('id', $id)
+        if (Auth::user()->level == "karyawan") {
+            User::where('id', $id)
+            ->update([
+                'email' => $request->email,
+                'password' => Hash::make($request->password)
+            ]);
+            return redirect('/mobileprofil');
+
+        } else {
+            User::where('id', $id)
             ->update([
                 'pegawai_id' => $request->idPegawai,
                 'email' => $request->email,
                 'level' => $request->level,
                 'password' => Hash::make($request->password)
             ]);
-        return redirect('/user')->with(['success' => 'Data User Berhasil Diubah!']);
+            return redirect('/user');
+        }
     }
 
     /**

@@ -1,4 +1,4 @@
-@extends('master.master')
+@extends('mobile.master')
 @section('title','Ubah Data Pegawai | CV Hasil Utama Konsultan')
 @section('ket','Ubah data pegawai yang telah dipilih sebelumnya')
 @section('content')
@@ -198,7 +198,7 @@
             </div>
             <div class="pull-right inline-remember-me">
                 <button class="btn btn-primary btn-custom waves-effect waves-light" type="submit">Simpan</button>
-                <a class="btn btn-danger btn-custom waves-effect waves-light" href="/pegawai">Cancel</a>
+                <a class="btn btn-danger btn-custom waves-effect waves-light" href="/home">Cancel</a>
             </div>
 
         </form>
@@ -207,3 +207,4 @@
 </div>
 
 @endsection
+

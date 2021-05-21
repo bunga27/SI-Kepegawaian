@@ -6,6 +6,7 @@ use App\DetailKehadiran;
 use App\Kehadiran;
 use App\Pegawai;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DetailKehadiranController extends Controller
 {
@@ -32,7 +33,14 @@ class DetailKehadiranController extends Controller
         $pegawai = Pegawai::all();
         $kehadiran = Kehadiran::all();
         $detailkehadiran = DetailKehadiran::all();
-        return view('sistem.kehadiran.createdetailkehadiran', compact('pegawai', 'detailkehadiran', 'kehadiran'));
+
+        if (Auth::user()->level == "karyawan") {
+            return view('mobile.daftarhadir', compact('pegawai', 'detailkehadiran', 'kehadiran'));
+        } else {
+            return view('sistem.kehadiran.createdetailkehadiran', compact('pegawai', 'detailkehadiran', 'kehadiran'));
+        }
+
+
     }
 
     /**
@@ -50,7 +58,13 @@ class DetailKehadiranController extends Controller
             'keterangan' => $request->keterangan,
 
         ]);
-        return redirect('/detailkehadiran')->with(['success' => 'Data Kehadiran Berhasil Ditambahkan!']);
+
+        if (Auth::user()->level == "karyawan") {
+            return redirect('/home')->with(['success' => 'Data Kehadiran Berhasil Ditambahkan!']);
+        } else {
+            return redirect('/detailkehadiran')->with(['success' => 'Data Kehadiran Berhasil Ditambahkan!']);
+        }
+
     }
 
     /**

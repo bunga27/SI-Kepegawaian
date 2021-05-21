@@ -4,9 +4,18 @@
         <div class="container">
 
             <!-- Logo container-->
+            @if (auth()->user()->level=="karyawan")
             <div class="logo">
-                <a href="/home" class="logo"><span><i class="md md-location-city"></i> CV. Hasil Utama Konsultan</span></a>
+                <a href="/home" class="logo"><span><i class="md md-home" ></i>Hasil Utama</span></a>
             </div>
+            @endif
+
+            @if (auth()->user()->level=="super" || auth()->user()->level=="admin" || auth()->user()->level=="owner" )
+                <div class="logo">
+                    <a href="/home" class="logo"><span><i class="md md-location-city"></i> CV. Hasil Utama Konsultan</span></a>
+                </div>
+            @endif
+
             <!-- End Logo container-->
             <div class="menu-extras">
 
@@ -33,6 +42,7 @@
                 </ul>
                 <div class="menu-item">
                     <!-- Mobile menu toggle-->
+                    @if (auth()->user()->level=="super" || auth()->user()->level=="owner" || auth()->user()->level=="admin")
                     <a class="navbar-toggle">
                         <div class="lines">
                             <span></span>
@@ -40,6 +50,7 @@
                             <span></span>
                         </div>
                     </a>
+                    @endif
                     <!-- End mobile menu toggle-->
                 </div>
             </div>
@@ -47,6 +58,7 @@
         </div>
     </div>
 
+    @if (auth()->user()->level=="super" || auth()->user()->level=="owner" || auth()->user()->level=="admin")
     <div class="navbar-custom">
         <div class="container">
             <div id="navigation">
@@ -55,7 +67,7 @@
                     <li class="has-submenu">
                         <a href="/"><i class="md md-dashboard"></i>Beranda</a>
                     </li>
-                    @if (auth()->user()->level=="super" || "admin")
+                    @if (auth()->user()->level=="super" || auth()->user()->level=="admin")
                     <li class="has-submenu">
                         <a><i class="md md-account-child"></i>Master Data</a>
                         <ul class="submenu">
@@ -63,10 +75,11 @@
                                <li><a href="/user">Data User</a></li>
                             @endif
                             <li><a href="/pegawai">Data Pegawai</a></li>
+
                         </ul>
                     </li>
                     @endif
-                    @if (auth()->user()->level=="super" || "admin")
+                    @if (auth()->user()->level=="super" || auth()->user()->level=="admin")
                     <li class="has-submenu">
                         <a><i class="md md-location-city"></i>Aktivitas</a>
                         <ul class="submenu">
@@ -76,7 +89,7 @@
                         </ul>
                     </li>
                     @endif
-                    @if (auth()->user()->level=="super" || "owner")
+                    @if (auth()->user()->level=="super" || auth()->user()->level=="owner")
                     <li class="has-submenu">
                         <a><i class="md md-my-library-books"></i>Laporan</a>
                         <ul class="submenu">
@@ -91,6 +104,6 @@
             </div>
         </div> <!-- end container -->
     </div> <!-- end navbar-custom -->
-
+    @endif
 </header>
 <!-- End Navigation Bar-->
