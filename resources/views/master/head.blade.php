@@ -27,10 +27,12 @@
                             aria-expanded="true"><img src="{{ asset('menu_2') }}/assets/images/users/user.png"
                                 alt="user-img" class="img-circle"> <span>{{ auth()->user()->pegawai->nama }}</span> </a>
                         <ul class="dropdown-menu">
+                            @if (auth()->user()->level=="super" || auth()->user()->level=="admin" || auth()->user()->level=="owner" )
                             <li>
                                 <a href="/profil ">
                                 <span> Profil </span>
                             </li>
+                            @endif
                             <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> <i class="ti-power-off text-danger m-r-10"></i>
                                     {{ __('Logout') }}</a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
