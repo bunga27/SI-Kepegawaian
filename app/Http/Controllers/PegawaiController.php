@@ -51,18 +51,54 @@ class PegawaiController extends Controller
     public function store(Request $request)
     {
 
-        $request->validate([
-            'pasfoto' => 'required|image:jpg,png',
-        ]);
+        // $request->validate([
+        //     'pasfoto' => 'required|image:jpg,png',
+        // ]);
 
-        $data = $request->except(['pasfoto']);
+        // $data = $request->except(['pasfoto']);
 
-        $extension = $request->pasfoto->extension();
-        $filename = Uuid::uuid4() . ".{$extension}";
-        $request->pasfoto->storeAs('public/pegawai', $filename);
-        $data['pasfoto'] = asset("/storage/pegawai/{$filename}");
+        // $extension = $request->pasfoto->extension();
+        // $filename = Uuid::uuid4() . ".{$extension}";
+        // $request->pasfoto->storeAs('public/pegawai', $filename);
+        // $data['pasfoto'] = asset("/storage/pegawai/{$filename}");
 
-        Pegawai::create($data);
+        // Pegawai::create($data);
+        $nm = $request->pasfoto;
+        $namaFile = time() . rand(100, 999) . "." . $nm->getClientOriginalExtension();
+
+        $pegawai = new pegawai;
+
+        $pegawai->nama = $request->nama;
+        $pegawai->nik = $request->nik;
+        $pegawai->jeniskelamin = $request->jeniskelamin;
+        $pegawai->tempatlahir = $request->tempatlahir;
+        $pegawai->tanggallahir = $request->tanggallahir;
+        $pegawai->alamat = $request->alamat;
+        $pegawai->agama = $request->agama;
+        $pegawai->telp = $request->telp;
+        $pegawai->tanggalgabung = $request->tanggalgabung;
+        $pegawai->statuskerja = $request->statuskerja;
+
+
+        $pegawai->sd = $request->sd;
+        $pegawai->smp = $request->smp;
+        $pegawai->sma = $request->sma;
+        $pegawai->lanjutan = $request->lanjutan;
+
+        $pegawai->riwayatpenyakit = $request->riwayatpenyakit;
+        $pegawai->tinggi = $request->tinggi;
+        $pegawai->berat = $request->berat;
+
+        $pegawai->status = $request->status;
+        $pegawai->tanggungan = $request->tanggungan;
+        $pegawai->namawali = $request->namawali;
+        $pegawai->hubungan = $request->hubungan;
+        $pegawai->telpwali = $request->telpwali;
+        $pegawai->alamatwali= $request->alamatwali;
+
+        $pegawai->pasfoto = $nm;
+        $nm->move(public_path() . '/img', $namaFile);
+        $pegawai->save();
         return redirect('/pegawai');
     }
 
