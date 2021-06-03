@@ -110,6 +110,6 @@ class DetailKehadiranController extends Controller
     public function destroy($id)
     {
         DetailKehadiran::destroy($id);
-        return redirect('/detailkehadiran')->with('status', 'berhasil dihapus');
+        return redirect('/kehadiran')->with('status', 'berhasil dihapus');
     }
 }

@@ -23,10 +23,10 @@
     </div>
     <div class="pull-right">
 
-        <a href="{{ url('/detailkehadiran') }}" class="btn btn-primary btn-custom  waves-effect waves-light pull-left m-r-5">
+        {{-- <a href="{{ url('/detailkehadiran') }}" class="btn btn-primary btn-custom  waves-effect waves-light pull-left m-r-5">
             <i class="fa fa-search"></i>
             <span> Lihat Detail Kehadiran</span>
-        </a>
+        </a> --}}
         {{-- <a href="{{ url('/detailkehadiran/create') }}"
             class="btn btn-default btn-custom  waves-effect waves-light pull-left m-r-5">
             <i class="fa fa-plus"></i>
@@ -60,11 +60,10 @@
                     <td>{{ $kehadiran->tanggalkehadiran }}</td>
                     <td>
 
-                            {{-- <a href="{{ url('/detailkehadiran') }}"
-                                class="btn btn-primary btn-custom  waves-effect waves-light pull-left m-r-5">
-                                <i class="fa fa-search"></i>
-                                <span>Detail</span>
-                            </a> --}}
+                        <a href="{{ url('/kehadiran/'.$kehadiran->idKehadiran.'/detail') }}" class="btn btn-primary btn-custom  waves-effect waves-light pull-left m-r-5">
+                            <i class="fa fa-search"></i>
+                            <span> Lihat Detail Kehadiran</span>
+                        </a>
 
 
                         <a>

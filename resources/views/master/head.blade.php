@@ -77,7 +77,7 @@
                                <li><a href="/user">Data User</a></li>
                             @endif
                             <li><a href="/pegawai">Data Pegawai</a></li>
-
+                            <li><a href="/jabatan">Data Jabatan</a></li>
                         </ul>
                     </li>
                     @endif
@@ -87,7 +87,7 @@
                         <ul class="submenu">
                             <li><a href="/kehadiran">Kehadiran</a></li>
                             <li><a href="/proyek">Proyek</a></li>
-                            <li><a href="/pembiayaan">Pembiayaan</a></li>
+                            {{-- <li><a href="/pembiayaan">Pembiayaan</a></li> --}}
                         </ul>
                     </li>
                     @endif
@@ -96,7 +96,7 @@
                         <a><i class="md md-my-library-books"></i>Laporan</a>
                         <ul class="submenu">
                             <li><a href="/lapkehadiran">Laporan Kehadiran</a></li>
-                            <li><a href="/lappembiayaan">Laporan Pembiayaan</a></li>
+                            <li><a href="/lappembiayaan">Laporan Penggajian</a></li>
                             <li><a href="/lappegawai">Laporan Data Pegawai</a></li>
                         </ul>
                     </li>

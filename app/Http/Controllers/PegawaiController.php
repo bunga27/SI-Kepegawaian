@@ -73,10 +73,11 @@ class PegawaiController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function show(Pegawai $pegawai)
+    public function show(Pegawai $pegawai, $id)
     {
-        $proyek = Proyek::all();
-        return view('pegawai.detailpegawai', compact('pegawai', 'proyek'));
+        $user = User::all();
+        $pegawai = Pegawai::find($id);
+        return view('pegawai.detailpegawai', compact('pegawai','user'));
     }
 
     public function lap(Pegawai $pegawai)

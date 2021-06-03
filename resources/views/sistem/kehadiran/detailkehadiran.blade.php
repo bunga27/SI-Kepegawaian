@@ -28,7 +28,7 @@
         </thead>
 
         <tbody>
-            @foreach ($detailkehadiran as $detailkehadiran)
+            @foreach ($kehadiran->detailkehadiran as $detailkehadiran)
             <tr>
 
                 <td>{{ $detailkehadiran->kehadiran->tanggalkehadiran}}</td>

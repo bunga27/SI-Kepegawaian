@@ -40,6 +40,11 @@
                 <i class="fa fa-pencil"></i>
                 {{-- <span> Ubah</span> --}}
             </a>
+            <a href="{{ url('/pegawai/'.$pegawai->idPegawai.'/show') }}"
+                class="btn btn-default btn-custom waves-effect waves-light pull-right m-r-5">
+                <i class="fa fa-search"></i>
+                {{-- <span> Ubah</span> --}}
+            </a>
 
 
             <br><br>

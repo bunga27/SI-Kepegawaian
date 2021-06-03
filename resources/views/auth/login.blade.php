@@ -34,13 +34,16 @@
     <div class="account-pages"></div>
     <div class="clearfix"></div>
     <div class="wrapper-page">
-        <div class=" card-box">
+        <div class="card-box">
             <div class="panel-heading">
-                <h3 class="text-center"> {{ __('Masuk Sistem Informasi Kepegawaian Hasil Utama') }} <strong class="text-custom"></strong> </h3>
+                <h3 class="text-center"> {{ __('CV HASIL UTAMA KONSULTAN') }} <strong class="text-custom"></strong>
+                </h3>
+
             </div>
+        </div>
+        <div class="card-box">
+        <h5>Masukan email dan password anda</h5>
 
-
-            <div class="panel-body">
                 <form class="form-horizontal m-t-20" method="POST" action="{{ route('login') }}">
                     @csrf
                     <div class="form-group ">
@@ -87,8 +90,9 @@
 
                 </form>
 
-            </div>
+
         </div>
+
 
 
     </div>

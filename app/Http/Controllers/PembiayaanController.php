@@ -63,10 +63,12 @@ class PembiayaanController extends Controller
      * @param  \App\Pembiayaan  $pembiayaan
      * @return \Illuminate\Http\Response
      */
-    public function show(Pembiayaan $pembiayaan)
-    {
-        //
-    }
+    // public function show(Pembiayaan $pembiayaan, $id)
+    // {
+    //     $proyek = Proyek::all();
+    //     $pembiayaan = Pembiayaan::all();
+    //     return view('sistem.pembiayaan.readpembiayaan', compact('proyek', 'pembiayaan'));
+    // }
 
     /**
      * Show the form for editing the specified resource.

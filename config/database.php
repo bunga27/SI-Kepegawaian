@@ -43,19 +43,39 @@ return [
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
         ],
 
+        // 'mysql' => [
+        //     'driver' => 'mysql',
+        //     'host' => 'us-cdbr-east-03.cleardb.com',
+        //     'port' => '3306',
+        //     'database' => 'heroku_53086c25bd25432',
+        //     'username' => 'ba2a859b693943',
+        //     'password' => 'e8f6ec14',
+        //     'charset' => 'utf8mb4',
+        //     'collation' => 'utf8mb4_unicode_ci',
+        //     'prefix' => '',
+        //     'strict' => true,
+        //     'engine' => null,
+
+        // ],
+
         'mysql' => [
             'driver' => 'mysql',
-            'host' => 'us-cdbr-east-03.cleardb.com',
-            'port' => '3306',
-            'database' => 'heroku_53086c25bd25432',
-            'username' => 'ba2a859b693943',
-            'password' => 'e8f6ec14',
+            'url' => env('DATABASE_URL'),
+            'host' => env('DB_HOST', '127.0.0.1'),
+            'port' => env('DB_PORT', '3306'),
+            'database' => env('DB_DATABASE', 'hasilutama'),
+            'username' => env('DB_USERNAME', 'root'),
+            'password' => env('DB_PASSWORD', ''),
+            'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
             'prefix' => '',
+            'prefix_indexes' => true,
             'strict' => true,
             'engine' => null,
-
+            'options' => extension_loaded('pdo_mysql') ? array_filter([
+                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+            ]) : [],
         ],
 
         'pgsql' => [

@@ -30,7 +30,7 @@
         </thead>
 
         <tbody>
-            @foreach ($detailproyek as $detailproyek)
+            @foreach ($proyek->detailproyek as $detailproyek)
             <tr>
                 <td>{{ $detailproyek->tanggal}}</td>
                 <td>{{ $detailproyek->proyek->nama}}</td>

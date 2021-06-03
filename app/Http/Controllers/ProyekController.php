@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\DetailProyek;
 use App\Proyek;
 use App\Pegawai;
+use App\Pembiayaan;
 use Illuminate\Http\Request;
 
 class ProyekController extends Controller
@@ -57,9 +59,18 @@ class ProyekController extends Controller
      * @param  \App\Proyek  $proyek
      * @return \Illuminate\Http\Response
      */
-    public function show(Proyek $proyek)
+    public function show($id)
     {
-        //
+        $proyek = Proyek::find($id);
+        $pembiayaan = Pembiayaan::all();
+        return view('sistem.proyek.detailpembiayaan', compact('proyek', 'pembiayaan'));
+    }
+
+    public function progres($id)
+    {
+        $proyek = Proyek::find($id);
+        $detailproyek = DetailProyek::all();
+        return view('sistem.proyek.detailproyek', compact('proyek', 'detailproyek'));
     }
 
     /**

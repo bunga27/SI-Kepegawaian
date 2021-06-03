@@ -26,6 +26,13 @@ class KehadiranController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function detail($id)
+    {
+        $kehadiran = Kehadiran::find($id);
+        $detailkehadiran = DetailKehadiran::all();
+        return view('sistem.kehadiran.detailkehadiran', compact('kehadiran', 'detailkehadiran'));
+    }
     public function create()
     {
         //
