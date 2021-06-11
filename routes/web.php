@@ -23,19 +23,27 @@ Route::middleware(['auth','Ceklevel:admin,super,owner,karyawan'])->group(functio
     Route::resource('pegawai', 'PegawaiController');
     Route::resource('user', 'UserController');
     Route::resource('proyek', 'ProyekController');
-    Route::resource('kehadiran', 'KehadiranController');
     Route::resource('detailkehadiran', 'DetailKehadiranController');
     Route::resource('detailproyek', 'DetailProyekController');
     Route::resource('pembiayaan', 'PembiayaanController');
+    Route::resource('jabatan', 'JabatanController');
+    Route::resource('gaji', 'GajiController');
+
+
+    Route::get('penggajian', 'PegawaiController@readgaji');
+    Route::post('storegaji', 'PegawaiController@storegaji');
+
+    Route::get('pegawai/{id}/addgaji', 'PegawaiController@addgaji');
+    Route::get('pegawai/{id}/readdetailgaji', 'PegawaiController@detailgaji');
+
+
+
     Route::get('pegawai/{id}/show', 'PegawaiController@show');
     Route::get('proyek/{id}/show', 'ProyekController@show');
     Route::get('proyek/{id}/progres', 'ProyekController@progres');
-    Route::get('kehadiran/{id}/detail', 'KehadiranController@detail');
     Route::resource('lapkehadiran', 'LaporanKehadiranController');
     Route::resource('lappembiayaan', 'LaporanPembiayaanController');
     Route::get('lappegawai', 'PegawaiController@lap');
-
-
     Route::get('mobileprofil', 'PegawaiController@mobile');
 
 });

@@ -85,9 +85,9 @@
                     <li class="has-submenu">
                         <a><i class="md md-location-city"></i>Aktivitas</a>
                         <ul class="submenu">
-                            <li><a href="/kehadiran">Kehadiran</a></li>
+                            <li><a href="/detailkehadiran">Kehadiran</a></li>
                             <li><a href="/proyek">Proyek</a></li>
-                            {{-- <li><a href="/pembiayaan">Pembiayaan</a></li> --}}
+                            <li><a href="/penggajian">Penggajian</a></li>
                         </ul>
                     </li>
                     @endif

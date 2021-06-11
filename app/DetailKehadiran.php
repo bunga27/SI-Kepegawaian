@@ -11,10 +11,14 @@ class DetailKehadiran extends Model
     protected $primaryKey = 'idDetailKehadiran';
     protected $fillable =
     [
-        'kehadiran_id',
+        'bulan',
         'pegawai_id',
-        'ketkehadiran',
-        'keterangan'
+        'buktidatang',
+        'ketdatang',
+        'buktipulang',
+        'ketpulang',
+        'keterangan',
+        'ketepatanhadir'
     ];
 
     public function pegawai()
@@ -22,8 +26,4 @@ class DetailKehadiran extends Model
         return $this->belongsTo('App\Pegawai', 'pegawai_id');
     }
 
-    public function kehadiran()
-    {
-        return $this->belongsTo('App\Kehadiran', 'kehadiran_id');
-    }
 }

@@ -15,18 +15,14 @@
     <div class="col-sm-8">
         <div class="product-right-info">
             <h3><b>{{ $pegawai->nama }}</b></h3>
-            <a href="{{ url('/user/'.$pegawai->user->id.'/edit') }}"
+            {{-- <a href="{{ url('/user/'.$pegawai->user->id.'/edit') }}"
                 class="btn btn-primary btn-custom waves-effect waves-light pull-right m-r-5">
                 <i class="fa fa-pencil"></i>
                 <span> Ubah Data User</span>
-            </a>
+            </a> --}}
+            <h5> <b>{{ $pegawai->jabatan->jabatan }}</b></h5>
 
-
-            <h5> <b>{{ $pegawai->user->email }}</b></h5>
-
-            <h5 class="m-t-20"> <span class="label label-default m-l-5">{{ $pegawai->user->level}}</span></h5>
-
-
+            {{-- <h5 class="m-t-20"> <span class="label label-default m-l-5">{{ $pegawai->user->level}}</span></h5> --}}
 
             <hr />
 

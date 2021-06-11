@@ -22,6 +22,19 @@
                 </div>
             </div>
             <div class="form-group">
+                <label for="nama" class="col-md-3 control-label">Jabatan</label>
+                <div class="col-md-9">
+                    <select class="form-control" placeholder="-- Pilih Nama Pegawai --" id="jabatan_id" name="jabatan_id" required>
+                        @foreach ($jabatan as $j)
+                        <option value="{{$j->idJabatan}}" @if ($j->idJabatan == $pegawai->jabatan_id)
+                            selected
+                            @endif
+                            >{{$j->nama}}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
                 <label for="nik" class="col-md-3 control-label">NIK</label>
                 <div class="col-md-9">
                     <input required type="number" class="form-control" id="nik" name="nik" value="{{ $pegawai->nik}}"

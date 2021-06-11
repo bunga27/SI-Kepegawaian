@@ -21,18 +21,6 @@
             </div>
         </form>
     </div>
-    <div class="pull-right">
-
-        {{-- <a href="{{ url('/detailkehadiran') }}" class="btn btn-primary btn-custom  waves-effect waves-light pull-left m-r-5">
-            <i class="fa fa-search"></i>
-            <span> Lihat Detail Kehadiran</span>
-        </a> --}}
-        {{-- <a href="{{ url('/detailkehadiran/create') }}"
-            class="btn btn-default btn-custom  waves-effect waves-light pull-left m-r-5">
-            <i class="fa fa-plus"></i>
-            <span>Tambah Kehadiran Pegawai</span>
-        </a> --}}
-    </div>
 
 
 
@@ -45,7 +33,6 @@
             <thead>
 
                 <tr>
-                    <th data-field="id">ID</th>
                     <th data-field="tanggalkehadiran">Tanggal Kehadiran</th>
                     <th data-field="action">Action</th>
 
@@ -56,13 +43,12 @@
             <tbody>
                 @foreach ($kehadiran as $kehadiran)
                 <tr>
-                    <td>{{ $kehadiran->idKehadiran }}</td>
                     <td>{{ $kehadiran->tanggalkehadiran }}</td>
                     <td>
 
                         <a href="{{ url('/kehadiran/'.$kehadiran->idKehadiran.'/detail') }}" class="btn btn-primary btn-custom  waves-effect waves-light pull-left m-r-5">
                             <i class="fa fa-search"></i>
-                            <span> Lihat Detail Kehadiran</span>
+                            <span> Detail</span>
                         </a>
 
 

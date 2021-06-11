@@ -6,7 +6,6 @@
     @if (auth()->user()->level=="super")
     <a href="{{ url('/detailkehadiran/create') }}"
         class="btn btn-default btn-custom  waves-effect waves-light pull-right m-r-5">
-        <i class="fa fa-plus"></i>
         <span>Tambah Kehadiran Pegawai</span>
     </a>
     @endif
@@ -18,7 +17,8 @@
             <tr>
                 <th data-field="tanggal">Tanggal</th>
                 <th data-field="nama">Nama Pegawai</th>
-                <th data-field="kehadiran">Kehadiran</th>
+                <th data-field="kehadiran">Data Datang</th>
+                <th data-field="pulang">Data Pulang</th>
                 <th data-field="keterangan">Keterangan</th>
                 @if (auth()->user()->level=="super")
                 <th data-field="action">Action</th>
@@ -28,26 +28,56 @@
         </thead>
 
         <tbody>
-            @foreach ($kehadiran->detailkehadiran as $detailkehadiran)
+            @foreach ($detailkehadiran as $detailkehadiran)
+
+
             <tr>
 
-                <td>{{ $detailkehadiran->kehadiran->tanggalkehadiran}}</td>
+                <td>{{ date('d-m-Y', strtotime($detailkehadiran->created_at))}}</td>
                 <td>{{ $detailkehadiran->pegawai->nama }}</td>
-                <td>{{ $detailkehadiran->ketkehadiran }}</td>
-                <td>{{ $detailkehadiran->keterangan }}</td>
+                <td>
+                    <strong>{{ date('H:i:s', strtotime($detailkehadiran->created_at))}}</strong><br>
+                    {{ $detailkehadiran->ketdatang }}<br>
+                    <img src="{{ $detailkehadiran->buktidatang }}" width="100px">
+
+                </td>
+                    <td><strong>{{ date('H:i:s', strtotime($detailkehadiran->updated_at))}}</strong><br>
+                        {{ $detailkehadiran->ketpulang }}<br>
+                    <img src="{{ $detailkehadiran->buktipulang }}" width="100px">
+                </td>
+
+                <td>
+                    {{ $detailkehadiran->keterangan }}<br>
+                    {{ $detailkehadiran->ketepatanhadir}}<br>
+                </td>
                 @if (auth()->user()->level=="super")
                 <td>
+                    {{-- @if ($loop->first)
+                    <a href="{{ url('/detailkehadiran/'.$detailkehadiran->idDetailKehadiran.'/edit') }}"
+                        class="btn btn-primary btn-custom  waves-effect waves-light pull-right m-r-5">
+                        <i class="fa fa-pencil"></i>
+                        <span>Daftar Pulang</span>
+                    </a>
+                    @endif --}}
 
-                    <form action="/detailkehadiran/{{ $detailkehadiran->idDetailKehadiran }}" method="post" class="d-inline">
-                        @method('delete')
-                        @csrf
-                        <button type="submit" onclick="return confirm('Yakin akan menghapus?')"
-                            class="btn btn-danger waves-effect waves-light">
-                            <i class="fa fa-trash"></i>
-                            <span>Hapus </span>
+                    <a>
+                        <form action="{{ url('/detailkehadiran/'.$detailkehadiran->idDetailKehadiran) }}" method="post">
+                            @method('delete')
+                            @csrf
+                            <button class="btn btn-danger btn-custom waves-effect waves-light  m-r-5"
+                                onclick="return confirm('Apakah anda yakin akan menghapus nya?');">
+                                <i class="fa fa-trash"></i>
+                                <span> Hapus Data</span>
+                            </button>
+                        </form>
+                    </a>
 
-                        </button>
-                    </form>
+                    <a href="{{ url('/detailkehadiran/'.$detailkehadiran->idDetailKehadiran.'/edit') }}"
+                        class="btn btn-primary btn-custom waves-effect waves-light m-r-5">
+                        <i class="fa fa-plus"></i>
+                        <span>Daftar Pulang</span>
+                    </a></td>
+
                 </td>
                 @endif
             </tr>

@@ -20,6 +20,7 @@ class CreateProyekTable extends Migration
             $table->string('client');
             $table->string('nama');
             $table->string('alamat');
+            $table->string('bulan')->nullable();
             $table->string('tanggalpengerjaan');
             $table->timestamps();
         });

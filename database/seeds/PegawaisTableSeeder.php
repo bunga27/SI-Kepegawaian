@@ -13,7 +13,9 @@ class PegawaisTableSeeder extends Seeder
     {
         \App\Pegawai::insert([
             [
+                'idPegawai'=>'1',
                 'nama'=>'Bunga Nanda',
+                'jabatan_id' => '1',
                 'pasfoto' => 'BungaNanda.png',
                 'nik'=>'12345',
                 'jeniskelamin'=>'Perempuan',

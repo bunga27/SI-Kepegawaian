@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\DetailKehadiran;
 use App\Pegawai;
 use App\User;
-use App\Proyek;
+use App\Jabatan;
+use App\Gaji;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Ramsey\Uuid\Uuid;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class PegawaiController extends Controller
 {
@@ -20,16 +23,107 @@ class PegawaiController extends Controller
 
     public function mobile()
     {
+        $jabatan = Jabatan::all();
         $user = User::all();
         $pegawai = Pegawai::all();
-        return view('mobile.profil', compact('user', 'pegawai'));
+        return view('mobile.profil', compact('user', 'pegawai', 'jabatan'));
     }
 
     public function index()
     {
+
+        $jabatan = Jabatan::all();
         $user = User::all();
         $pegawai = Pegawai::all();
-        return view('pegawai.readpegawai', compact('user','pegawai'));
+        return view('pegawai.readpegawai', compact('user','pegawai', 'jabatan'));
+    }
+
+    public function readgaji()
+    {
+
+        $jabatan = Jabatan::all();
+        $user = User::all();
+        $pegawai = Pegawai::all();
+
+        return view('gaji.readgaji', compact('user', 'pegawai', 'jabatan'));
+    }
+
+
+    public function addgaji($id)
+    {
+        $pegawai = Pegawai::find($id);
+        $jabatan = Jabatan::all();
+        $user = User::all();
+        $gaji = Gaji::all();
+        return view('gaji.creategaji', compact( 'user', 'pegawai', 'jabatan'));
+    }
+
+    public function detailgaji($id)
+    {
+        $pegawai = Pegawai::find($id);
+        $jabatan = Jabatan::all();
+        $user = User::all();
+        $gaji = Gaji::all();
+        return view('gaji.readdetailgaji', compact('user', 'pegawai', 'jabatan'));
+    }
+
+
+    public function storegaji(Request $request)
+    {
+        $tanggal = $request -> tanggal;
+        $bulan = date('mY', strtotime($tanggal));
+
+        $harikerja = DB::table('detailkehadiran')
+        ->where('pegawai_id', '=', $request->idPegawai)
+        ->Where('keterangan', '=', 'Hadir')
+        ->Where('bulan', '=', $bulan)
+        ->count();
+
+        $totalproyek = DB::table('proyek')
+        ->where('pegawai_id', '=', $request->idPegawai)
+        ->Where('created_at', '=', $bulan)
+        ->count();
+
+        $totallembur = DB::table('detailkehadiran')
+        ->where('pegawai_id', '=', $request->idPegawai)
+        ->Where('bulan', '=', $bulan)
+        ->where('keterangan','=', 'Lembur')
+        ->count();
+
+        $telat = DB::table('detailkehadiran')
+        ->where('pegawai_id', '=', $request->idPegawai)
+        ->Where('bulan', '=', $bulan)
+        ->where('ketepatanhadir', '=', 'Terlambat')
+        ->count();
+
+
+
+        $gaji = new Gaji;
+        $gaji->pegawai_id = $request->idPegawai;
+        $gaji->bulan = $bulan;
+        $gaji->gajibulan = $harikerja*$request->gajiharian;
+        $gaji->totaluangmakan = $harikerja*$request->uangmakan;
+        $gaji->totalbonusproyek =$totalproyek*$request->bonusproyek;
+        $gaji->totalthr = $request->thr*$request->hariraya;
+        $gaji->totalgajilembur=$totallembur*$request->gajilembur;
+
+        $penghasilan=$gaji->gajibulan+$gaji->totaluangmakan+$gaji->totalbonusproyek+$gaji->totalthr+ $gaji->totalgajilembur;
+
+
+        $potongantelat = $telat*$request->potongantelat; // ketepatan=lambat*dendatelat
+        $gaji->potongantelat=$potongantelat;
+
+
+        $gaji->totalgaji=$penghasilan-$gaji->potongantelat;
+
+        $gaji->save();
+        return redirect('pegawai/'.$request->idPegawai.'/addgaji');
+
+        // dd($request->all());
+        // echo $request->idPegawai;
+        // echo $request->idPegawai;
+        // echo $harikerja;
+        // echo $bulan;
     }
 
     /**
@@ -39,7 +133,8 @@ class PegawaiController extends Controller
      */
     public function create()
     {
-        return view('pegawai.createpegawai');
+        $jabatan = Jabatan::all();
+        return view('pegawai.createpegawai',compact('jabatan'));
     }
 
     /**
@@ -75,9 +170,10 @@ class PegawaiController extends Controller
 
     public function show(Pegawai $pegawai, $id)
     {
+        $jabatan = Jabatan::all();
         $user = User::all();
         $pegawai = Pegawai::find($id);
-        return view('pegawai.detailpegawai', compact('pegawai','user'));
+        return view('pegawai.detailpegawai', compact('pegawai','user', 'jabatan'));
     }
 
     public function lap(Pegawai $pegawai)
@@ -94,8 +190,10 @@ class PegawaiController extends Controller
      */
     public function edit(Pegawai $pegawai)
     {
+
+        $jabatan = Jabatan::all();
         if (Auth::user()->level=="karyawan") {
-            return view('mobile.editpegawai', compact('pegawai'));
+            return view('mobile.editpegawai', compact('pegawai','jabatan'));
         } else {
             return view('pegawai.editpegawai', compact('pegawai'));
         }

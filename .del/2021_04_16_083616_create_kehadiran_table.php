@@ -15,7 +15,7 @@ class CreateKehadiranTable extends Migration
     {
         Schema::create('kehadiran', function (Blueprint $table) {
             $table->increments('idKehadiran');
-            $table->string('tanggalkehadiran');
+            $table->string('keterangan');
             $table->timestamps();
         });
     }

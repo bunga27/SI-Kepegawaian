@@ -20,9 +20,20 @@
                 </div>
             </div>
             <div class="form-group">
+                <label for="nama" class="col-md-3 control-label"> Jabatan</label>
+                <div class="col-md-9">
+                    <select class="form-control" placeholder="-- Pilih Jabatan --" id="jabatan_id" name="jabatan_id" required>
+
+                        @foreach ($jabatan as $j)
+                        <option value="{{$j->idJabatan}}">{{$j->jabatan}}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
                 <label for="nik" class="col-md-3 control-label">NIK</label>
                 <div class="col-md-9">
-                    <input required type="number" class="form-control" id="nik" name="nik" placeholder="Masukan No.NIK">
+                    <input required type="number" class="form-control" id="nik" name="nik" placeholder="Masukan No.NIK" min="0" minlength="10">
                 </div>
             </div>
             <div class="form-group">
@@ -68,7 +79,7 @@
             <div class="form-group">
                 <label for="telp" class="col-md-3 control-label">No. Telephone</label>
                 <div class="col-md-9">
-                    <input required type="number" class="form-control" id="telp" name="telp" placeholder="Masukan No.Telephone">
+                    <input required type="number" class="form-control" id="telp" name="telp" placeholder="Masukan No.Telephone" minlength="8" min="0">
                 </div>
             </div>
 
@@ -131,13 +142,13 @@
             <div class="form-group">
                 <label for="tinggi" class="col-md-3 control-label">Tinggi Badan</label>
                 <div class="col-md-3">
-                    <input required type="number" id="tinggi" name="tinggi" class="form-control" placeholder="cm">
+                    <input required min="0" type="number" id="tinggi" name="tinggi" class="form-control" placeholder="cm">
                 </div>
             </div>
             <div class="form-group">
                 <label for="berat" class="col-md-3 control-label">Berat Badan</label>
                 <div class="col-md-3">
-                    <input required type="number" id="berat" name="berat" class="form-control" placeholder="kg">
+                    <input required min="0" type="number" id="berat" name="berat" class="form-control" placeholder="kg">
                 </div>
             </div>
 
@@ -155,7 +166,7 @@
             <div class="form-group ">
                 <label for="tanggungan" class="col-md-3 control-label">Tanggungan</label>
                 <div class="col-md-3">
-                    <input required name="tanggungan" id="tanggungan" type="number" class="form-control" placeholder="orang">
+                    <input required min="0" name="tanggungan" id="tanggungan" type="number" class="form-control" placeholder="orang">
                 </div>
             </div>
 

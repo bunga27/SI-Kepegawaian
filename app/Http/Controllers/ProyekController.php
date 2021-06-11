@@ -95,21 +95,16 @@ class ProyekController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $bulan = date('mY', strtotime($request->created_at));
         Proyek::where('idProyek', $id)->update([
             'client' => $request->client,
             'pegawai_id' => $request->idPegawai,
             'nama' => $request->nama,
             'alamat' => $request->alamat,
-            'tanggalpengerjaan' => $request->tanggalpengerjaan
+            'tanggalpengerjaan' => $request->tanggalpengerjaan,
+            'bulan' => $bulan
         ]);
-        // Proyek::where('id', $id)
-        //         ->update([
-        //         'client' => $request->client,
-        //         'pegawai_id' => $request->idPegawai,
-        //         'nama' => $request->nama,
-        //         'alamat' => $request->alamat,
-        //         'tanggalpengerjaan' => $request->tanggalpengerjaan
-        //         ]);
+
         return redirect('/proyek')->with(['success' => 'Data Proyek Berhasil Diubah!']);
     }
 

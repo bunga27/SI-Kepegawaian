@@ -10,6 +10,7 @@ class Pegawai extends Model
     protected $primaryKey = 'idPegawai';
     protected $fillable = [
         'nama',
+        'jabatan_id',
         'pasfoto',
         'nik',
         'jeniskelamin',
@@ -50,11 +51,18 @@ class Pegawai extends Model
         return $this->hasOne('App\User', 'pegawai_id');
     }
 
+    public function jabatan()
+    {
+        return $this->belongsTo('App\Jabatan', 'jabatan_id');
+    }
     public function proyek()
     {
         return $this->hasMany('App\Proyek', 'pegawai_id');
     }
-
+    public function gaji()
+    {
+        return $this->hasMany('App\Gaji', 'pegawai_id');
+    }
     public function detailkehadiran()
     {
         return $this->hasMany('App\DetailKehadiran', 'pegawai_id');

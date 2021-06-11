@@ -17,10 +17,14 @@ class CreateDetailkehadiranTable extends Migration
             $table->increments('idDetailKehadiran')->unsigned();
             $table->integer('pegawai_id')->unsigned();
             $table->foreign('pegawai_id')->references('idPegawai')->on('pegawai')->onUpdate('cascade');
-            $table->integer('kehadiran_id')->unsigned();
-            $table->foreign('kehadiran_id')->references('idKehadiran')->on('kehadiran')->onUpdate('cascade');
-            $table->string('ketkehadiran');
+            $table->string('buktidatang')->nullable();
+            $table->string('ketdatang')->nullable();
+            $table->string('buktipulang')->nullable();
+            $table->string('ketpulang')->nullable();
+            $table->string('bulan')->nullable();
             $table->string('keterangan');
+            $table->string('ketepatanhadir');
+
             $table->timestamps();
         });
     }
