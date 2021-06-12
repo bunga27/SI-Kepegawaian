@@ -6,6 +6,8 @@ use App\Gaji;
 use App\Pegawai;
 use App\Jabatan;
 use App\User;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class GajiController extends Controller
@@ -22,6 +24,45 @@ class GajiController extends Controller
         $pegawai = Pegawai::all();
 
         return view('gaji.readgaji', compact('user', 'pegawai', 'jabatan'));
+    }
+
+    public function slip($id)
+    {
+        $jabatan = Jabatan::all();
+        $user = User::all();
+        $gaji = Gaji::find($id);
+        $pegawai = Pegawai::all();
+        $tanggal = \Carbon\Carbon::now('Asia/Jakarta');
+
+        $harikerja = DB::table('detailkehadiran')
+        ->where('pegawai_id', '=', $gaji->pegawai->idPegawai)
+        ->Where('keterangan', '=', 'Hadir')
+        ->Where('bulan', '=', $gaji->bulan)
+        ->count();
+
+        $totalproyek = DB::table('proyek')
+        ->where('pegawai_id', '=', $gaji->pegawai->idPegawai)
+        ->Where('created_at', '=', $gaji->bulan)
+        ->count();
+
+        $totallembur = DB::table('detailkehadiran')
+        ->where('pegawai_id', '=', $gaji->pegawai->idPegawai)
+        ->Where('bulan', '=', $gaji->bulan)
+        ->where('keterangan', '=', 'Lembur')
+        ->count();
+
+        $telat = DB::table('detailkehadiran')
+        ->where('pegawai_id', '=', $gaji->pegawai->idPegawai)
+        ->Where('bulan', '=', $gaji->bulan)
+        ->where('ketepatanhadir', '=', 'Terlambat')
+        ->count();
+
+        $penghasilan = $gaji->totalgaji-$gaji->potongantelat;
+        $totalgaji = $gaji->totalgaji;
+
+
+
+        return view('gaji.slip', compact('totalgaji', 'penghasilan','harikerja', 'totalproyek','telat', 'totallembur', 'tanggal','user', 'gaji', 'pegawai', 'jabatan'));
     }
 
     /**
@@ -91,4 +132,16 @@ class GajiController extends Controller
         Gaji::destroy($gaji->idGaji);
         return redirect()->back();
     }
+
+
+
+
+
+
+
+
+
+
+
+
 }

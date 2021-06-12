@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Proyek;
-use App\Pembiayaan;
+use App\Pegawai;
+use App\Gaji;
 
-class LaporanPembiayaanController extends Controller
+class LaporanPenggajianController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,10 +16,10 @@ class LaporanPembiayaanController extends Controller
      */
     public function index()
     {
-
+        $pegawai = Pegawai::all();
         $proyek = Proyek::all();
-        $pembiayaan = Pembiayaan::all();
-        return view('laporan.laporanpembiayaan', compact('proyek', 'pembiayaan'));
+        $gaji = Gaji::all();
+        return view('laporan.laporanpenggajian', compact('pegawai','gaji','proyek'));
     }
 
     /**

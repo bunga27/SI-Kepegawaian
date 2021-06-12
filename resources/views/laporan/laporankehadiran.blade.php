@@ -1,5 +1,5 @@
 @extends('master.master')
-@section('title','Laporan Kehadiran Proyek')
+@section('title','Laporan Kehadiran Pegawai')
 @section('ket','CV. Hasil Utama Konsultan')
 @section('content')
 
@@ -33,17 +33,17 @@
                                     <tr>
                                         <th>Tanggal</th>
                                         <th>Nama</th>
-                                        <th>Kehadiran</th>
                                         <th>Keterangan</th>
+                                        <th>Ketepatan Hadir</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($detailkehadiran as $detailkehadiran)
                                     <tr>
-                                        <td>{{ $detailkehadiran->kehadiran->tanggalkehadiran }}</td>
+                                        <td>{{ date('d-m-Y', strtotime($detailkehadiran->created_at))}}</td>
                                         <td>{{ $detailkehadiran->pegawai->nama }}</td>
-                                        <td>{{ $detailkehadiran->ketkehadiran }}</td>
                                         <td>{{ $detailkehadiran->keterangan}}</td>
+                                        <td>{{ $detailkehadiran->ketepatanhadir }}</td>
 
                                     </tr>
                                     @endforeach

@@ -7,14 +7,14 @@
         <form class="form-horizontal" method="POST" action="/proyek" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
-                <label for="client" class="col-md-3 control-label">Client</label>
-                <div class="col-md-9">
+                <label for="client" class="col-md-4 control-label">Client</label>
+                <div class="col-md-8">
                     <input required type="text" class="form-control" id="client" name="client" placeholder="Masukan Nama Client">
                 </div>
             </div>
             <div class="form-group">
-                <label for="nama" class="col-md-3 control-label">Nama Pegawai</label>
-                <div class="col-md-9">
+                <label for="nama" class="col-md-4 control-label">Nama Pegawai</label>
+                <div class="col-md-8">
                     <select class="form-control" placeholder="-- Pilih Nama Pegawai --" id="idPegawai" name="idPegawai" required>
                         @foreach ($pegawai as $pgw)
                         <option value="{{$pgw->idPegawai}}">{{$pgw->nama}}</option>
@@ -23,20 +23,20 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="nama" class="col-md-3 control-label">Nama Proyek</label>
-                <div class="col-md-9">
+                <label for="nama" class="col-md-4 control-label">Nama Proyek</label>
+                <div class="col-md-8">
                     <input required type="text" class="form-control" id="nama" name="nama" placeholder="Masukan Nama Proyek">
                 </div>
             </div>
             <div class="form-group">
-                <label for="alamat" class="col-md-3 control-label">Alamat</label>
-                <div class="col-md-9">
+                <label for="alamat" class="col-md-4 control-label">Alamat</label>
+                <div class="col-md-8">
                     <input required type="text" class="form-control" id="alamat" name="alamat"> </textarea>
                 </div>
             </div>
             <div class="form-group">
-                <label for="tanggalpengerjaan" class="col-md-3 control-label">Tanggal Pengerjaan</label>
-                <div class="col-md-9">
+                <label for="tanggalpengerjaan" class="col-md-4 control-label">Tanggal Pengerjaan</label>
+                <div class="col-md-8">
                     <div class="input-group">
                         <input required type="date" class="form-control" id="tanggalpengerjaan" name="tanggalpengerjaan"
                             placeholder="mm/dd/yyyy">

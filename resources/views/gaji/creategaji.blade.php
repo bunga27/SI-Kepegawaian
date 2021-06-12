@@ -93,6 +93,10 @@
                 <td>{{ $g->potongantelat}}</td>
                 <td>{{ $g->totalgaji }}</td>
                 <td>
+                    <a href="/gaji/{{ $g->idGaji }}/slip" class="btn btn-default btn-custom waves-effect waves-light m-r-5">
+                        <i class="fa fa-file m-r-5"></i>
+                        <span>Slip</span>
+                    </a>
                     <a>
                         <form action="{{ url('/gaji/'.$g->idGaji) }}" method="post">
                             @method('delete')

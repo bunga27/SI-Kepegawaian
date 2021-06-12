@@ -96,7 +96,7 @@
                         <a><i class="md md-my-library-books"></i>Laporan</a>
                         <ul class="submenu">
                             <li><a href="/lapkehadiran">Laporan Kehadiran</a></li>
-                            <li><a href="/lappembiayaan">Laporan Penggajian</a></li>
+                            <li><a href="/lappenggajian">Laporan Penggajian</a></li>
                             <li><a href="/lappegawai">Laporan Data Pegawai</a></li>
                         </ul>
                     </li>

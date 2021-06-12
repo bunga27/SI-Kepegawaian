@@ -31,24 +31,20 @@
 
                                     <tr>
                                         <th>Tanggal</th>
-                                        <th>Proyek</th>
-                                        <th>Jenis Pekerjaan</th>
-                                        <th>Uraian Pekerjaan</th>
-                                        <th>Volume</th>
-                                        <th>Harga Satuan</th>
-                                        <th>Harga Total</th>
+                                        <th>Pegawai</th>
+                                        <th>Penghasilan</th>
+                                        <th>Potongan</th>
+                                        <th>Total Gaji</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($pembiayaan as $pembiayaan)
+                                    @foreach ($gaji as $g)
                                     <tr>
-                                        <td>{{ $pembiayaan->tanggal }}</td>
-                                        <td>{{ $pembiayaan->proyek->nama }}</td>
-                                        <td>{{ $pembiayaan->jenispekerjaan }}</td>
-                                        <td>{{ $pembiayaan->uraianpekerjaan }}</td>
-                                        <td>{{ $pembiayaan->vol }}</td>
-                                        <td>{{ $pembiayaan->hargasatuan }}</td>
-                                        <td>{{ $pembiayaan->hargatotal }}</td>
+                                        <td>{{ date('d-m-Y', strtotime($g->created_at))}}</td>
+                                        <td>{{ $g->pegawai->nama }}</td>
+                                        <td>{{ $g->totalgaji+$g->potongantelat }}</td>
+                                        <td>{{ $g->potongantelat }}</td>
+                                        <td>{{ $g->totalgaji }}</td>
 
                                     </tr>
                                     @endforeach

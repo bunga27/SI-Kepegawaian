@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\DetailKehadiran;
-use App\Kehadiran;
 use App\Pegawai;
 
 class LaporanKehadiranController extends Controller
@@ -17,9 +16,8 @@ class LaporanKehadiranController extends Controller
     public function index()
     {
         $pegawai = Pegawai::all();
-        $kehadiran = Kehadiran::all();
         $detailkehadiran = DetailKehadiran::all();
-        return view('laporan.laporankehadiran', compact('kehadiran', 'pegawai', 'detailkehadiran'));
+        return view('laporan.laporankehadiran', compact('pegawai', 'detailkehadiran'));
 
 
     }
