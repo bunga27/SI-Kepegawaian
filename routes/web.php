@@ -20,6 +20,8 @@ Auth::routes();
 Route::middleware(['auth','Ceklevel:admin,super,owner,karyawan'])->group(function () {
 
     Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('profil', 'HomeController@profil');
+
     Route::resource('pegawai', 'PegawaiController');
     Route::resource('user', 'UserController');
     Route::resource('proyek', 'ProyekController');
@@ -28,6 +30,9 @@ Route::middleware(['auth','Ceklevel:admin,super,owner,karyawan'])->group(functio
     Route::resource('pembiayaan', 'PembiayaanController');
     Route::resource('jabatan', 'JabatanController');
 
+    Route::resource('progres', 'DetailProyekController');
+    Route::get('proyek/{id}/progres', 'DetailProyekController@create');
+    Route::get('proyek/{id}/showprogres', 'DetailProyekController@show');
 
     Route::resource('gaji', 'GajiController');
     Route::get('gaji/{id}/slip', 'GajiController@slip');
@@ -35,11 +40,8 @@ Route::middleware(['auth','Ceklevel:admin,super,owner,karyawan'])->group(functio
     Route::post('storegaji', 'PegawaiController@storegaji');
 
     Route::get('pegawai/{id}/addgaji', 'PegawaiController@addgaji');
-    Route::get('pegawai/{id}/readdetailgaji', 'PegawaiController@detailgaji');
     Route::get('pegawai/{id}/show', 'PegawaiController@show');
 
-    Route::get('proyek/{id}/show', 'ProyekController@show');
-    Route::get('proyek/{id}/progres', 'ProyekController@progres');
 
     Route::resource('lapkehadiran', 'LaporanKehadiranController');
     Route::resource('lappenggajian', 'LaporanPenggajianController');

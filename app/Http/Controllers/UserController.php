@@ -106,7 +106,7 @@ class UserController extends Controller
                 'level' => $request->level,
                 'password' => Hash::make($request->password)
             ]);
-            return redirect('/user');
+            return redirect('/user')->with(['success' => 'Data User Berhasil Diubah!']);;
         }
     }
 

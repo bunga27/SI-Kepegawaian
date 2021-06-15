@@ -1,61 +1,81 @@
 @extends('master.master')
-@section('title','Tambah Detail Kehadiran | CV Hasil Utama Konsultan')
-@section('ket','Tambahkan Detail Kehadiran Pegawai')
+@section('title','Detail Kehadiran | CV Hasil Utama Konsultan')
+@section('ket','Lihat Detail Kehadiran Pegawai')
 @section('content')
-<div class="row">
-    <div class="col-md-6">
-        <form class="form-horizontal" method="POST" action="/detailkehadiran" enctype="multipart/form-data">
-            @csrf
-            <div class="form-group">
-                <label for="tanggalkehadiran" class="col-md-3 control-label">Tanggal</label>
-                <div class="col-md-9">
-                    <select class="form-control" placeholder="-- Pilih Tanggal Kehadiran --" id="idKehadiran"
-                        name="idKehadiran" value="today" required>
-                        @foreach ($kehadiran as $hdr)
-                        <option value="{{$hdr->idKehadiran}}">{{$hdr->tanggalkehadiran}}</option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="nama" class="col-md-3 control-label">Nama Pegawai</label>
-                <div class="col-md-9">
-                    <select class="form-control" placeholder="-- Pilih Nama Pegawai --" id="idPegawai" name="idPegawai"
-                        required value="{{auth()->user()->pegawai_id}}">
-                        <option value="{{auth()->user()->pegawai_id}}">{{ auth()->user()->pegawai->nama }}</option>
-                    </select>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="ketkehadiran" class="col-md-3 control-label">Kehadiran</label>
-                <div class="col-md-9">
-                    <div class="form-select-list">
-                        <select id="ketkehadiran" type="text" class="form-control custom-select-value"
-                            name="ketkehadiran">
-                            <option value="Hadir">Hadir</option>
-                            <option value="Izin">Izin</option>
-                            <option value="Sakit">Sakit</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="keterangan" class="col-md-3 control-label">Keterangan</label>
-                <div class="col-md-9">
-                    <input required type="text" class="form-control" id="keterangan" name="keterangan"
-                        placeholder="Masukan keterangan">
-                </div>
-            </div>
+<div class="col-md-12 pull-left">
+    <a href="{{ url('/detailkehadiran/create') }}"
+        class="btn btn-default btn-custom  waves-effect waves-light pull-right m-r-5">
+        <span>Tambah Kehadiran Pegawai</span>
+    </a>
+</div>
+<div class="card-box table-responsive">
+    <table id="datatable" class="table table-striped table-bordered">
+        <thead>
+
+            <tr>
+                <th data-field="tanggal">Tanggal</th>
+                <th data-field="nama">Nama Pegawai</th>
+                <th data-field="kehadiran">Data Datang</th>
+                <th data-field="pulang">Data Pulang</th>
+                <th data-field="keterangan">Keterangan</th>
+
+                <th data-field="action">Action</th>
 
 
+            </tr>
+        </thead>
 
-            <div class="pull-right inline-remember-me">
-                <button class="btn btn-primary btn-custom waves-effect waves-light" type="submit">Simpan</button>
-                <a class="btn btn-danger btn-custom waves-effect waves-light" href="/home">Cancel</a>
-            </div>
+        <tbody>
+            @foreach ($detailkehadiran as $detailkehadiran)
 
-        </form>
 
-    </div>
+            <tr>
+
+                <td>{{ date('d-m-Y', strtotime($detailkehadiran->created_at))}}</td>
+                <td>{{ $detailkehadiran->pegawai->nama }}</td>
+                <td>
+                    <strong>{{ date('H:i:s', strtotime($detailkehadiran->created_at))}}</strong><br>
+                    {{ $detailkehadiran->ketdatang }}<br>
+                    <img src="{{ $detailkehadiran->buktidatang }}" width="100px">
+
+                </td>
+                <td><strong>{{ date('H:i:s', strtotime($detailkehadiran->updated_at))}}</strong><br>
+                    {{ $detailkehadiran->ketpulang }}<br>
+                    <img src="{{ $detailkehadiran->buktipulang }}" width="100px">
+                </td>
+
+                <td>
+                    {{ $detailkehadiran->keterangan }}<br>
+                    {{ $detailkehadiran->ketepatanhadir}}<br>
+                </td>
+                <td>
+                    @if ($loop->last)
+                    <a href="{{ url('/detailkehadiran/'.$detailkehadiran->idDetailKehadiran.'/edit') }}"
+                    class="btn btn-primary btn-custom waves-effect waves-light center m-r-5">
+                    <i class="fa fa-pencil"></i>
+                    <span>Daftar Pulang</span>
+                    </a>
+                    @endif
+                    @if (auth()->user()->level=="super")
+                    <a>
+                        <form action="{{ url('/detailkehadiran/'.$detailkehadiran->idDetailKehadiran) }}" method="post">
+                            @method('delete')
+                            @csrf
+                            <button class="btn btn-danger btn-custom waves-effect waves-light  m-r-5"
+                                onclick="return confirm('Apakah anda yakin akan menghapus nya?');">
+                                <i class="fa fa-trash"></i>
+                                <span> Hapus Data</span>
+                            </button>
+                        </form>
+                    </a>
+                    @endif
+
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
+</div>
 </div>
 @endsection

@@ -1,10 +1,6 @@
-@extends('mobile.master')
-@section('title','Data Diri Pegawai | CV Hasil Utama Konsultan')
+@extends('master.master')
+@section('title','Profil | CV Hasil Utama Konsultan')
 @section('content')
-@if (session('success'))
-<!-- MAKA TAMPILKAN ALERT SUCCESS -->
-<div class="alert alert-success">{{ session('success') }}</div>
-@endif
 <div class="row">
     <form class="form-horizontal" method="GET" action="/pegawai/{{ auth()->user()->pegawai->idPegawai }}"
         enctype="multipart/form-data">
@@ -26,7 +22,7 @@
                 </a>
 
                 <a href="{{ url('/pegawai/'.auth()->user()->pegawai->idPegawai.'/edit') }}"
-                    class="btn btn-warning btn-custom waves-effect waves-light pull-right">
+                    class="m-l-5 btn btn-warning btn-custom waves-effect waves-light ">
                     <i class="fa fa-pencil"></i>
                     <span> Ubah Data Diri</span>
                 </a>

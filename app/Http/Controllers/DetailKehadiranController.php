@@ -20,7 +20,6 @@ class DetailKehadiranController extends Controller
      */
     public function index()
     {
-
         $pegawai = Pegawai::all();
         $detailkehadiran = DetailKehadiran::all()->sortByDesc('idDetailKehadiran');
         return view('sistem.kehadiran.detailkehadiran', compact ('pegawai','detailkehadiran'));
@@ -77,16 +76,11 @@ class DetailKehadiranController extends Controller
         $jam = date('H:i:s', strtotime($data['created_at']));
 
         if ($jam == "08:00:00" || $jam < "08:00:00") {
-            $data['ketepatanhadir'] = "Hadir Tepat Waktu";
+            $data['ketepatanhadir'] = "Tepat Waktu";
         } else {
             $data['ketepatanhadir'] = "Terlambat";;
         }
-        // echo $data['ketepatanhadir'];
 
-        // echo $data['created_at'];
-        // echo $data['bulan'];
-        // echo $jam;
-        // echo $data['keterangan'];
 
         DetailKehadiran::create($data);
 
@@ -184,6 +178,6 @@ class DetailKehadiranController extends Controller
     public function destroy($id)
     {
         DetailKehadiran::destroy($id);
-        return redirect('/detailkehadiran')->with('status', 'berhasil dihapus');
+        return redirect('/detailkehadiran')->with('success', 'Data Kehadiran berhasil dihapus');
     }
 }

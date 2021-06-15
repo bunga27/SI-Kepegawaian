@@ -7,6 +7,7 @@ use App\Proyek;
 use App\Pegawai;
 use Illuminate\Http\Request;
 use Ramsey\Uuid\Uuid;
+use Illuminate\Support\Facades\Auth;
 
 class DetailProyekController extends Controller
 {
@@ -20,9 +21,15 @@ class DetailProyekController extends Controller
     public function index()
     {
         $proyek = Proyek::all();
-        $pegawai = Pegawai::all();
         $detailproyek = DetailProyek::all();
-        return view('sistem.proyek.detailproyek', compact('proyek', 'detailproyek'));
+        if (Auth::user()->level == "karyawan") {
+            $pegawai = auth()->user()->pegawai;
+        } else {
+            $pegawai = Pegawai::all();
+        }
+
+
+        return view('sistem.proyek.detailproyek', compact('proyek', 'detailproyek','pegawai'));
     }
 
     /**
@@ -30,9 +37,9 @@ class DetailProyekController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        $proyek = Proyek::all();
+        $proyek = Proyek::find($id);
         return view('sistem.proyek.createdetailproyek', compact('proyek'));
     }
 
@@ -48,15 +55,15 @@ class DetailProyekController extends Controller
             'gambar' => 'required|image:jpg,png',
         ]);
 
-        $data = $request->except(['gambar']);
+        $data = $request->except(['gambar','proyek_id']);
 
         $extension = $request->gambar->extension();
         $filename = Uuid::uuid4() . ".{$extension}";
         $request->gambar->storeAs('public/progresproyek', $filename);
         $data['gambar'] = asset("/storage/progresproyek/{$filename}");
-
+        $data['proyek_id'] = $request->proyek_id;
         DetailProyek::create($data);
-        return redirect('/detailproyek');
+        return redirect('/detailproyek')->with(['success' => 'Data Progres Berhasil Ditambahkan!']);
 
 
     }
@@ -67,9 +74,12 @@ class DetailProyekController extends Controller
      * @param  \App\DetailProyek  $detailProyek
      * @return \Illuminate\Http\Response
      */
-    public function show(DetailProyek $detailProyek)
+    public function show($id)
     {
-        //
+        $proyek = Proyek::find($id);
+        $pegawai = Pegawai::all();
+        $detailproyek = DetailProyek::all();
+        return view('sistem.proyek.readprogres', compact('proyek', 'detailproyek'));
     }
 
     /**
@@ -104,6 +114,6 @@ class DetailProyekController extends Controller
     public function destroy($id)
     {
         DetailProyek::destroy($id);
-        return redirect('/detailproyek')->with('status', 'Data berhasil dihapus');
+        return redirect('/detailproyek')->with('status', 'Data Progres berhasil dihapus');
     }
 }

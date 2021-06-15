@@ -2,6 +2,10 @@
 @section('title','Lihat User | CV Hasil Utama Konsultan')
 @section('ket','Data User dapat dilihat dibawah ini')
 @section('content')
+@if (session('success'))
+<!-- MAKA TAMPILKAN ALERT SUCCESS -->
+<div class="alert alert-success">{{ session('success') }}</div>
+@endif
 
 {{-- <div class="content">
     <div class="container-fluid text-center text-black"> --}}

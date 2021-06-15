@@ -10,7 +10,7 @@
                 <label for="nama" class="col-md-3 control-label">Nama Pegawai</label>
                 <div class="col-md-9">
                     <select class="form-control" placeholder="-- Pilih Nama Pegawai --" id="idPegawai" name="idPegawai" required>
-
+                        <option>-- Pilih Pegawai --</option>
                         @foreach ($pegawai as $pgw)
                         <option value="{{$pgw->idPegawai}}">{{$pgw->nama}}</option>
                         @endforeach
@@ -23,10 +23,11 @@
                 <div class="col-md-9">
                     <div class="form-select-list">
                         <select id="level" type="text" class="form-control custom-select-value" name="level">
+                            <option>-- Pilih Level User --</option>
                             <option value="super">Super Admin</option>
                             <option value="admin">Admin</option>
                             <option value="owner">Pemilik</option>
-                            <option value="karyawan">Karyawan</option>
+                            <option value="karyawan">Pegawai</option>
                         </select>
                     </div>
                 </div>
@@ -41,7 +42,7 @@
             <div class="form-group">
                 <label for="password" class="col-md-3 control-label">Password</label>
                 <div class="col-md-9">
-                    <input type="password" class="form-control" id="password" name="password" placeholder="Masukan Password">
+                    <input type="password" minlength="8" class="form-control" id="password" name="password" placeholder="Masukan Password">
                 </div>
             </div>
             <div class="pull-right inline-remember-me">

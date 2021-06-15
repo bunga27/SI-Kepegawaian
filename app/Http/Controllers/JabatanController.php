@@ -43,8 +43,8 @@ class JabatanController extends Controller
             'gajilembur' => $request->gajilembur,
             'uangmakan' => $request->uangmakan,
             'bonusproyek' => $request->bonusproyek,
-            'hariraya' => $request->hariraya
-
+            'hariraya' => $request->hariraya,
+            'potongantelat' => $request->potongantelat,
         ]);
 
         return redirect('/jabatan')->with(['success' => 'Data Jabatan Berhasil Ditambahkan!']);
@@ -89,7 +89,9 @@ class JabatanController extends Controller
             'gajilembur' => $request->gajilembur,
             'uangmakan' => $request->uangmakan,
             'bonusproyek' => $request->bonusproyek,
-            'hariraya' => $request->hariraya
+            'hariraya' => $request->hariraya,
+            'potongantelat' => $request->potongantelat,
+
         ]);
         return redirect('/jabatan')->with(['success' => 'Data Jabatan Berhasil Diubah!']);
     }
@@ -103,6 +105,6 @@ class JabatanController extends Controller
     public function destroy(Jabatan $jabatan)
     {
         Jabatan::destroy($jabatan->idJabatan);
-        return redirect('/jabatan')->with('status', 'Data berhasil dihapus');
+        return redirect('/jabatan')->with('status', 'Data Jabatan berhasil dihapus');
     }
 }

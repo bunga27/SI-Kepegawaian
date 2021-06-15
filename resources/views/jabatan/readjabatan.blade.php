@@ -3,7 +3,10 @@
 @section('ket','Data Jabatan dapat dilihat pada tabel dibawah ini')
 @section('content')
 
-
+@if (session('success'))
+<!-- MAKA TAMPILKAN ALERT SUCCESS -->
+<div class="alert alert-success">{{ session('success') }}</div>
+@endif
 <div class="row">
     <div class="col-md-12">
         <a href="jabatan/create"

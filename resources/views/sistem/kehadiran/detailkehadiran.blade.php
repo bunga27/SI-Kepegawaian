@@ -2,6 +2,10 @@
 @section('title','Detail Kehadiran | CV Hasil Utama Konsultan')
 @section('ket','Lihat Detail Kehadiran Pegawai')
 @section('content')
+@if (session('success'))
+<!-- MAKA TAMPILKAN ALERT SUCCESS -->
+<div class="alert alert-success">{{ session('success') }}</div>
+@endif
 <div class="col-md-12 pull-left">
     @if (auth()->user()->level=="super")
     <a href="{{ url('/detailkehadiran/create') }}"

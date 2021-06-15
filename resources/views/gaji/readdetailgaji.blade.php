@@ -2,6 +2,10 @@
 @section('title','Lihat Detail Penggajian| CV Hasil Utama Konsultan')
 @section('ket','Data detail penggajian pegawai yang dipilih dapat dilihat pada tabel dibawah ini')
 @section('content')
+@if (session('success'))
+<!-- MAKA TAMPILKAN ALERT SUCCESS -->
+<div class="alert alert-success">{{ session('success') }}</div>
+@endif
 
 
 {{-- <div class="row">

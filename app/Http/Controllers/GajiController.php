@@ -130,7 +130,7 @@ class GajiController extends Controller
     public function destroy(Gaji $gaji)
     {
         Gaji::destroy($gaji->idGaji);
-        return redirect()->back();
+        return redirect()->back()->with(['success' => 'Data Gaji Berhasil Dihapus!']);
     }
 
 

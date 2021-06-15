@@ -8,13 +8,10 @@
             @csrf
 
             <div class="form-group">
-                <label for="nama" class="col-md-3 control-label">Nama Proyek</label>
+                <label for="proyek_id" class="col-md-3 control-label">Nama Proyek</label>
                 <div class="col-md-9">
-                    <select class="form-control" placeholder="-- Pilih Nama Proyek --" id="proyek_id" name="proyek_id"
-                        required>
-                        @foreach ($proyek as $pry)
-                        <option value="{{$pry->idProyek}}">{{$pry->nama}}</option>
-                        @endforeach
+                    <select class="form-control" id="proyek_id" name="proyek_id" required>
+                        <option value="{{$proyek->idProyek}}">{{$proyek->nama}}</option>
                     </select>
                 </div>
             </div>
@@ -30,7 +27,7 @@
             <div class="form-group">
                 <label for="progres" class="col-md-3 control-label">Progres</label>
                 <div class="col-md-2">
-                    <input required type="number" class="form-control" id="progres" name="progres"> %
+                    <input required type="number" min="0" max="100" class="form-control" id="progres" name="progres"> %
                 </div>
             </div>
 

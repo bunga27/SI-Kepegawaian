@@ -26,28 +26,29 @@ class CreatePegawaiTable extends Migration
             $table->string('alamat');
             $table->string('agama');
             $table->string('telp');
-            $table->date('tanggalgabung');
             $table->string('statuskerja');
 
+            $table->date('tanggalgabung')->nullable();
+
             //riwayatpend
-            $table->string('sd');
-            $table->string('smp');
-            $table->string('sma');
-            $table->string('lanjutan');
+            $table->string('sd')->nullable();
+            $table->string('smp')->nullable();
+            $table->string('sma')->nullable();
+            $table->string('lanjutan')->nullable();
 
             //fisik
-            $table->string('riwayatpenyakit');
-            $table->Integer('tinggi');
-            $table->Integer('berat');
+            $table->string('riwayatpenyakit')->nullable();
+            $table->Integer('tinggi')->nullable();
+            $table->Integer('berat')->nullable();
 
             //wali
 
-            $table->string('status',);
-            $table->Integer('tanggungan');
-            $table->string('namawali');
-            $table->string('hubungan');
-            $table->string('telpwali');
-            $table->string('alamatwali');
+            $table->string('status',)->nullable();
+            $table->Integer('tanggungan')->nullable();
+            $table->string('namawali')->nullable();
+            $table->string('hubungan')->nullable();
+            $table->string('telpwali')->nullable();
+            $table->string('alamatwali')->nullable();
 
             $table->timestamps();
         });

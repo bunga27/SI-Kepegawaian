@@ -17,6 +17,7 @@ class Jabatan extends Model
         'bonusproyek',
         'uangmakan',
         'hariraya',
+        'potongantelat'
 
     ];
 

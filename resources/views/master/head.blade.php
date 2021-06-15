@@ -78,6 +78,7 @@
                             @endif
                             <li><a href="/pegawai">Data Pegawai</a></li>
                             <li><a href="/jabatan">Data Jabatan</a></li>
+                            <li><a href="/proyek">Data Proyek</a></li>
                         </ul>
                     </li>
                     @endif
@@ -85,8 +86,8 @@
                     <li class="has-submenu">
                         <a><i class="md md-location-city"></i>Aktivitas</a>
                         <ul class="submenu">
+                            <li><a href="/progres">Progres</a></li>
                             <li><a href="/detailkehadiran">Kehadiran</a></li>
-                            <li><a href="/proyek">Proyek</a></li>
                             <li><a href="/penggajian">Penggajian</a></li>
                         </ul>
                     </li>

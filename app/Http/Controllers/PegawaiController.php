@@ -117,7 +117,7 @@ class PegawaiController extends Controller
         $gaji->totalgaji=$penghasilan-$gaji->potongantelat;
 
         $gaji->save();
-        return redirect('pegawai/'.$request->idPegawai.'/addgaji');
+        return redirect('pegawai/'.$request->idPegawai.'/addgaji')->with(['success' => 'Data Penggajian Berhasil Ditambahkan!']);
 
         // dd($request->all());
         // echo $request->idPegawai;
@@ -158,7 +158,7 @@ class PegawaiController extends Controller
         $data['pasfoto'] = asset("/storage/pegawai/{$filename}");
 
         Pegawai::create($data);
-        return redirect('/pegawai');
+        return redirect('/pegawai')->with(['success' => 'Data Pegawai Berhasil Ditambahkan!']);
     }
 
     /**
@@ -195,7 +195,7 @@ class PegawaiController extends Controller
         if (Auth::user()->level=="karyawan") {
             return view('mobile.editpegawai', compact('pegawai','jabatan'));
         } else {
-            return view('pegawai.editpegawai', compact('pegawai'));
+            return view('pegawai.editpegawai', compact('pegawai','jabatan'));
         }
     }
 
@@ -226,10 +226,10 @@ class PegawaiController extends Controller
 
         if (Auth::user()->level=="karyawan"){
 
-            return redirect('/mobileprofil');
+            return redirect('/mobileprofil')->with(['success' => 'Data Anda Berhasil Diubah!']);
         } else {
 
-            return redirect('/pegawai');
+            return redirect('/pegawai')->with(['success' => 'Data Pegawai Berhasil Diubah!']);
         }
     }
 
@@ -242,6 +242,6 @@ class PegawaiController extends Controller
     public function destroy(Pegawai $pegawai)
     {
         Pegawai::destroy($pegawai->idPegawai);
-        return redirect('/pegawai')->with('status', 'Data berhasil dihapus');
+        return redirect('/pegawai')->with('status', 'Data Pegawai berhasil dihapus');
     }
 }

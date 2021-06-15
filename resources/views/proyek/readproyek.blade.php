@@ -3,7 +3,10 @@
 @section('ket','Data Proyek dapat dilihat pada tabel dibawah ini')
 @section('content')
 
-
+@if (session('success'))
+<!-- MAKA TAMPILKAN ALERT SUCCESS -->
+<div class="alert alert-success">{{ session('success') }}</div>
+@endif
 <div class="row">
     <div class="col-md-12">
         <a href="proyek/create"
@@ -55,11 +58,11 @@
                 <i class="fa fa-money"></i>
                 <span> Ubah</span>
             </a> --}}
-            <a href="{{ url('/proyek/'.$proyek->idProyek.'/progres') }}"
+            {{-- <a href="{{ url('/proyek/'.$proyek->idProyek.'/progres') }}"
                 class="btn btn-default btn-custom waves-effect waves-light pull-right m-r-5">
                 <i class="fa fa-line-chart"></i>
-                {{-- <span> Ubah</span> --}}
-            </a>
+                <span> Ubah</span>
+            </a> --}}
 
             <br><br>
         </div>

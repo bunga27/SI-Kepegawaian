@@ -43,6 +43,13 @@
                     <input required type="number" class="form-control" id="hariraya" name="hariraya" placeholder="Masukan Tunjangan Hari Raya">
                 </div>
             </div>
+            <div class="form-group">
+                <label for="potongantelat" class="col-md-3 control-label">Potongan Telat</label>
+                <div class="col-md-9">
+                    <input required type="number" class="form-control" id="potongantelat" name="potongantelat"
+                        placeholder="Masukan Tunjangan Hari Raya">
+                </div>
+            </div>
             <div class="pull-right inline-remember-me">
                 <button class="btn btn-primary btn-custom waves-effect waves-light" type="submit">Simpan</button>
                 <a class="btn btn-danger btn-custom waves-effect waves-light" href="/jabatan">Cancel</a>

@@ -120,7 +120,7 @@
                                                         Terlambat&emsp;
                                                         </th>
                                                     <td>
-                                                         {{ $telat }} hari <br>
+                                                         {{ $harikerja }} hari <br>
                                                          {{ $totallembur}} hari <br>
                                                          {{ $totalproyek}} proyek <br>
                                                          {{ $telat }} kali
