@@ -45,7 +45,9 @@ Route::middleware(['auth','Ceklevel:admin,super,owner,karyawan'])->group(functio
 
     Route::resource('lapkehadiran', 'LaporanKehadiranController');
     Route::resource('lappenggajian', 'LaporanPenggajianController');
-    Route::get('lappegawai', 'PegawaiController@lap');
+    Route::resource('lapprogres', 'LaporanProgresController');
+    Route::get('lapprogres/{id}/progres', 'LaporanProgresController@progres');
+
 
     Route::get('mobileprofil', 'PegawaiController@mobile');
 

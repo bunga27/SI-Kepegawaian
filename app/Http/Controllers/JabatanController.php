@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Jabatan;
+use App\Pegawai;
 use Illuminate\Http\Request;
 
 class JabatanController extends Controller
@@ -15,7 +16,8 @@ class JabatanController extends Controller
     public function index()
     {
         $jabatan = Jabatan::all();
-        return view('jabatan.readjabatan', compact('jabatan'));
+        $pegawai = Pegawai::all();
+        return view('jabatan.readjabatan', compact('jabatan','pegawai'));
     }
 
     /**

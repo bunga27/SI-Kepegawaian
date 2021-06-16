@@ -99,8 +99,8 @@
                     <div class="form-select-list">
                         <select id="statuskerja" name="statuskerja" type="text"
                             class="form-control custom-select-value">
-                            <option value="pemilik">Aktif</option>
-                            <option value="admin">Tidak Aktif</option>
+                            <option value="aktif">Aktif</option>
+                            <option value="tidakaktif">Tidak Aktif</option>
                         </select>
                     </div>
                 </div>

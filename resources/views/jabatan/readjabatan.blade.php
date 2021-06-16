@@ -1,5 +1,5 @@
 @extends('master.master')
-@section('title','Lihat Jabatan | CV Hasil Utama Konsultan')
+@section('title','Data Jabatan | CV Hasil Utama Konsultan')
 @section('ket','Data Jabatan dapat dilihat pada tabel dibawah ini')
 @section('content')
 
@@ -25,6 +25,7 @@
                 <tr>
 
                     <th data-field="jabatan">Jabatan</th>
+                    <th data-field="jabatan">Pegawai</th>
                     <th data-field="gajiharian">Gaji Harian</th>
                     <th data-field="gajilembur">Gaji Lembur</th>
                     <th data-field="uangmakan">Uang Makan</th>
@@ -40,6 +41,7 @@
                 <tr>
 
                     <td>{{ $jabatan->jabatan }}</td>
+                    <td>{{ count($jabatan->pegawai)  }} Pegawai </td>
                     <td>{{ $jabatan->gajiharian }}</td>
                     <td>{{ $jabatan->gajilembur }}</td>
                     <td>{{ $jabatan->uangmakan }}</td>

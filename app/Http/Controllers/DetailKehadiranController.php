@@ -20,9 +20,18 @@ class DetailKehadiranController extends Controller
      */
     public function index()
     {
-        $pegawai = Pegawai::all();
+
         $detailkehadiran = DetailKehadiran::all()->sortByDesc('idDetailKehadiran');
-        return view('sistem.kehadiran.detailkehadiran', compact ('pegawai','detailkehadiran'));
+
+        if (Auth::user()->level == "karyawan") {
+            $pegawai = auth()->user()->pegawai;
+            return view('mobile.daftarhadir', compact('pegawai', 'detailkehadiran',));
+        } else {
+            $pegawai = Pegawai::all();
+            return view('sistem.kehadiran.detailkehadiran', compact('pegawai', 'detailkehadiran'));
+        }
+
+
     }
 
     /**
@@ -32,14 +41,17 @@ class DetailKehadiranController extends Controller
      */
     public function create()
     {
-        $pegawai = Pegawai::all();
-        $detailkehadiran = DetailKehadiran::all();
 
+        $detailkehadiran = DetailKehadiran::all();
         if (Auth::user()->level == "karyawan") {
-            return view('mobile.daftarhadir', compact('pegawai', 'detailkehadiran',));
+            $idPegawai = auth()->user()->pegawai->idPegawai;
+            $pegawai = auth()->user()->pegawai;
         } else {
-            return view('sistem.kehadiran.createdetailkehadiran', compact('pegawai', 'detailkehadiran'));
+             $idPegawai = auth()->user()->pegawai->idPegawai;
+            $pegawai = Pegawai::all();
         }
+
+        return view('sistem.kehadiran.createdetailkehadiran', compact('pegawai', 'detailkehadiran','idPegawai'));
 
 
     }
@@ -84,11 +96,9 @@ class DetailKehadiranController extends Controller
 
         DetailKehadiran::create($data);
 
-        if (Auth::user()->level == "karyawan") {
-            return redirect('/home')->with(['success' => 'Data Kehadiran Berhasil Ditambahkan!']);
-        } else {
+
             return redirect('/detailkehadiran')->with(['success' => 'Data Kehadiran Berhasil Ditambahkan!']);
-        }
+
 
     }
 

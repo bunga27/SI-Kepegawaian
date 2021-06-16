@@ -71,7 +71,7 @@
                     </li>
                     @if (auth()->user()->level=="super" || auth()->user()->level=="admin")
                     <li class="has-submenu">
-                        <a><i class="md md-account-child"></i>Master Data</a>
+                        <a><i class="md md-folder-shared"></i>Master Data</a>
                         <ul class="submenu">
                             @if (auth()->user()->level=="super")
                                <li><a href="/user">Data User</a></li>
@@ -86,19 +86,29 @@
                     <li class="has-submenu">
                         <a><i class="md md-location-city"></i>Aktivitas</a>
                         <ul class="submenu">
-                            <li><a href="/progres">Progres</a></li>
-                            <li><a href="/detailkehadiran">Kehadiran</a></li>
-                            <li><a href="/penggajian">Penggajian</a></li>
+                            <li><a href="/progres">Progres Proyek</a></li>
+                            <li><a href="/detailkehadiran">Kehadiran Pegawai</a></li>
+                            <li><a href="/penggajian">Penggajian Pegawai</a></li>
                         </ul>
                     </li>
                     @endif
                     @if (auth()->user()->level=="super" || auth()->user()->level=="owner")
+                    {{-- <li class="has-submenu">
+                        <a><i class="md md-book"></i>Rekapitulasi</a>
+                        <ul class="submenu">
+                            <li><a href="/lappenggajian">Rekapitulasi Data User</a></li>
+                            <li><a href="/lapkehadiran">Rekapitulasi Data Jabatann</a></li>
+                            <li><a href="/lappegawai">Rekapitulasi Data Pegawai</a></li>
+                            <li><a href="/lapkehadiran">Rekaputulasi Data Proyek</a></li>
+                        </ul>
+                    </li> --}}
                     <li class="has-submenu">
                         <a><i class="md md-my-library-books"></i>Laporan</a>
                         <ul class="submenu">
-                            <li><a href="/lapkehadiran">Laporan Kehadiran</a></li>
-                            <li><a href="/lappenggajian">Laporan Penggajian</a></li>
-                            <li><a href="/lappegawai">Laporan Data Pegawai</a></li>
+                            <li><a href="/lapprogres">Laporan Progres Proyek</a></li>
+                            <li><a href="/lapkehadiran">Laporan Kehadiran Pegawai</a></li>
+                            <li><a href="/lappenggajian">Laporan Penggajian Pegawai</a></li>
+                            {{-- <li><a href="/lappegawai">Laporan Data Pegawai</a></li> --}}
                         </ul>
                     </li>
                     @endif

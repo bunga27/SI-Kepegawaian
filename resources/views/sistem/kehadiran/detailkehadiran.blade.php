@@ -68,10 +68,9 @@
                         <form action="{{ url('/detailkehadiran/'.$detailkehadiran->idDetailKehadiran) }}" method="post">
                             @method('delete')
                             @csrf
-                            <button class="btn btn-danger btn-custom waves-effect waves-light  m-r-5"
+                            <button class="btn btn-danger btn-custom waves-effect waves-light pull-left m-r-5"
                                 onclick="return confirm('Apakah anda yakin akan menghapus nya?');">
                                 <i class="fa fa-trash"></i>
-                                <span> Hapus Data</span>
                             </button>
                         </form>
                     </a>
@@ -80,7 +79,8 @@
                         class="btn btn-primary btn-custom waves-effect waves-light m-r-5">
                         <i class="fa fa-plus"></i>
                         <span>Daftar Pulang</span>
-                    </a></td>
+                    </a>
+                </td>
 
                 </td>
                 @endif
@@ -91,7 +91,5 @@
 
         </tbody>
     </table>
-</div>
-</div>
 </div>
 @endsection

@@ -14,6 +14,7 @@
 
                 <tr>
                     <th data-field="nama">Nama Pegawai</th>
+                    <th data-field="pasfoto">Pas Foto</th>
                     <th data-field="jabatan">Jabatan</th>
                     <th data-field="action">Action</th>
 
@@ -25,20 +26,14 @@
                 <tr>
 
                     <td>{{ $pg->nama }}</td>
+                    <td><img src="{{ asset($pg->pasfoto) }}" width="100px"></td>
                     <td>{{ $pg->jabatan->jabatan }}</td>
                     <td>
                         <a href="{{ url('/pegawai/'.$pg->idPegawai.'/addgaji') }}"
-                            class="btn btn-primary btn-custom waves-effect waves-light m-r-5">
-                            <i class="fa fa-plus"></i>
-                            <span> Tambah Gaji </span>
+                            class="btn btn-default btn-custom waves-effect waves-light m-r-5">
+                            <i class="fa fa-eye"></i>
+                            <span> Detail Penggajian </span>
                         </a>
-
-                        {{-- <a href="{{ url('/pegawai/'.$pg->idPegawai.'/readdetailgaji') }}"
-                            class="btn btn-primary btn-custom waves-effect waves-light pull-right m-r-5">
-                            <i class="fa fa-eyes"></i>
-                            <span> Lihat Gaji</span>
-                        </a> --}}
-
 
                     </td>
 

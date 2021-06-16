@@ -105,7 +105,6 @@
                             <button class="btn btn-danger btn-custom waves-effect waves-light m-r-5"
                                 onclick="return confirm('Apakah anda yakin akan menghapus nya?');">
                                 <i class="fa fa-trash"></i>
-                                <span> Hapus</span>
                             </button>
                         </form>
 

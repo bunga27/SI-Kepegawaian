@@ -8,7 +8,6 @@
 
             <tr>
                 <th data-field="tanggal">Tanggal</th>
-                <th data-field="proyek">Proyek</th>
                 <th data-field="pegawai">Pegawai</th>
                 <th data-field="progres">Progres</th>
                 <th data-field="keterangan">Keterangan</th>
@@ -24,7 +23,6 @@
             @foreach ($proyek->detailproyek as $detailproyek)
             <tr>
                 <td>{{ $detailproyek->tanggal}}</td>
-                <td>{{ $detailproyek->proyek->nama}}</td>
                 <td>{{ $detailproyek->proyek->pegawai->nama}}</td>
                 <td>{{ $detailproyek->progres }}%</td>
                 <td>{{ $detailproyek->keterangan }}</td>
@@ -50,7 +48,5 @@
 
         </tbody>
     </table>
-</div>
-</div>
 </div>
 @endsection
