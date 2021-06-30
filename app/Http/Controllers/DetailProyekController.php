@@ -27,8 +27,6 @@ class DetailProyekController extends Controller
         } else {
             $pegawai = Pegawai::all();
         }
-
-
         return view('sistem.proyek.detailproyek', compact('proyek', 'detailproyek','pegawai'));
     }
 

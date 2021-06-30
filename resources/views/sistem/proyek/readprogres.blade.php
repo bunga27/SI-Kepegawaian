@@ -12,7 +12,7 @@
                 <th data-field="progres">Progres</th>
                 <th data-field="keterangan">Keterangan</th>
                 <th data-field="gambar">Gambar</th>
-                @if (auth()->user()->level=="super")
+                @if (auth()->user()->level=="admin")
                 <th data-field="action">Action</th>
                 @endif
 
@@ -27,7 +27,7 @@
                 <td>{{ $detailproyek->progres }}%</td>
                 <td>{{ $detailproyek->keterangan }}</td>
                 <td><img src="{{ asset($detailproyek->gambar) }}" width="100"></td>
-                @if (auth()->user()->level=="super")
+                @if (auth()->user()->level=="admin")
                 <td>
                     <form action="{{ url('/detailproyek/'.$detailproyek->idDetailProyek) }}" method="post">
                         @method('delete')

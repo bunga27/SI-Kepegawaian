@@ -6,11 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
     <meta name="author" content="Coderthemes">
-
     <title>@yield('title')</title>
-
-
-
     <link rel="shortcut icon" href="{{ asset('menu_2') }}/assets/images/users/user.png">
 
 <!-- Plugin Css-->
@@ -95,10 +91,9 @@
             <div class="row">
                 <div class="col-sm-12">
 
-                    @if (auth()->user()->level=="super")
+
                     <h4 class="page-title">@yield('title')</h4>
                     <p class="text-muted page-title-alt">@yield('ket')</p>
-                    @endif
 
                     <div class="card-box">
 

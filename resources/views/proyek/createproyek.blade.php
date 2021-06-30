@@ -25,7 +25,7 @@
             <div class="form-group">
                 <label for="nama" class="col-md-4 control-label">Nama Proyek</label>
                 <div class="col-md-8">
-                    <input required type="text" class="form-control" id="nama" name="nama" placeholder="Masukan Nama Proyek">
+                    <input required type="text"  class="form-control" id="nama" name="nama" placeholder="Masukan Nama Proyek">
                 </div>
             </div>
             <div class="form-group">

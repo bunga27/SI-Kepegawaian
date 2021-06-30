@@ -242,6 +242,6 @@ class PegawaiController extends Controller
     public function destroy(Pegawai $pegawai)
     {
         Pegawai::destroy($pegawai->idPegawai);
-        return redirect('/pegawai')->with('status', 'Data Pegawai berhasil dihapus');
+        return redirect('/pegawai')->with('success', 'Data Pegawai berhasil dihapus');
     }
 }

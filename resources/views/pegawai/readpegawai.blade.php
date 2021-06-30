@@ -34,7 +34,6 @@
                     <th data-field="alamat">Alamat</th>
                     <th data-field="agama">Agama</th>
                     <th data-field="telp">No.Tel</th>
-                    <th data-field="email">E-mail</th>
                     <th data-field="jabatan">Jabatan</th>
                     <th data-field="tanggalgabung">Gabung</th>
                     <th data-field="statuskerja">Kerja</th>
@@ -72,8 +71,8 @@
                         </a>
 
                         <a href="{{ url('/pegawai/'.$pegawai->idPegawai.'/edit') }}"
-                            class="btn btn-primary btn-custom waves-effect waves-light center m-r-5">
-                            <i class="fa fa-pencil"></i>
+                            class="btn btn-primary btn-custom waves-effect waves-light center m-r-5 ">
+                            <i class="fa fa-pencil d-inline"></i>
                         </a>
                         <a href="{{ url('/pegawai/'.$pegawai->idPegawai.'/show') }}"
                             class="btn btn-default btn-custom waves-effect waves-light center m-r-5">
@@ -89,7 +88,7 @@
                     <td>{{ $pegawai->alamat }}</td>
                     <td>{{ $pegawai->agama }}</td>
                     <td>{{ $pegawai->telp }}</td>
-                    <td>{{ $pegawai->user->email }}</td>
+                    {{-- <td>{{ $pegawai->user->email }}</td> --}}
                     <td>{{ $pegawai->jabatan->jabatan }}</td>
                     <td>{{ $pegawai->tanggalgabung }}</td>
                     <td>{{ $pegawai->statuskerja }}</td>

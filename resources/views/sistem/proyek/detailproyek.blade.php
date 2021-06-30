@@ -3,10 +3,9 @@
 @section('ket','Lihat Detail Proyek')
 @section('content')
 @if (session('success'))
-<!-- MAKA TAMPILKAN ALERT SUCCESS -->
-<div class="alert alert-success">{{ session('success') }}</div>
+    <div class="alert alert-success">{{ session('success') }}</div>
 @endif
-@if (auth()->user()->level=="admin" || auth()->user()->level=="super" || auth()->user()->level=="owner")
+@if (auth()->user()->level=="super" || auth()->user()->level=="admin" || auth()->user()->level=="owner")
 <div class="card-box table-responsive">
     <table id="datatable" class="table table-striped table-bordered">
         <thead>
@@ -15,7 +14,7 @@
                 <th data-field="nama">Nama Proyek</th>
                 <th data-field="client">Client</th>
                 <th data-field="pegawai">Pegawai Penanggung Jawab</th>
-                @if (auth()->user()->level=="super")
+                @if (auth()->user()->level=="admin")
                 <th data-field="action">Progres</th>
                 @endif
 
@@ -28,7 +27,7 @@
                 <td>{{ $p->nama}}</td>
                 <td>{{ $p->client}}</td>
                 <td>{{ $p->pegawai->nama}}</td>
-                @if (auth()->user()->level=="super")
+                @if (auth()->user()->level=="admin")
                 <td>
                     <a href="{{ url('/proyek/'.$p->idProyek.'/showprogres') }}"
                         class="btn btn-default btn-custom waves-effect waves-light m-r-5">

@@ -1,5 +1,5 @@
 @extends('master.master')
-@section('title','Laporan Kehadiran Pegawai')
+@section('title','Detail Laporan')
 @section('ket','CV. Hasil Utama Konsultan')
 @section('content')
 

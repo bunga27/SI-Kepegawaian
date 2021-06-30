@@ -21,7 +21,7 @@ class DetailKehadiranController extends Controller
     public function index()
     {
 
-        $detailkehadiran = DetailKehadiran::all()->sortByDesc('idDetailKehadiran');
+        $detailkehadiran = DetailKehadiran::all();
 
         if (Auth::user()->level == "karyawan") {
             $pegawai = auth()->user()->pegawai;
@@ -78,9 +78,9 @@ class DetailKehadiranController extends Controller
         $hari = date('D', strtotime($data['created_at']));
 
         if ($hari == "Sat" || $hari == "Sun" ) {
-            $data['keterangan'] = 'Lembur';
+            $data['keterangan'] = 'Datang';
         } else {
-            $data['keterangan'] = '-';
+            $data['keterangan'] = 'Datang';
         }
 
         $data['bulan'] = date('mY', strtotime($data['created_at']));
@@ -123,12 +123,8 @@ class DetailKehadiranController extends Controller
     {
         $pegawai = Pegawai::all();
         $detailkehadiran = DetailKehadiran::find($id);
+         return view('sistem.kehadiran.createdetailpulang', compact('pegawai', 'detailkehadiran'));
 
-        if (Auth::user()->level == "karyawan") {
-            return view('mobile.daftarhadir', compact('pegawai', 'detailkehadiran',));
-        } else {
-            return view('sistem.kehadiran.createdetailpulang', compact('pegawai', 'detailkehadiran'));
-        }
     }
 
     /**
@@ -157,7 +153,7 @@ class DetailKehadiranController extends Controller
         $hari = date('D', strtotime($data['updated_at']));
 
         if ($hari == "Sat" || $hari == "Sun") {
-            $data['keterangan'] = 'Lembur';
+            $data['keterangan'] = 'Hadir Lembur';
         } else {
             $data['keterangan'] = 'Hadir';
         }

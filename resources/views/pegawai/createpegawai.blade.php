@@ -33,7 +33,7 @@
             <div class="form-group">
                 <label for="nik" class="col-md-3 control-label">NIK</label>
                 <div class="col-md-9">
-                    <input required type="number" class="form-control" id="nik" name="nik" placeholder="Masukan No.NIK" min="0" minlength="10">
+                    <input type="number" class="form-control" id="nik" name="nik" placeholder="Masukan No.NIK" min="0" maxlength="16">
                 </div>
             </div>
             <div class="form-group">

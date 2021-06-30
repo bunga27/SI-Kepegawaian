@@ -7,7 +7,7 @@
 <div class="alert alert-success">{{ session('success') }}</div>
 @endif
 <div class="col-md-12 pull-left">
-    @if (auth()->user()->level=="super")
+    @if (auth()->user()->level=="admin")
     <a href="{{ url('/detailkehadiran/create') }}"
         class="btn btn-default btn-custom  waves-effect waves-light pull-right m-r-5">
         <span>Tambah Kehadiran Pegawai</span>
@@ -24,7 +24,7 @@
                 <th data-field="kehadiran">Data Datang</th>
                 <th data-field="pulang">Data Pulang</th>
                 <th data-field="keterangan">Keterangan</th>
-                @if (auth()->user()->level=="super")
+                @if (auth()->user()->level=="admin" || auth()->user()->level=="karyawan" )
                 <th data-field="action">Action</th>
                 @endif
 
@@ -54,7 +54,7 @@
                     {{ $detailkehadiran->keterangan }}<br>
                     {{ $detailkehadiran->ketepatanhadir}}<br>
                 </td>
-                @if (auth()->user()->level=="super")
+                @if (auth()->user()->level=="admin")
                 <td>
                     {{-- @if ($loop->first)
                     <a href="{{ url('/detailkehadiran/'.$detailkehadiran->idDetailKehadiran.'/edit') }}"
@@ -64,19 +64,17 @@
                     </a>
                     @endif --}}
 
-                    <a>
-                        <form action="{{ url('/detailkehadiran/'.$detailkehadiran->idDetailKehadiran) }}" method="post">
-                            @method('delete')
-                            @csrf
-                            <button class="btn btn-danger btn-custom waves-effect waves-light pull-left m-r-5"
-                                onclick="return confirm('Apakah anda yakin akan menghapus nya?');">
-                                <i class="fa fa-trash"></i>
-                            </button>
-                        </form>
-                    </a>
+                    <form action="{{ url('/detailkehadiran/'.$detailkehadiran->idDetailKehadiran) }}" method="post">
+                        @method('delete')
+                        @csrf
+                        <button class="btn btn-danger btn-custom waves-effect waves-light d-inline m-r-5"
+                            onclick="return confirm('Apakah anda yakin akan menghapus nya?');">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </form>
 
                     <a href="{{ url('/detailkehadiran/'.$detailkehadiran->idDetailKehadiran.'/edit') }}"
-                        class="btn btn-primary btn-custom waves-effect waves-light m-r-5">
+                        class="btn btn-primary btn-custom waves-effect d-inline waves-light m-r-5">
                         <i class="fa fa-plus"></i>
                         <span>Daftar Pulang</span>
                     </a>

@@ -92,7 +92,7 @@
                         </ul>
                     </li>
                     @endif
-                    @if (auth()->user()->level=="super" || auth()->user()->level=="owner")
+                    @if (auth()->user()->level=="super" || auth()->user()->level=="owner" || auth()->user()->level=="admin")
                     {{-- <li class="has-submenu">
                         <a><i class="md md-book"></i>Rekapitulasi</a>
                         <ul class="submenu">

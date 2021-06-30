@@ -117,6 +117,6 @@ class ProyekController extends Controller
     public function destroy(Proyek $proyek)
     {
         Proyek::destroy($proyek->idProyek);
-        return redirect('/proyek')->with('status', 'Data Proyek berhasil dihapus');
+        return redirect('/proyek')->with('success', 'Data Proyek berhasil dihapus');
     }
 }
