@@ -12,6 +12,7 @@
 
             <tr>
                 <th data-field="nama">Nama Proyek</th>
+                <th data-field="alamat">Alamat</th>
                 <th data-field="client">Client</th>
                 <th data-field="pegawai">Pegawai Penanggung Jawab</th>
                 @if (auth()->user()->level=="admin")
@@ -25,6 +26,7 @@
             @foreach ($proyek as $p)
             <tr>
                 <td>{{ $p->nama}}</td>
+                <td>{{ $p->alamat}}</td>
                 <td>{{ $p->client}}</td>
                 <td>{{ $p->pegawai->nama}}</td>
                 @if (auth()->user()->level=="admin")
@@ -34,11 +36,11 @@
                         <i class="fa fa-eye"></i>
                         <span> Lihat  </span>
                     </a>
-                    <a href="{{ url('/proyek/'.$p->idProyek.'/progres') }}"
+                    {{-- <a href="{{ url('/proyek/'.$p->idProyek.'/progres') }}"
                         class="btn btn-primary btn-custom waves-effect waves-light m-r-5">
                         <i class="fa fa-plus"></i>
                         <span> Tambah  </span>
-                    </a>
+                    </a> --}}
 
                 </td>
                 @endif

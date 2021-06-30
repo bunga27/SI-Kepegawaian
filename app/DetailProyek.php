@@ -21,4 +21,8 @@ class DetailProyek extends Model
     {
         return $this->belongsTo('App\Proyek', 'proyek_id');
     }
+
+    public function images(){
+        return $this->hasMany('App\Gambarprogres');
+    }
 }

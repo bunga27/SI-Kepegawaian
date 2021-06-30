@@ -39,14 +39,19 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="gambar" class="col-md-3 control-label">Gambar</label>
+                <label for="gambar" class="col-md-3 control-label">Foto Utama</label>
                 <div class="col-md-9">
                     <img class="col-form-label text-md-right col-12 col-md-3 col-lg-3" id="output" width="100px" />
                     <input required onchange="loadFile(event)" type="file" class="filestyle" id="gambar" name="gambar"
                         data-iconname="fa fa-cloud-upload" id="output">
                 </div>
             </div>
-
+            <div class="form-group">
+                <label for="gambar2" class="col-md-3 control-label">Foto Detail</label>
+                <div class="col-md-9">
+                    <input required  type="file" class="filestyle" id="gambar2" name="gambar2[]" data-iconname="fa fa-cloud-upload" multiple>
+                </div>
+            </div>
 
 
             <div class="pull-right inline-remember-me">

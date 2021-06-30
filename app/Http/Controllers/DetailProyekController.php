@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\DetailProyek;
+use App\Gambarprogres;
 use App\Proyek;
 use App\Pegawai;
 use Illuminate\Http\Request;
@@ -60,7 +61,30 @@ class DetailProyekController extends Controller
         $request->gambar->storeAs('public/progresproyek', $filename);
         $data['gambar'] = asset("/storage/progresproyek/{$filename}");
         $data['proyek_id'] = $request->proyek_id;
-        DetailProyek::create($data);
+        $detailproyek = new DetailProyek([
+            'proyek_id'=>$data['proyek_id'],
+            'tanggal'=>$request->tanggal,
+            'progres'=>$request->progres,
+            'keterangan'=>$request->keterangan,
+            'gambar'=>$data['gambar']
+        ]);
+        $detailproyek->save();
+
+        if($request->hasFile('gambar2')){
+             $files=$request->file('gambar2');
+             foreach($files as $file){
+                $extension = $file->extension();
+                $filename = Uuid::uuid4() . ".{$extension}";
+                $request->gambar->storeAs('public/progresproyek', $filename);
+                $datas['gambar2'] = asset("/storage/progresproyek/{$filename}");
+
+                $gambarprogres = new Gambarprogres([
+                    'detailproyek_id' => $detailproyek->idDetailProyek,
+                    'gambar2' => $datas['gambar2']
+                ]);
+                $gambarprogres->save();
+             }
+        }
         return redirect('/detailproyek')->with(['success' => 'Data Progres Berhasil Ditambahkan!']);
 
 
@@ -77,7 +101,8 @@ class DetailProyekController extends Controller
         $proyek = Proyek::find($id);
         $pegawai = Pegawai::all();
         $detailproyek = DetailProyek::all();
-        return view('sistem.proyek.readprogres', compact('proyek', 'detailproyek'));
+        $g = Gambarprogres::all();
+        return view('sistem.proyek.readprogres', compact('proyek', 'detailproyek','g'));
     }
 
     /**
