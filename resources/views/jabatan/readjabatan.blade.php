@@ -51,10 +51,9 @@
                             <form action="{{ url('/jabatan/'.$jabatan->idJabatan) }}" method="post">
                                 @method('delete')
                                 @csrf
-                                <button class="btn btn-danger btn-custom waves-effect waves-light d-inline m-r-5"
+                                <button class="btn btn-danger btn-custom waves-effect waves-light d-inline"
                                     onclick="return confirm('Apakah anda yakin akan menghapus nya?');">
                                     <i class="fa fa-trash"></i>
-                                    {{-- <span> Hapus</span> --}}
                                 </button>
                             </form>
 

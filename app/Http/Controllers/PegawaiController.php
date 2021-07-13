@@ -154,7 +154,7 @@ class PegawaiController extends Controller
 
         $extension = $request->pasfoto->extension();
         $filename = Uuid::uuid4() . ".{$extension}";
-        $request->pasfoto->storeAs('public/pegawai', $filename);
+        $request->pasfoto->move(base_path('public/storage/pegawai'), $filename);
         $data['pasfoto'] = asset("/storage/pegawai/{$filename}");
 
         Pegawai::create($data);
@@ -217,7 +217,7 @@ class PegawaiController extends Controller
             $filename = Uuid::uuid4() . ".{$extension}";
             $oldfile = basename($pegawai->pasfoto);
             Storage::delete("pegawai/{$oldfile}");
-            $request->pasfoto->storeAs('/public/pegawai', $filename);
+            $request->pasfoto->move(base_path('/public/storage/pegawai'), $filename);
             $data['pasfoto'] = asset("/storage/pegawai/{$filename}");
         }
 

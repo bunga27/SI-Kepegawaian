@@ -26,10 +26,7 @@
                 <div class="col-md-9">
                     <select class="form-control" placeholder="-- Pilih Nama Pegawai --" id="jabatan_id" name="jabatan_id" required>
                         @foreach ($jabatan as $j)
-                        <option value="{{$j->idJabatan}}" @if ($j->idJabatan == $pegawai->jabatan_id)
-                            selected
-                            @endif
-                            >{{$j->nama}}</option>
+                        <option value="{{$j->idJabatan}}">{{$j->jabatan}}</option>
                         @endforeach
                     </select>
                 </div>

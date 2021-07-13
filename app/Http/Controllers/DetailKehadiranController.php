@@ -72,7 +72,7 @@ class DetailKehadiranController extends Controller
         $data = $request->except(['buktidatang','keterangan','created_at','bulan', 'ketepatanhadir']);
         $extension = $request->buktidatang->extension();
         $filename = Uuid::uuid4() . ".{$extension}";
-        $request->buktidatang->storeAs('public/buktihadir', $filename);
+        $request->buktidatang->move(base_path('public/storage/buktihadir'), $filename);
         $data['buktidatang'] = asset("/storage/buktihadir/{$filename}");
         $data['created_at'] = \Carbon\Carbon::now('Asia/Jakarta');
         $hari = date('D', strtotime($data['created_at']));
@@ -145,7 +145,7 @@ class DetailKehadiranController extends Controller
             $filename = Uuid::uuid4() . ".{$extension}";
             $oldfile = basename($detailKehadiran->buktipulang);
             Storage::delete("buktihadir/{$oldfile}");
-            $request->buktipulang->storeAs('/public/buktihadir', $filename);
+            $request->buktipulang->move(base_path('/public/storage/buktihadir'), $filename);
             $data['buktipulang'] = asset("/storage/buktihadir/{$filename}");
         }
 

@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\DetailProyek;
+use App\Detailproyek;
 use App\Gambarprogres;
 use App\Proyek;
 use App\Pegawai;
 use Illuminate\Http\Request;
 use Ramsey\Uuid\Uuid;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class DetailProyekController extends Controller
 {
@@ -58,7 +59,7 @@ class DetailProyekController extends Controller
 
         $extension = $request->gambar->extension();
         $filename = Uuid::uuid4() . ".{$extension}";
-        $request->gambar->storeAs('public/progresproyek', $filename);
+        $request->gambar->move(base_path('public/storage/progresproyek'), $filename);
         $data['gambar'] = asset("/storage/progresproyek/{$filename}");
         $data['proyek_id'] = $request->proyek_id;
         $detailproyek = new DetailProyek([
@@ -75,7 +76,7 @@ class DetailProyekController extends Controller
              foreach($files as $file){
                 $extension = $file->extension();
                 $filename = Uuid::uuid4() . ".{$extension}";
-                $request->gambar->storeAs('public/progresproyek', $filename);
+                $file->move(base_path('public/storage/progresproyek'), $filename);
                 $datas['gambar2'] = asset("/storage/progresproyek/{$filename}");
 
                 $gambarprogres = new Gambarprogres([
@@ -111,9 +112,17 @@ class DetailProyekController extends Controller
      * @param  \App\DetailProyek  $detailProyek
      * @return \Illuminate\Http\Response
      */
-    public function edit(DetailProyek $detailProyek)
+    public function edit($id)
     {
-        //
+        $detailproyek = DetailProyek::find($id);
+        $proyek = Proyek::where('idProyek', $detailproyek->proyek_id)->get();
+        $gambarprogres = Gambarprogres::where('detailproyek_id', $id)->get();
+        if (Auth::user()->level == "karyawan") {
+            $pegawai = auth()->user()->pegawai;
+        } else {
+            $pegawai = Pegawai::all();
+        }
+        return view('sistem.proyek.editprogres', compact( 'proyek', 'gambarprogres', 'detailproyek', 'pegawai'));
     }
 
     /**
@@ -123,9 +132,26 @@ class DetailProyekController extends Controller
      * @param  \App\DetailProyek  $detailProyek
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, DetailProyek $detailProyek)
+    public function update(Request $request, $id)
     {
-        //
+        $detailproyek = DetailProyek::find($id);
+
+        $data = $request->except(['gambar']);
+        // $proyek_id = Proyek::where('idProyek', $detailProyek->proyek_id)->get();
+        if ($request->hasFile('gambar')) {
+            $extension = $request->gambar->extension();
+            $filename = Uuid::uuid4() . ".{$extension}";
+            $oldfile = basename($detailproyek->gambar);
+            Storage::delete("detailproyek/{$oldfile}");
+            $request->gambar->move(base_path('/public/storage/progresproyek'), $filename);
+            $data['gambar'] = asset("/storage/progresproyek/{$filename}");
+            // $data['proyek_id'] = $proyek_id->idProyek;
+        }
+
+        $detailproyek->fill($data);
+        $detailproyek->save();
+
+        return redirect('/detailproyek');
     }
 
     /**

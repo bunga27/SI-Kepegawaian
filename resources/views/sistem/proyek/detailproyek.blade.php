@@ -36,11 +36,6 @@
                         <i class="fa fa-eye"></i>
                         <span> Lihat  </span>
                     </a>
-                    {{-- <a href="{{ url('/proyek/'.$p->idProyek.'/progres') }}"
-                        class="btn btn-primary btn-custom waves-effect waves-light m-r-5">
-                        <i class="fa fa-plus"></i>
-                        <span> Tambah  </span>
-                    </a> --}}
 
                 </td>
                 @endif

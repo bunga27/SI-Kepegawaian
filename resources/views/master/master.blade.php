@@ -9,12 +9,13 @@
     <title>@yield('title')</title>
     <link rel="shortcut icon" href="{{ asset('menu_2') }}/assets/images/users/user.png">
 
-<!-- Plugin Css-->
+    <!-- Plugin Css-->
     <link rel="stylesheet" href="{{ asset('menu_2') }}/assets/plugins/magnific-popup/css/magnific-popup.css" />
     <link rel="stylesheet" href="{{ asset('menu_2') }}/assets/plugins/jquery-datatables-editable/datatables.css" />
 
-    <!--calendar css-->
-    <link href="{{ asset('menu_2') }}/assets/plugins/fullcalendar/css/fullcalendar.min.css" rel="stylesheet" />
+
+    <!-- Sweet Alert -->
+    <link href="{{ asset('menu_2') }}/assets/plugins/bootstrap-sweetalert/sweet-alert.css" rel="stylesheet" type="text/css">
 
 
     <link href="{{ asset('menu_2') }}/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -65,6 +66,7 @@
     <link href="{{ asset('menu_2') }}/assets/plugins/bootstrap-daterangepicker/daterangepicker.css"
         rel="stylesheet">
 
+    <link href="{{ asset('menu_2') }}/assets/plugins/bootstrap-sweetalert/sweet-alert.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -109,9 +111,7 @@
     </div>
 
 
-    <script src="{{ asset('menu_2') }}/assets/plugins/moment/moment.js"></script>
-    <script src='{{ asset('menu_2') }}/assets/plugins/fullcalendar/js/fullcalendar.min.js'></script>
-    <script src="{{ asset('menu_2') }}/assets/pages/jquery.fullcalendar.js"></script>
+
     <!-- jQuery  -->
     <script src="{{ asset('menu_2') }}/assets/js/jquery.min.js"></script>
     <script src="{{ asset('menu_2') }}/assets/js/bootstrap.min.js"></script>
@@ -195,10 +195,16 @@
     <script src="{{ asset('menu_2') }}/assets/plugins/tiny-editable/mindmup-editabletable.js"></script>
     <script src="{{ asset('menu_2') }}/assets/plugins/tiny-editable/numeric-input-example.js"></script>
 
-    <script src="assets/pages/datatables.editable.init.js"></script>
+    <script src="{{ asset('menu_2') }}/assets/plugins/bootstrap-sweetalert/sweet-alert.min.js"></script>
+    <script src="{{ asset('menu_2') }}/assets/pages/jquery.sweet-alert.init.js"></script>
+
+    <script src="{{ asset('menu_2') }}/assets/pages/datatables.editable.init.js"></script>
     <script>
     $('#mainTable').editableTableWidget().numericInputExample().find('td:first').focus();
     </script>
+    <!-- Sweet-Alert  -->
+    <script src="{{ asset('menu_2') }}/assets/plugins/bootstrap-sweetalert/sweet-alert.min.js"></script>
+    <script src="{{ asset('menu_2') }}/assets/pages/jquery.sweet-alert.init.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function () {
@@ -246,7 +252,7 @@
             });
     </script>
 
-    <script src="{{ asset('menu_2') }}assets/plugins/smoothproducts/js/smoothproducts.min.js"></script>
+    <script src="{{ asset('menu_2') }}/assets/plugins/smoothproducts/js/smoothproducts.min.js"></script>
     <script type="text/javascript">
         // wait for images to load
                 $(window).load(function() {

@@ -49,13 +49,18 @@
                     <form action="{{ url('/detailproyek/'.$detailproyek->idDetailProyek) }}" method="post">
                         @method('delete')
                         @csrf
-                        <button class="btn btn-danger btn-custom waves-effect waves-light m-r-5"
+                        <button class="btn btn-danger btn-custom waves-effect waves-light m-r-5 d-inline"
                             onclick="return confirm('Apakah anda yakin akan menghapus nya?');">
                             <i class="fa fa-trash"></i>
                             <span> Hapus</span>
                         </button>
                     </form>
-
+                    <a href="{{ url('/detailproyek/'.$detailproyek->idDetailProyek. '/edit') }}" >
+                        <button class="btn btn-primary btn-custom waves-effect waves-light d-inline m-r-5">
+                            <i class="fa fa-trash"></i>
+                            <span> Ubah</span>
+                        </button>
+                    </a>
                 </td>
                 @endif
             </tr>

@@ -41,7 +41,8 @@
                     <td>{{ $pry->client }}</td>
                     <td>{{ $pry->alamat }}</td>
                     <td>{{ $pry->tanggalpengerjaan }}</td>
-                    <td><a>
+                    <td>
+                        <a>
                             <form action="{{ url('/proyek/'.$pry->idProyek) }}" method="post">
                                 @method('delete')
                                 @csrf
@@ -52,10 +53,8 @@
                             </form>
                         </a>
 
-                        <a href="{{ url('/proyek/'.$pry->idProyek.'/edit') }}"
-                            class="btn btn-primary btn-custom waves-effect waves-light pull-right m-r-5">
-                            <i class="fa fa-pencil"></i>
-                        </a></td>
+
+                    </td>
 
                 </tr>
 
