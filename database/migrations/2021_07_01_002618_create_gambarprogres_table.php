@@ -14,10 +14,10 @@ class CreateGambarprogresTable extends Migration
     public function up()
     {
         Schema::create('gambarprogres', function (Blueprint $table) {
-            $table->increments('idGambarprogres');
-            $table->string('gambar2');
-            $table->integer('detailproyek_id')->unsigned();
-            $table->foreign('detailproyek_id')->references('idDetailproyek')->on('detailproyek')->onDelete('cascade');
+            $table->smallInteger('idGambarprogres')->autoIncrement();
+            $table->string('gambar2',100);
+            $table->smallInteger('idDetailProyek')->unsigned();
+            $table->foreign('idDetailProyek')->references('idDetailProyek')->on('detailproyek')->onDelete('cascade');
             $table->timestamps();
         });
     }

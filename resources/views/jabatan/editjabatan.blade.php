@@ -1,9 +1,9 @@
-@extends('master.master')
+{{-- @extends('master.master')
 @section('title','Ubah Data Jabatan | CV Hasil Utama Konsultan')
 @section('ket','Ubah data Jabatan yang telah dipilih sebelumnya')
-@section('content')
+@section('content') --}}
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-12">
         <form class="form-horizontal" method="POST" action="/jabatan/{{ $jabatan->idJabatan }}"enctype="multipart/form-data">
             @csrf
             @method('PATCH')
@@ -65,4 +65,4 @@
     </div>
 </div>
 
-@endsection
+{{-- @endsection --}}

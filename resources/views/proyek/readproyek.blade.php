@@ -28,6 +28,8 @@
                     <th data-field="client">Client</th>
                     <th data-field="alamat">Alamat</th>
                     <th data-field="tglpengerjaan">Tanggal Pengerjaan</th>
+                    <th data-field="alurproyek">Alur Proyek</th>
+                    <th data-field="aksi">Aksi</th>
 
                 </tr>
             </thead>
@@ -40,18 +42,31 @@
                     <td>{{ $pry->pegawai->nama }}</td>
                     <td>{{ $pry->client }}</td>
                     <td>{{ $pry->alamat }}</td>
-                    <td>{{ $pry->tanggalpengerjaan }}</td>
+                    <td>{{ $pry->tanggalpengerjaan}} - {{ $pry->tanggalberakhir }}</td>
+
                     <td>
-                        <a>
-                            <form action="{{ url('/proyek/'.$pry->idProyek) }}" method="post">
-                                @method('delete')
-                                @csrf
-                                <button class="btn btn-danger btn-custom waves-effect waves-light pull-right m-r-5"
-                                    onclick="return confirm('Apakah anda yakin akan menghapus nya?');">
+                        <a href="{{ url('/alur/'.$pry->idProyek.'/read') }}" class="btn btn-default btn-custom waves-effect waves-light m-r-5">
+                            <i class="fa fa-eye"></i>
+                            <span> Lihat Alur </span>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ url('/proyek/'.$pry->idProyek.'/edit') }}"
+                            class="btn btn-primary btn-custom  waves-effect waves-light pull-left m-l-5">
+                            <i class="fa fa-pencil"></i>
+                        </a>
+                        <a class="pull-left m-l-5   ">
+
+                                <button data-id="{{ $pry->idProyek }}" class="btn btn-danger btn-custom swall-confirm  waves-effect waves-light ">
+                                    <form action="{{ url('/proyek/'.$pry->idProyek) }}" id="delete{{ $pry->idProyek}}" method="post">
+                                        @method('delete')
+                                        @csrf
+                                    </form>
                                     <i class="fa fa-trash"></i>
                                 </button>
-                            </form>
+
                         </a>
+
 
 
                     </td>

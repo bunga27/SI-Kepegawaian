@@ -10,19 +10,24 @@ class Detailproyek extends Model
     protected $primaryKey = 'idDetailProyek';
     protected $fillable =
     [
-        'proyek_id',
+        'idProyek',
         'tanggal',
-        'progres',
+        'idAlurProyek',
         'keterangan',
         'gambar'
     ];
 
     public function proyek()
     {
-        return $this->belongsTo('App\Proyek', 'proyek_id');
+        return $this->belongsTo('App\Proyek','idProyek');
+    }
+
+    public function alurproyek()
+    {
+        return $this->belongsTo('App\Alurproyek', 'idAlurProyek');
     }
 
     public function images(){
-        return $this->hasMany('App\Gambarprogres');
+        return $this->hasMany('App\Gambarprogres', 'idDetailProyek');
     }
 }

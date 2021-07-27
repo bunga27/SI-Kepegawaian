@@ -23,7 +23,7 @@
                 <th data-field="progres">Progres</th>
                 <th data-field="keterangan">Keterangan</th>
                 <th data-field="gambar">Foto</th>
-                <th data-field="gambar">Foto Detail</th>
+                {{-- <th data-field="gambar">Detail</th> --}}
                 @if (auth()->user()->level=="admin")
                 <th data-field="action">Action</th>
                 @endif
@@ -32,34 +32,29 @@
         </thead>
 
         <tbody>
-            @foreach ($proyek->detailproyek as $detailproyek)
+            @foreach ($detailproyek as $detailproyek)
             <tr>
                 <td>{{ date('d-m-Y', strtotime($detailproyek->tanggal))}}</td>
-                <td>{{ $detailproyek->progres }}%</td>
+                <td>{{ $detailproyek->alurproyek->progres }} - {{ $detailproyek->alurproyek->tahapan }}</td>
+                {{-- <td></td> --}}
                 <td>{{ $detailproyek->keterangan }}</td>
                 <td><img src="{{ asset($detailproyek->gambar) }}" width="100"></td>
-                <td>Lihat Detail</td>
-                {{-- <td>
-                @foreach ( $detailproyek->gambarprogres as $g)
-                <img src="{{ asset($g->gambar2) }}" width="100">
-                @endforeach
-                </td> --}}
+
                 @if (auth()->user()->level=="admin")
                 <td>
-                    <form action="{{ url('/detailproyek/'.$detailproyek->idDetailProyek) }}" method="post">
-                        @method('delete')
-                        @csrf
-                        <button class="btn btn-danger btn-custom waves-effect waves-light m-r-5 d-inline"
-                            onclick="return confirm('Apakah anda yakin akan menghapus nya?');">
-                            <i class="fa fa-trash"></i>
-                            <span> Hapus</span>
-                        </button>
-                    </form>
-                    <a href="{{ url('/detailproyek/'.$detailproyek->idDetailProyek. '/edit') }}" >
-                        <button class="btn btn-primary btn-custom waves-effect waves-light d-inline m-r-5">
-                            <i class="fa fa-trash"></i>
-                            <span> Ubah</span>
-                        </button>
+                    <a href="{{ url('/detailproyek/'.$detailproyek->idDetailProyek.'/edit') }}"
+                        class="btn btn-primary btn-custom  waves-effect waves-light pull-left m-l-5">
+                        <i class="fa fa-pencil"></i>
+                    </a>
+                    <a class="pull-left m-l-5 ">
+                        <form action="{{ url('/detailproyek/'.$detailproyek->idDetailProyek) }}" method="post">
+                            @method('delete')
+                            @csrf
+                            <button class="btn btn-danger btn-custom   waves-effect waves-light "
+                                onclick="return confirm('Apakah anda yakin akan menghapus nya?');">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </form>
                     </a>
                 </td>
                 @endif

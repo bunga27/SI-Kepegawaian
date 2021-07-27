@@ -11,7 +11,7 @@
                     <label for="ketdatang" class="col-md-3 control-label">Keterangan Datang</label>
                     <div class="col-md-9">
                         <input required type="text" class="form-control" id="pegawai_id" name="pegawai_id"
-                            placeholder="Masukan keterangan" value={{ auth()->user()->pegawai->idPegawai }}>
+                            placeholder="Masukan keterangan" value={{ auth()->user()->pegawai->nik }}>
                     </div>
                 </div>
                 <div class="form-group">
@@ -49,7 +49,7 @@
                     <select class="form-control" placeholder="-- Pilih Nama Pegawai --" id="pegawai_id"  name="pegawai_id" required>
 
                         @foreach ($pegawai as $pgw)
-                        <option value="{{$pgw->idPegawai}}">{{$pgw->nama}}</option>
+                        <option value="{{$pgw->nik}}">{{$pgw->nama}}</option>
                         @endforeach
                     </select>
                 </div>

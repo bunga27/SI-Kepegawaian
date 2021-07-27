@@ -11,8 +11,6 @@
 
     <!-- Plugin Css-->
     <link rel="stylesheet" href="{{ asset('menu_2') }}/assets/plugins/magnific-popup/css/magnific-popup.css" />
-    <link rel="stylesheet" href="{{ asset('menu_2') }}/assets/plugins/jquery-datatables-editable/datatables.css" />
-
 
     <!-- Sweet Alert -->
     <link href="{{ asset('menu_2') }}/assets/plugins/bootstrap-sweetalert/sweet-alert.css" rel="stylesheet" type="text/css">
@@ -24,6 +22,7 @@
     <link href="{{ asset('menu_2') }}/assets/css/icons.css" rel="stylesheet" type="text/css" />
     <link href="{{ asset('menu_2') }}/assets/css/pages.css" rel="stylesheet" type="text/css" />
     <link href="{{ asset('menu_2') }}/assets/css/menu.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('menu_2') }}/assets/css/responsive.css" rel="stylesheet" type="text/css" />
     <link href="{{ asset('menu_2') }}/assets/css/responsive.css" rel="stylesheet" type="text/css" />
 
     <!-- DataTables -->
@@ -114,6 +113,8 @@
 
     <!-- jQuery  -->
     <script src="{{ asset('menu_2') }}/assets/js/jquery.min.js"></script>
+
+     {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script> --}}
     <script src="{{ asset('menu_2') }}/assets/js/bootstrap.min.js"></script>
     <script src="{{ asset('menu_2') }}/assets/js/detect.js"></script>
     <script src="{{ asset('menu_2') }}/assets/js/fastclick.js"></script>
@@ -132,6 +133,31 @@
     <script src="{{ asset('menu_2') }}/assets/plugins/counterup/jquery.counterup.min.js"></script>
 
     <script src="{{ asset('menu_2') }}/assets/plugins/jquery-knob/jquery.knob.js"></script>
+
+    <script src="{{ asset('menu_2') }}/assets/plugins/bootstrap-sweetalert/sweet-alert.min.js"></script>
+    <script src="{{ asset('menu_2') }}/assets/pages/jquery.sweet-alert.init.js"></script>
+
+    {{-- @stack() --}}
+    <script>
+    $('.swall-confirm').click(function (e) {
+        id = e.target.dataset.id;
+    swal(
+        {
+            title: "Apakah anda yakin?",
+            text: "Data yang terhapus tidak dapat dikembalikan",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonClass: 'btn-warning',
+            confirmButtonText: "Ya, Hapus!",
+            closeOnConfirm: false
+        }, function () {
+        swal("Terhapus!", "Data anda telah terhapus", "success");
+        $(`#delete${id}`).submit();
+        });
+
+    });
+    </script>
+
     <script src="{{ asset('menu_2') }}/assets/js/jquery.core.js"></script>
     <script src="{{ asset('menu_2') }}/assets/js/jquery.app.js"></script>
 
@@ -192,19 +218,6 @@
     <script src="{{ asset('menu_2') }}/assets/plugins/magnific-popup/js/jquery.magnific-popup.min.js"></script>
     <script src="{{ asset('menu_2') }}/assets/plugins/jquery-datatables-editable/jquery.dataTables.js"></script>
     <script src="{{ asset('menu_2') }}/assets/plugins/datatables/dataTables.bootstrap.js"></script>
-    <script src="{{ asset('menu_2') }}/assets/plugins/tiny-editable/mindmup-editabletable.js"></script>
-    <script src="{{ asset('menu_2') }}/assets/plugins/tiny-editable/numeric-input-example.js"></script>
-
-    <script src="{{ asset('menu_2') }}/assets/plugins/bootstrap-sweetalert/sweet-alert.min.js"></script>
-    <script src="{{ asset('menu_2') }}/assets/pages/jquery.sweet-alert.init.js"></script>
-
-    <script src="{{ asset('menu_2') }}/assets/pages/datatables.editable.init.js"></script>
-    <script>
-    $('#mainTable').editableTableWidget().numericInputExample().find('td:first').focus();
-    </script>
-    <!-- Sweet-Alert  -->
-    <script src="{{ asset('menu_2') }}/assets/plugins/bootstrap-sweetalert/sweet-alert.min.js"></script>
-    <script src="{{ asset('menu_2') }}/assets/pages/jquery.sweet-alert.init.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function () {
@@ -251,7 +264,46 @@
 
             });
     </script>
+    <script>
+        $('thead').on('click','.addRow', function(){
+         var tr =  "<tr>"+
+            "<td>"+
+               "<select id='jenjang[]' name='jenjang[]' type='text' class='form-control custom-select-value'>"+
+                    "<option value='SD'>SD</option>"+
+                    "<option value='SMP'>SMP</option>"+
+                    "<option value='SMA'>SMA</option>"+
+                    "<option value='D3'>D3</option>"+
+                    "<option value='S1'>S1</option>"+
+                    "<option value='S2'>S2</option>"+
+                    "<option value='S3'>S3</option>"+
+               "</select>"+
+            "</td>"+
+            "<td><input name='tempat[]' id='tempat[]' type='text' class='form-control' placeholder='Tempat'></td>"+
+            "<td><input type='number' id='tahun[]' name='tahun[]' class='form-control' placeholder='Tahun'></td>"+
+            "<th><a href='javascript:void(0)' class='btn btn-danger deleteRow'><i class='fa fa-minus'></i></th>"+
+        "</tr>"
+        $('tbody').append(tr);
+     });
 
+     $('tbody').on('click', '.deleteRow' , function(){
+         $(this).parent().parent().remove();
+     });
+    </script>
+    <script>
+        $('thead').on('click','.addRow2', function(){
+             var tr =  "<tr>"+
+
+                "<td><input name='progres[]' id='progres[]' type='number' class='form-control' placeholder='%'></td>"+
+                "<td><input type='text' id='tahapan[]' name='tahapan[]' class='form-control' placeholder='tahapan'></td>"+
+               " <th><a href='javascript:void(0)' class='btn btn-danger deleteRow2'><i class='fa fa-minus'></i></th>"+
+            "</tr>"
+            $('tbody').append(tr);
+         });
+
+         $('tbody').on('click', '.deleteRow2' , function(){
+             $(this).parent().parent().remove();
+         });
+    </script>
     <script src="{{ asset('menu_2') }}/assets/plugins/smoothproducts/js/smoothproducts.min.js"></script>
     <script type="text/javascript">
         // wait for images to load
@@ -266,6 +318,8 @@
             output.src = URL.createObjectURL(event.target.files[0]);
         }
     </script>
+
+
 
 
 </body>

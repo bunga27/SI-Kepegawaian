@@ -3,7 +3,7 @@
 @section('ket','Tambahkan Data Proyek')
 @section('content')
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-8">
         <form class="form-horizontal" method="POST" action="/proyek" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
@@ -15,9 +15,9 @@
             <div class="form-group">
                 <label for="nama" class="col-md-4 control-label">Nama Pegawai</label>
                 <div class="col-md-8">
-                    <select class="form-control" placeholder="-- Pilih Nama Pegawai --" id="idPegawai" name="idPegawai" required>
+                    <select class="form-control" placeholder="-- Pilih Nama Pegawai --" id="nik" name="nik" required>
                         @foreach ($pegawai as $pgw)
-                        <option value="{{$pgw->idPegawai}}">{{$pgw->nama}}</option>
+                        <option value="{{ $pgw->nik }}">{{ $pgw->nama }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -29,19 +29,42 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="alamat" class="col-md-4 control-label">Alamat</label>
+                <label for="alamat" class="col-md-4 control-label">Alamat Proyek</label>
                 <div class="col-md-8">
                     <input required type="text" class="form-control" id="alamat" name="alamat"> </textarea>
                 </div>
             </div>
             <div class="form-group">
-                <label for="tanggalpengerjaan" class="col-md-4 control-label">Tanggal Pengerjaan</label>
-                <div class="col-md-8">
-                    <div class="input-group">
-                        <input required type="date" class="form-control" id="tanggalpengerjaan" name="tanggalpengerjaan"
-                            placeholder="mm/dd/yyyy">
-                        <span class="input-group-addon bg-custom b-0 text-white"><i class="icon-calender"></i></span>
+                <label class="control-label col-sm-4">Waktu Pengerjaan</label>
+                <div class="col-sm-8">
+                    <div class="input-daterange input-group" >
+                        <input type="date" class="form-control" name="tanggalpengerjaan" id="tanggalpengerjaan"/>
+                        <span class="input-group-addon bg-custom b-0 text-white">sampai</span>
+                        <input type="date" class="form-control" name="tanggalberakhir" id="tanggalberakhir" />
                     </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="jenjang" class="col-md-4 control-label">Tahapan </label>
+                <div class="child-repeater-table table-responsive">
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Presentase</th>
+                                <th>Tahapan</th>
+                                <th><a href="javascript:void(0)" class="btn btn-default addRow2"><i class="fa fa-plus"></i></th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+
+                                <td><input name="progres[]" id="progres[]" type="number" class="form-control col-lg-3" placeholder="%"> </td>
+                                <td><input type="text" id="tahapan[]" name="tahapan[]" class="form-control" placeholder="Tahapan"></td>
+                                <th><a href="javascript:void(0)" class="btn btn-danger deleteRow2"><i class="fa fa-minus"></i></th>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
 

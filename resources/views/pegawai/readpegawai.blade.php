@@ -37,10 +37,6 @@
                     <th data-field="jabatan">Jabatan</th>
                     <th data-field="tanggalgabung">Gabung</th>
                     <th data-field="statuskerja">Kerja</th>
-                    <th data-field="sd">SD</th>
-                    <th data-field="smp">SMP</th>
-                    <th data-field="sma">SMA</th>
-                    <th data-field="lanjutan">Lanjutan</th>
                     <th data-field="riwayatpenyakit">Penyakit</th>
                     <th data-field="tinggi">Tinggi </th>
                     <th data-field="berat">Berat </th>
@@ -59,25 +55,26 @@
                 <tr>
                     <td></td>
                     <td>
-                        <a>
-                            <form action="{{ url('/pegawai/'.$pegawai->idPegawai) }}" method="post">
-                                @method('delete')
-                                @csrf
-                                <button class="btn btn-danger btn-custom waves-effect waves-light center m-r-5"
-                                    onclick="return confirm('Apakah anda yakin akan menghapus nya?');">
-                                    <i class="fa fa-trash"></i>
-                                </button>
-                            </form>
-                        </a>
-
-                        <a href="{{ url('/pegawai/'.$pegawai->idPegawai.'/edit') }}"
-                            class="btn btn-primary btn-custom waves-effect waves-light center m-r-5 ">
-                            <i class="fa fa-pencil d-inline"></i>
-                        </a>
-                        <a href="{{ url('/pegawai/'.$pegawai->idPegawai.'/show') }}"
+                        <a href="{{ url('/pegawai/'.$pegawai->nik.'/show') }}"
                             class="btn btn-default btn-custom waves-effect waves-light center m-r-5">
                             <i class="fa fa-search"></i>
                         </a>
+                        <a href="{{ url('/pegawai/'.$pegawai->nik.'/edit') }}"
+                            class="btn btn-primary btn-custom waves-effect waves-light center m-r-5 ">
+                            <i class="fa fa-pencil d-inline"></i>
+                        </a>
+                        <a>
+                            <button data-id="{{ $pegawai->nik }}" class="swall-confirm btn btn-danger btn-custom waves-effect waves-light center m-r-5">
+                                <form action="{{ url('/pegawai/'.$pegawai->nik) }}" id="delete{{ $pegawai->nik }}" method="post">
+                                    @method('delete')
+                                    @csrf
+                                </form>
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </a>
+
+
+
                     </td>
                     <td>{{ $pegawai->nama }}</td>
                     <td><img src="{{ asset($pegawai->pasfoto) }}" width="100"> </td>
@@ -92,12 +89,6 @@
                     <td>{{ $pegawai->jabatan->jabatan }}</td>
                     <td>{{ $pegawai->tanggalgabung }}</td>
                     <td>{{ $pegawai->statuskerja }}</td>
-
-
-                    <td>{{ $pegawai->sd }}</td>
-                    <td>{{ $pegawai->smp }}</td>
-                    <td>{{ $pegawai->sma }}</td>
-                    <td>{{ $pegawai->lanjutan }}</td>
 
                     <td>{{ $pegawai->riwayatpenyakit }}</td>
                     <td>{{ $pegawai->tinggi }}</td>
@@ -129,7 +120,7 @@
         <h5>{{ $pegawai->alamat }}</h5>
 
         <a>
-            <form action="{{ url('/pegawai/'.$pegawai->idPegawai) }}" method="post">
+            <form action="{{ url('/pegawai/'.$pegawai->nik) }}" method="post">
                 @method('delete')
                 @csrf
                 <button class="btn btn-danger btn-custom waves-effect waves-light pull-right m-r-5"
@@ -140,12 +131,12 @@
             </form>
         </a>
 
-        <a href="{{ url('/pegawai/'.$pegawai->idPegawai.'/edit') }}"
+        <a href="{{ url('/pegawai/'.$pegawai->nik.'/edit') }}"
             class="btn btn-primary btn-custom waves-effect waves-light pull-right m-r-5">
             <i class="fa fa-pencil"></i>
             <span> Ubah</span>
         </a>
-        <a href="{{ url('/pegawai/'.$pegawai->idPegawai.'/show') }}"
+        <a href="{{ url('/pegawai/'.$pegawai->nik.'/show') }}"
             class="btn btn-default btn-custom waves-effect waves-light pull-right m-r-5">
             <i class="fa fa-search"></i>
             <span> Ubah</span>
@@ -159,3 +150,20 @@
 
 
 @endsection
+{{-- @push('scr')
+    <script>
+        $('.swall-confirm').click(function () {
+        swal({
+        title: "Are you sure?",
+        text: "You will not be able to recover this imaginary file!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonClass: 'btn-warning',
+        confirmButtonText: "Yes, delete it!",
+        closeOnConfirm: false
+        }, function () {
+        swal("Deleted!", "Your imaginary file has been deleted.", "success");
+        });
+        });
+    </script>
+@endpush --}}

@@ -35,24 +35,24 @@ class GajiController extends Controller
         $tanggal = \Carbon\Carbon::now('Asia/Jakarta');
 
         $harikerja = DB::table('detailkehadiran')
-        ->where('pegawai_id', '=', $gaji->pegawai->idPegawai)
+        ->where('nik', '=', $gaji->pegawai->nik)
         ->Where('keterangan', '=', 'Hadir')
         ->Where('bulan', '=', $gaji->bulan)
         ->count();
 
         $totalproyek = DB::table('proyek')
-        ->where('pegawai_id', '=', $gaji->pegawai->idPegawai)
-        ->Where('created_at', '=', $gaji->bulan)
+        ->where('nik', '=', $gaji->pegawai->nik)
+        ->Where('bulan', '=', $gaji->bulan)
         ->count();
 
         $totallembur = DB::table('detailkehadiran')
-        ->where('pegawai_id', '=', $gaji->pegawai->idPegawai)
+        ->where('nik', '=', $gaji->pegawai->nik)
         ->Where('bulan', '=', $gaji->bulan)
         ->where('keterangan', '=', 'Lembur')
         ->count();
 
         $telat = DB::table('detailkehadiran')
-        ->where('pegawai_id', '=', $gaji->pegawai->idPegawai)
+        ->where('nik', '=', $gaji->pegawai->nik)
         ->Where('bulan', '=', $gaji->bulan)
         ->where('ketepatanhadir', '=', 'Terlambat')
         ->count();

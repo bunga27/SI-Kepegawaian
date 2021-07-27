@@ -3,7 +3,23 @@
 @section('ket','Tambahkan Data pegawai')
 @section('content')
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-8">
+        @if (count($errors) > 0)
+        <div class="alert alert-danger">
+            <ul>
+                {{-- @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach --}}
+
+                @if ($errors = 'The nik must be at least 999999999999999.')
+                <li>Minimal NIK 16 Digit</li>
+                @endif
+                {{-- @if ($errors = 'The nik may not be greater than 9999999999999999.')
+                <li>Maksimal NIK 16 Digit</li>
+                @endif --}}
+            </ul>
+        </div>
+        @endif
         <form class="form-horizontal" method="POST" action="/pegawai" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
@@ -33,7 +49,7 @@
             <div class="form-group">
                 <label for="nik" class="col-md-3 control-label">NIK</label>
                 <div class="col-md-9">
-                    <input type="number" class="form-control" id="nik" name="nik" placeholder="Masukan No.NIK" min="0" maxlength="16">
+                    <input type="text" class="form-control" id="nik" name="nik" placeholder="Masukan Nik" required value="{{old('nik')}}">
                 </div>
             </div>
             <div class="form-group">
@@ -105,32 +121,41 @@
                     </div>
                 </div>
             </div>
+            <div class="form-group">
+                <label for="jenjang" class="col-md-3 control-label">Pendidikan</label>
+                <div class="child-repeater-table table-responsive">
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Jenjang</th>
+                                <th>Tempat</th>
+                                <th>Tahun</th>
+                                <th><a href="javascript:void(0)" class="btn btn-default addRow"><i class="fa fa-plus"></i></th>
+                            </tr>
+                        </thead>
 
-            <div class="form-group">
-                <label for="sd" class="col-md-3 control-label">Nama SD</label>
-                <div class="col-md-9">
-                    <input required type="text" id="sd" name="sd" class="form-control" placeholder="Masukan Nama SD">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <select id="jenjang[]" name="jenjang[]" type="text" class="form-control custom-select-value">
+                                        <option value="SD">SD</option>
+                                        <option value="SMP">SMP</option>
+                                        <option value="SMA">SMA</option>
+                                        <option value="D3">D3</option>
+                                        <option value="S1">S1</option>
+                                        <option value="S2">S2</option>
+                                        <option value="S3">S3</option>
+                                    </select>
+                                </td>
+                                <td><input name="tempat[]" id="tempat[]" type="text" class="form-control" placeholder="Tempat"></td>
+                                <td><input type="number" id="tahun[]" name="tahun[]" class="form-control" placeholder="Tahun"></td>
+                                <th><a href="javascript:void(0)" class="btn btn-danger deleteRow"><i class="fa fa-minus"></i></th>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-            <div class="form-group">
-                <label for="smp" class="col-md-3 control-label">Nama SMP</label>
-                <div class="col-md-9">
-                    <input required type="text" id="smp" name="smp" class="form-control" placeholder="Masukan Nama SMP">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="sma" class="col-md-3 control-label">Nama SMA</label>
-                <div class="col-md-9">
-                    <input required type="text" name="sma" id="sma" class="form-control" placeholder="Masukan Nama SMA">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="lanjutan" class="col-md-3 control-label"> Pendidikan Lanjutan</label>
-                <div class="col-md-9">
-                    <input required type="text" id="lanjutan" name="lanjutan" class="form-control"
-                        placeholder="Masukan Nama Pendidikan Lanjutan">
-                </div>
-            </div>
+
 
             <div class="form-group">
                 <label for="riwayatpenyakit" class="col-md-3 control-label">Riwayat Penyakit</label>
@@ -206,4 +231,5 @@
 
     </div>
 </div>
+
 @endsection

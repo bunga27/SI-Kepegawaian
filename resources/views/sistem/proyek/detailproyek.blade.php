@@ -29,7 +29,6 @@
                 <td>{{ $p->alamat}}</td>
                 <td>{{ $p->client}}</td>
                 <td>{{ $p->pegawai->nama}}</td>
-                @if (auth()->user()->level=="admin")
                 <td>
                     <a href="{{ url('/proyek/'.$p->idProyek.'/showprogres') }}"
                         class="btn btn-default btn-custom waves-effect waves-light m-r-5">
@@ -38,7 +37,6 @@
                     </a>
 
                 </td>
-                @endif
             </tr>
 
             @endforeach

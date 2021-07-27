@@ -2,7 +2,7 @@
 @section('title','Profil | CV Hasil Utama Konsultan')
 @section('content')
 <div class="row">
-    <form class="form-horizontal" method="GET" action="/pegawai/{{ auth()->user()->pegawai->idPegawai }}"
+    <form class="form-horizontal" method="GET" action="/pegawai/{{ auth()->user()->pegawai->nik }}"
         enctype="multipart/form-data">
         @csrf
         @method('get')
@@ -21,7 +21,7 @@
                     <span>Setting Akun</span>
                 </a>
 
-                <a href="{{ url('/pegawai/'.auth()->user()->pegawai->idPegawai.'/edit') }}"
+                <a href="{{ url('/pegawai/'.auth()->user()->pegawai->nik.'/edit') }}"
                     class="m-l-5 btn btn-warning btn-custom waves-effect waves-light ">
                     <i class="fa fa-pencil"></i>
                     <span> Ubah Data Diri</span>

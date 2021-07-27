@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Pegawai extends Model
 {
     protected $table = 'pegawai';
-    protected $primaryKey = 'idPegawai';
+    protected $primaryKey = 'nik';
     protected $fillable = [
         'nama',
-        'jabatan_id',
-        'pasfoto',
         'nik',
+        'idJabatan',
+        'pasfoto',
         'jeniskelamin',
         'tempatlahir',
         'tanggallahir',
@@ -21,12 +21,6 @@ class Pegawai extends Model
         'telp',
         'tanggalgabung',
         'statuskerja',
-
-
-        'sd',
-        'smp',
-        'sma',
-        'lanjutan',
 
         'riwayatpenyakit',
         'tinggi',
@@ -40,31 +34,29 @@ class Pegawai extends Model
         'alamatwali'
     ];
 
-    // public function proyek()
-    //  {
-    //      return $this->hasMany('App\Proyek', 'pegawai_id');
-    //  }
-
-
     public function user()
     {
-        return $this->hasOne('App\User', 'pegawai_id');
+        return $this->hasOne('App\User', 'nik');
     }
 
     public function jabatan()
     {
-        return $this->belongsTo('App\Jabatan', 'jabatan_id');
+        return $this->belongsTo('App\Jabatan','idJabatan');
     }
     public function proyek()
     {
-        return $this->hasMany('App\Proyek', 'pegawai_id');
+        return $this->hasMany('App\Proyek','nik');
     }
     public function gaji()
     {
-        return $this->hasMany('App\Gaji', 'pegawai_id');
+        return $this->hasMany('App\Gaji','nik');
+    }
+    public function riwayatpendidikan()
+    {
+        return $this->hasMany('App\Riwayatpendidikan', 'nik');
     }
     public function detailkehadiran()
     {
-        return $this->hasMany('App\DetailKehadiran', 'pegawai_id');
+        return $this->hasMany('App\DetailKehadiran','nik');
     }
 }

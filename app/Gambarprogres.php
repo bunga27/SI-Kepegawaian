@@ -10,12 +10,12 @@ class Gambarprogres extends Model
     protected $primaryKey = 'idGambarprogres';
     protected $fillable =
     [
-        'detailproyek_id',
+        'idDetailProyek',
         'gambar2'
     ];
 
     public function Detailproyek()
     {
-        return $this->belongsTo('App\Detailproyek');
+        return $this->belongsTo('App\Detailproyek', 'idProyek');
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\DetailKehadiran;
+use App\Riwayatpendidikan;
 use App\Pegawai;
 use App\User;
 use App\Jabatan;
@@ -12,6 +13,7 @@ use Illuminate\Support\Facades\Storage;
 use Ramsey\Uuid\Uuid;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use lluminate\Validation\Validator;
 
 class PegawaiController extends Controller
 {
@@ -73,25 +75,26 @@ class PegawaiController extends Controller
         $tanggal = $request -> tanggal;
         $bulan = date('mY', strtotime($tanggal));
 
+        //kehadiran trus nik e sg id ne ket
         $harikerja = DB::table('detailkehadiran')
-        ->where('pegawai_id', '=', $request->idPegawai)
+        ->where('nik', '=', $request->nik)
         ->Where('keterangan', '=', 'Hadir')
         ->Where('bulan', '=', $bulan)
         ->count();
 
         $totalproyek = DB::table('proyek')
-        ->where('pegawai_id', '=', $request->idPegawai)
-        ->Where('created_at', '=', $bulan)
+        ->where('nik', '=', $request->nik)
+        ->Where('bulan', '=', $bulan)
         ->count();
 
         $totallembur = DB::table('detailkehadiran')
-        ->where('pegawai_id', '=', $request->idPegawai)
+        ->where('nik', '=', $request->nik)
         ->Where('bulan', '=', $bulan)
-        ->where('keterangan','=', 'Lembur')
+        ->where('keterangan','=', 'Hadir Lembur')
         ->count();
 
         $telat = DB::table('detailkehadiran')
-        ->where('pegawai_id', '=', $request->idPegawai)
+        ->where('nik', '=', $request->nik)
         ->Where('bulan', '=', $bulan)
         ->where('ketepatanhadir', '=', 'Terlambat')
         ->count();
@@ -99,10 +102,10 @@ class PegawaiController extends Controller
 
 
         $gaji = new Gaji;
-        $gaji->pegawai_id = $request->idPegawai;
+        $gaji->nik = $request->nik;
         $gaji->bulan = $bulan;
         $gaji->gajibulan = $harikerja*$request->gajiharian;
-        $gaji->totaluangmakan = $harikerja*$request->uangmakan;
+        $gaji->totaluangmakan = ($harikerja*$request->uangmakan)+($totallembur * $request->uangmakan);
         $gaji->totalbonusproyek =$totalproyek*$request->bonusproyek;
         $gaji->totalthr = $request->thr*$request->hariraya;
         $gaji->totalgajilembur=$totallembur*$request->gajilembur;
@@ -117,11 +120,11 @@ class PegawaiController extends Controller
         $gaji->totalgaji=$penghasilan-$gaji->potongantelat;
 
         $gaji->save();
-        return redirect('pegawai/'.$request->idPegawai.'/addgaji')->with(['success' => 'Data Penggajian Berhasil Ditambahkan!']);
+        return redirect('pegawai/'.$request->nik.'/addgaji')->with(['success' => 'Data Penggajian Berhasil Ditambahkan!']);
 
         // dd($request->all());
-        // echo $request->idPegawai;
-        // echo $request->idPegawai;
+        // echo $request->nik;
+        // echo $request->nik;
         // echo $harikerja;
         // echo $bulan;
     }
@@ -146,18 +149,40 @@ class PegawaiController extends Controller
     public function store(Request $request)
     {
 
-        $request->validate([
+        // $request->validate([
+        //     'pasfoto' => 'required|image:jpg,png',
+        //     'nik' => 'numeric|min:16'
+        // ]);
+
+        $this->validate($request,[
             'pasfoto' => 'required|image:jpg,png',
+            'nik' => 'numeric|min:999999999999999|max:9999999999999999'
         ]);
 
-        $data = $request->except(['pasfoto']);
+        $data = $request->except(['pasfoto','idJabatan']);
 
         $extension = $request->pasfoto->extension();
         $filename = Uuid::uuid4() . ".{$extension}";
         $request->pasfoto->move(base_path('public/storage/pegawai'), $filename);
         $data['pasfoto'] = asset("/storage/pegawai/{$filename}");
-
+        $data['idJabatan'] = $request->jabatan_id;
         Pegawai::create($data);
+
+
+        $jenjang = $request->jenjang;
+        $tempat = $request->tempat;
+        $tahun = $request->tahun;
+
+        for ($i=0; $i<count($jenjang); $i++){
+            $datasave = [
+                'nik'       => $request->nik,
+                'jenjang'   => $jenjang[$i],
+                'tempat'    => $tempat[$i],
+                'tahun'     => $tahun[$i],
+            ];
+            DB::table('riwayatpendidikan')->insert($datasave);
+        }
+
         return redirect('/pegawai')->with(['success' => 'Data Pegawai Berhasil Ditambahkan!']);
     }
 
@@ -190,12 +215,12 @@ class PegawaiController extends Controller
      */
     public function edit(Pegawai $pegawai)
     {
-
         $jabatan = Jabatan::all();
+        $riwayatpendidikan = Riwayatpendidikan::where('nik', $pegawai->nik)->get();
         if (Auth::user()->level=="karyawan") {
-            return view('mobile.editpegawai', compact('pegawai','jabatan'));
+            return view('mobile.editpegawai', compact('pegawai','jabatan','riwayatpendidikan'));
         } else {
-            return view('pegawai.editpegawai', compact('pegawai','jabatan'));
+            return view('pegawai.editpegawai', compact('pegawai','jabatan', 'riwayatpendidikan'));
         }
     }
 
@@ -209,7 +234,9 @@ class PegawaiController extends Controller
     public function update(Request $request, Pegawai $pegawai)
     {
 
-
+        $this->validate($request,[
+            'nik' => 'numeric|min:999999999999999|max:9999999999999999'
+        ]);
         $data = $request->except(['pasfoto']);
 
         if ($request->hasFile('pasfoto')) {
@@ -223,6 +250,22 @@ class PegawaiController extends Controller
 
         $pegawai->fill($data);
         $pegawai->save();
+
+        $jenjang = $request->jenjang;
+        $tempat = $request->tempat;
+        $tahun = $request->tahun;
+
+        for ($i=0; $i<count($jenjang); $i++){
+            $datasave = [
+                'nik'       => $data['nik'],
+                'jenjang'   => $jenjang[$i],
+                'tempat'    => $tempat[$i],
+                'tahun'     => $tahun[$i],
+            ];
+            DB::table('riwayatpendidikan')->insert($datasave);
+        }
+
+
 
         if (Auth::user()->level=="karyawan"){
 
@@ -241,7 +284,7 @@ class PegawaiController extends Controller
      */
     public function destroy(Pegawai $pegawai)
     {
-        Pegawai::destroy($pegawai->idPegawai);
+        Pegawai::destroy($pegawai->nik);
         return redirect('/pegawai')->with('success', 'Data Pegawai berhasil dihapus');
     }
 }

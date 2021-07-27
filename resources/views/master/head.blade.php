@@ -25,7 +25,9 @@
 
                         <a href="" class="dropdown-toggle waves-effect waves-light profile" data-toggle="dropdown"
                             aria-expanded="true"><img src="{{ asset('menu_2') }}/assets/images/users/user.png"
-                                alt="user-img" class="img-circle"> <span>{{ auth()->user()->pegawai->nama }}</span> </a>
+                                alt="user-img" class="img-circle">
+                                {{-- <span>{{ auth()->user()->pegawai->nama }}</span>  --}}
+                            </a>
                         <ul class="dropdown-menu">
                             @if (auth()->user()->level=="super" || auth()->user()->level=="admin" || auth()->user()->level=="owner" )
                             <li>

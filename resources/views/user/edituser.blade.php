@@ -10,9 +10,9 @@
             <div class="form-group">
                 <label for="nama" class="col-md-3 control-label">Nama Pegawai</label>
                 <div class="col-md-9">
-                    <select class="form-control" placeholder="-- Pilih Nama Pegawai --" id="idPegawai" name="idPegawai" required>
+                    <select class="form-control" placeholder="-- Pilih Nama Pegawai --" id="nik" name="nik" required>
                         @foreach ($pegawai as $pgw)
-                        <option value="{{$pgw->idPegawai}}" @if ($pgw->idPegawai == $user->pegawai_id)
+                        <option value="{{$pgw->nik}}" @if ($pgw->nik == $user->nik)
                             selected
                             @endif
                             >{{$pgw->nama}}</option>

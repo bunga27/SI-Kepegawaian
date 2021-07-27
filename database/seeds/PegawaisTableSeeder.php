@@ -13,11 +13,11 @@ class PegawaisTableSeeder extends Seeder
     {
         \App\Pegawai::insert([
             [
-                'idPegawai'=>'1',
+
                 'nama'=>'Bunga Nanda',
-                'jabatan_id' => '1',
+                'idJabatan' => '1',
                 'pasfoto' => 'BungaNanda.png',
-                'nik'=>'12345',
+                'nik'=>'1234567891234567',
                 'jeniskelamin'=>'Perempuan',
                 'tempatlahir'=>'Malang',
                 'tanggallahir'=>'2000-01-01',
@@ -27,14 +27,14 @@ class PegawaisTableSeeder extends Seeder
                 'tanggalgabung'=>'2000-01-01',
                 'statuskerja'=>'Aktif',
 
-                'sd'=>'SDN 02 Kartoharjo',
-                'smp'=>'SMP N 01 Madiun',
-                'sma'=>'SMA N 01 Madiun',
-                'lanjutan'=>'Diploma 3 TI PNM',
+                // 'sd'=>'SDN 02 Kartoharjo',
+                // 'smp'=>'SMP N 01 Madiun',
+                // 'sma'=>'SMA N 01 Madiun',
+                // 'lanjutan'=>'Diploma 3 TI PNM',
 
                 'riwayatpenyakit'=>'-',
-                'tinggi'=>'160',
-                'berat'=>'80',
+                'tinggi'=>'1',
+                'berat'=>'1',
 
                 'status'=>'Belum Kawin',
                 'tanggungan'=>'2',

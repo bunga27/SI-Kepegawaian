@@ -32,7 +32,7 @@
                                     Penanggung Jawab &emsp;<br>
                                     </th>
                                 <td>
-                                    : {{ $proyek->pegawai->nama }}  <br>
+                                    : {{ $proyek->pegawai->nama }} <br>
                                 </td>
                             </tr>
                         </table>
@@ -45,19 +45,21 @@
                         <div class="form-group">
                             <div class="col-sm-6  inline-remember-me">
                                 <div class="input-daterange input-group">
-                                    <input type="date" class="form-control" name="tanggalpengerjaan" id="tanggalpengerjaan" />
+                                    <input type="date" class="form-control" name="tanggalpengerjaan"
+                                        id="tanggalpengerjaan" />
                                     <span class="input-group-addon bg-custom b-0 text-white">sampai</span>
-                                    <input type="date" class="form-control" name="tanggalberakhir" id="tanggalberakhir" />
+                                    <input type="date" class="form-control" name="tanggalberakhir"
+                                        id="tanggalberakhir" />
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-6 pull-right inline-remember-me">
 
-                                    <button type="submit" name="search" title="search"
-                                        class="btn btn-default btn-custom waves-effect waves-light center m-r-5">
-                                        <i class="fa fa-search"></i>
-                                    </button>
+                                <button type="submit" name="search" title="search"
+                                    class="btn btn-default btn-custom waves-effect waves-light center m-r-5">
+                                    <i class="fa fa-search"></i>
+                                </button>
 
                             </div>
                         </div>
@@ -85,7 +87,8 @@
                                     <tr>
                                         <td>{{ $detailproyek->tanggal}}</td>
 
-                                        <td>{{ $detailproyek->alurproyek->progres }} - {{ $detailproyek->alurproyek->tahapan }}</td>
+                                        <td>{{ $detailproyek->alurproyek->progres }} -
+                                            {{ $detailproyek->alurproyek->tahapan }}</td>
                                         <td>{{ $detailproyek->keterangan }}</td>
                                         <td><img src="{{ asset($detailproyek->gambar) }}" width="100"></td>
 

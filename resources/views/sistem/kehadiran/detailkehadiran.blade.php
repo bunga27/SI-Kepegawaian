@@ -64,20 +64,21 @@
                     </a>
                     @endif --}}
 
-                    <form action="{{ url('/detailkehadiran/'.$detailkehadiran->idDetailKehadiran) }}" method="post">
-                        @method('delete')
-                        @csrf
-                        <button class="btn btn-danger btn-custom waves-effect waves-light d-inline m-r-5"
-                            onclick="return confirm('Apakah anda yakin akan menghapus nya?');">
-                            <i class="fa fa-trash"></i>
-                        </button>
-                    </form>
-
-                    <a href="{{ url('/detailkehadiran/'.$detailkehadiran->idDetailKehadiran.'/edit') }}"
-                        class="btn btn-primary btn-custom waves-effect d-inline waves-light m-r-5">
-                        <i class="fa fa-plus"></i>
-                        <span>Daftar Pulang</span>
+                    <a class="pull-left m-l-5   ">
+                        <form action="{{ url('/detailkehadiran/'.$detailkehadiran->idDetailKehadiran) }}" method="post">
+                            @method('delete')
+                            @csrf
+                            <button class="btn btn-danger btn-custom   waves-effect waves-light "
+                                onclick="return confirm('Apakah anda yakin akan menghapus nya?');">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </form>
                     </a>
+                    <a href="{{ url('/detailkehadiran/'.$detailkehadiran->idDetailKehadiran.'/edit') }}"
+                        class="btn btn-primary btn-custom  waves-effect waves-light pull-left m-l-5">
+                        <i class="fa fa-plus"></i> Daftar Pulang
+                    </a>
+
                 </td>
 
                 </td>

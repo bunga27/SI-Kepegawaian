@@ -10,8 +10,8 @@
             <div class="form-group">
                 <label hidden for="nama" class="col-md-3 control-label">Nama Pegawai</label>
                 <div hidden class="col-md-9">
-                    <select hidden class="form-control" placeholder="-- Pilih Nama Pegawai --" id="idPegawai" name="idPegawai" required>
-                        <option value="{{$pegawai->idPegawai}}">{{$pegawai->nama}}</option>
+                    <select hidden class="form-control" placeholder="-- Pilih Nama Pegawai --" id="nik" name="nik" required>
+                        <option value="{{$pegawai->nik}}">{{$pegawai->nama}}</option>
                     </select>
                 </div>
             </div>
@@ -94,22 +94,22 @@
                 <td>{{ $g->potongantelat}}</td>
                 <td>{{ $g->totalgaji }}</td>
                 <td>
-                    <a href="/gaji/{{ $g->idGaji }}/slip" class="btn btn-default btn-custom waves-effect waves-light m-r-5">
-                        <i class="fa fa-file m-r-5"></i>
-                        <span>Slip</span>
-                    </a>
-                    <a>
-                        <form action="{{ url('/gaji/'.$g->idGaji) }}" method="post">
+                    <a class="pull-left m-l-5   ">
+                        <form action="{{  url('/gaji/'.$g->idGaji)  }}" method="post">
                             @method('delete')
                             @csrf
-                            <button class="btn btn-danger btn-custom waves-effect waves-light m-r-5"
+                            <button class="btn btn-danger btn-custom   waves-effect waves-light "
                                 onclick="return confirm('Apakah anda yakin akan menghapus nya?');">
                                 <i class="fa fa-trash"></i>
                             </button>
                         </form>
-
-
                     </a>
+                    <a href="/gaji/{{ $g->idGaji }}/slip"
+                        class="btn btn-default btn-custom  waves-effect waves-light pull-left m-l-5">
+                        <i class="fa fa-file"></i> Slip
+
+
+
 
                 </td>
 

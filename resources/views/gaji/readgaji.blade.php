@@ -29,7 +29,7 @@
                     <td><img src="{{ asset($pg->pasfoto) }}" width="100px"></td>
                     <td>{{ $pg->jabatan->jabatan }}</td>
                     <td>
-                        <a href="{{ url('/pegawai/'.$pg->idPegawai.'/addgaji') }}"
+                        <a href="{{ url('/pegawai/'.$pg->nik.'/addgaji') }}"
                             class="btn btn-default btn-custom waves-effect waves-light m-r-5">
                             <i class="fa fa-eye"></i>
                             <span> Detail Penggajian </span>

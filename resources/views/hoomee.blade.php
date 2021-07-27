@@ -51,7 +51,7 @@
         <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         <div class="col-md-12 m-b-2">
             <div>
-                <a href="/pegawai/{{auth()->user()->pegawai->idPegawai}}/addgaji"
+                <a href="/pegawai/{{auth()->user()->pegawai->nik}}/addgaji"
                     class="btn btn-default btn-custom waves-effect waves-light pull-center col-md-12 col-sm-12 col-xs-12 ">
                     <img src="{{ asset('menu_2') }}/assets/images/money.png" class="img-rounded m-t-2" width="200"><br>
                     <span> Lihat Penggajian </span>
@@ -116,7 +116,7 @@
         </div>
     </div>
 </div>
-
+{{--
 <div class="row">
 
     <h3>Progres Proyek</h3>
@@ -189,7 +189,7 @@
     </div>
 
 
-</div>
+</div> --}}
 
 
 

@@ -17,7 +17,7 @@ class DetailKehadiranController extends Controller
     {
         $DetailKehadiran = new DetailKehadiran;
         $DetailKehadiran->kehadiran_id=$request->idKehadiran;
-        $DetailKehadiran->pegawai_id=$request->idPegawai;
+        $DetailKehadiran->nik=$request->nik;
         $DetailKehadiran->ketkehadiran=$request->ketkehadiran;
         $DetailKehadiran->keterangan=$request->keterangan;
         $DetailKehadiran->save();

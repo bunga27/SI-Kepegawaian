@@ -45,7 +45,7 @@ class GambarProgresController extends Controller
                 $datas['gambar2'] = asset("/storage/progresproyek/{$filename}");
 
                 $gambarprogres = new Gambarprogres([
-                    'detailproyek_id' => $request->detailproyek_id,
+                    'idDetailProyek' => $request->detailproyek_id,
                     'gambar2' => $datas['gambar2']
                 ]);
                 $gambarprogres->save();

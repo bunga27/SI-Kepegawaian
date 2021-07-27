@@ -11,8 +11,8 @@ class DetailKehadiran extends Model
     protected $primaryKey = 'idDetailKehadiran';
     protected $fillable =
     [
+        'nik',
         'bulan',
-        'pegawai_id',
         'buktidatang',
         'ketdatang',
         'buktipulang',
@@ -23,7 +23,7 @@ class DetailKehadiran extends Model
 
     public function pegawai()
     {
-        return $this->belongsTo('App\Pegawai', 'pegawai_id');
+        return $this->belongsTo('App\Pegawai','nik');
     }
 
 }

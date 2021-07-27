@@ -44,14 +44,14 @@ class DetailKehadiranController extends Controller
 
         $detailkehadiran = DetailKehadiran::all();
         if (Auth::user()->level == "karyawan") {
-            $idPegawai = auth()->user()->pegawai->idPegawai;
+            $nik = auth()->user()->pegawai->nik;
             $pegawai = auth()->user()->pegawai;
         } else {
-             $idPegawai = auth()->user()->pegawai->idPegawai;
+             $nik = auth()->user()->pegawai->nik;
             $pegawai = Pegawai::all();
         }
 
-        return view('sistem.kehadiran.createdetailkehadiran', compact('pegawai', 'detailkehadiran','idPegawai'));
+        return view('sistem.kehadiran.createdetailkehadiran', compact('pegawai', 'detailkehadiran','nik'));
 
 
     }
@@ -69,7 +69,7 @@ class DetailKehadiranController extends Controller
             'buktidatang' => 'required|image:jpg,png',
         ]);
 
-        $data = $request->except(['buktidatang','keterangan','created_at','bulan', 'ketepatanhadir']);
+        $data = $request->except(['nik','buktidatang','keterangan','created_at','bulan', 'ketepatanhadir']);
         $extension = $request->buktidatang->extension();
         $filename = Uuid::uuid4() . ".{$extension}";
         $request->buktidatang->move(base_path('public/storage/buktihadir'), $filename);
@@ -93,7 +93,7 @@ class DetailKehadiranController extends Controller
             $data['ketepatanhadir'] = "Terlambat";;
         }
 
-
+        $data['nik'] = $request->pegawai_id;
         DetailKehadiran::create($data);
 
 

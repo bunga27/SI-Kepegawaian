@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'pegawai_id', 'email', 'password','level'
+        'nik', 'email', 'password','level'
     ];
 
     /**
@@ -39,7 +39,7 @@ class User extends Authenticatable
 
     public function pegawai()
     {
-        return $this->belongsTo('App\Pegawai', 'pegawai_id');
+        return $this->belongsTo('App\Pegawai', 'nik');
     }
 
 }

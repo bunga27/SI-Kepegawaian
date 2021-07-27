@@ -14,7 +14,7 @@ class DetailKehadiransTableSeeder extends Seeder
         \App\DetailKehadiran::insert([
             [
                 'idDetailKehadiran' => '1',
-                'pegawai_id'=>'1',
+                'nik'=> '1234567891234567',
                 'buktidatang' => 'bd.png',
                 'ketdatang' => 'Pengerjaan Proyek A',
                 'buktipulang' => 'bp.png',

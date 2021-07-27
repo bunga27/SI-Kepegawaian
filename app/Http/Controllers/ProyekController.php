@@ -7,6 +7,7 @@ use App\Proyek;
 use App\Pegawai;
 use App\Pembiayaan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProyekController extends Controller
 {
@@ -29,7 +30,7 @@ class ProyekController extends Controller
      */
     public function create()
     {
-        $pegawai = Pegawai::all();
+        $pegawai = DB::table('pegawai')->where('statuskerja', '=', 'tidakaktif')->get();
         return view('proyek.createproyek', compact('pegawai'));
     }
 
@@ -41,14 +42,31 @@ class ProyekController extends Controller
      */
     public function store(Request $request)
     {
-        Proyek::create([
-            'client'=> $request->client,
-            'pegawai_id' => $request->idPegawai,
-            'nama'=> $request->nama,
-            'alamat'=> $request->alamat,
-            'tanggalpengerjaan'=> $request->tanggalpengerjaan
+        $bulan = date('mY', strtotime($request->tanggalpengerjaan));
+        $proyek = new Proyek([
+            'client' => $request->client,
+            'nik' => $request->nik,
+            'nama' => $request->nama,
+            'alamat' => $request->alamat,
+            'bulan' => $bulan,
+            'tanggalpengerjaan' => $request->tanggalpengerjaan,
+            'tanggalberakhir' => $request->tanggalberakhir,
 
         ]);
+        $proyek->save();
+
+
+        $tahapan = $request->tahapan;
+        $progres = $request->progres;
+
+        for ($i=0; $i<count($tahapan); $i++){
+            $datasave = [
+                'idProyek'       => $proyek->idProyek,
+                'tahapan'   => $tahapan[$i],
+                'progres'    => $progres[$i],
+            ];
+            DB::table('alurproyek')->insert($datasave);
+        }
 
         return redirect('/proyek')->with(['success' => 'Data Proyek Berhasil Ditambahkan!']);
     }
@@ -82,7 +100,7 @@ class ProyekController extends Controller
     public function edit($id)
     {
         $proyek = Proyek::find($id);
-        $pegawai = Pegawai::all();
+        $pegawai = DB::table('pegawai')->where('statuskerja', '=', 'tidakaktif')->get();
         return view('proyek.editproyek', compact('proyek','pegawai'));
     }
 
@@ -95,13 +113,14 @@ class ProyekController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $bulan = date('mY', strtotime($request->created_at));
+        $bulan = date('mY', strtotime($request->tanggalpengerjaan));
         Proyek::where('idProyek', $id)->update([
             'client' => $request->client,
-            'pegawai_id' => $request->idPegawai,
+            'pegawai_id' => $request->nik,
             'nama' => $request->nama,
             'alamat' => $request->alamat,
             'tanggalpengerjaan' => $request->tanggalpengerjaan,
+            'tanggalberakhir' => $request->tanggalberakhir,
             'bulan' => $bulan
         ]);
 

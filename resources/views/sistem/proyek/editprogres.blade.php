@@ -22,12 +22,16 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="progres" class="col-md-3 pull-left">Presentase</label>
-                <div class="col-md-2">
-                    <input required type="number" min="0" max="100" class="form-control" id="progres" name="progres" value="{{ $detailproyek->progres }}"> %
+                <label for="nama" class="col-md-3 pull-left">Tahapan</label>
+                <div class="col-md-9">
+                    <select class="form-control" placeholder="-- Pilih Tahap --" id="idAlurProyek" name="idAlurProyek" required>
+
+                        @foreach ($alurproyek as $alur)
+                        <option value="{{$alur->idAlurProyek}}">{{$alur->progres}}% - {{ $alur->tahapan }}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
-
             <div class="form-group">
                 <label for="keterangan" class="col-md-3 pull-left">Keterangan</label>
                 <div class="col-md-9">

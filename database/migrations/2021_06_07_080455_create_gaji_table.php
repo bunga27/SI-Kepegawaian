@@ -14,17 +14,17 @@ class CreateGajiTable extends Migration
     public function up()
     {
         Schema::create('gaji', function (Blueprint $table) {
-            $table->increments('idGaji')->unsigned();
-            $table->integer('pegawai_id')->unsigned();
-            $table->foreign('pegawai_id')->references('idPegawai')->on('pegawai')->onUpdate('cascade');
-            $table->string('bulan');
-            $table->string('gajibulan');
-            $table->string('totaluangmakan');//$harikerja*$request->uangmakan
-            $table->string('totalgajilembur');//$harilembur*$request->gajilembur
-            $table->string('totalbonusproyek');//$totalproyek*bonusproyek
-            $table->string('totalthr');//$hr*$
-            $table->string('potongantelat');
-            $table->string('totalgaji');
+            $table->smallInteger('idGaji')->autoIncrement()->unsigned();
+            $table->bigInteger('nik')->unsigned();
+            $table->foreign('nik')->references('nik')->on('pegawai')->onUpdate('cascade');
+            $table->string('bulan',6);
+            $table->integer('gajibulan');
+            $table->integer('totaluangmakan');//$harikerja*$request->uangmakan
+            $table->integer('totalgajilembur');//$harilembur*$request->gajilembur
+            $table->integer('totalbonusproyek');//$totalproyek*bonusproyek
+            $table->integer('totalthr');//$hr*$
+            $table->integer('potongantelat');
+            $table->integer('totalgaji');
 
 
 

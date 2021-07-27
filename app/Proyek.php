@@ -12,23 +12,30 @@ class Proyek extends Model
     [
 
         'client',
-        'pegawai_id',
+        'nik',
         'nama',
         'alamat',
         'tanggalpengerjaan',
+        'tanggalberakhir',
+
+        'bulan'
 
     ];
 
     public function pegawai()
     {
-        return $this->belongsTo('App\Pegawai', 'pegawai_id');
+        return $this->belongsTo('App\Pegawai','nik');
     }
     public function detailproyek()
     {
-        return $this->hasMany('App\DetailProyek', 'proyek_id');
+        return $this->hasMany('App\DetailProyek','idProyek');
+    }
+    public function alurproyek()
+    {
+        return $this->hasMany('App\DetailProyek', 'idProyek');
     }
     public function pembiayaan()
     {
-        return $this->hasMany('App\Pembiayaan', 'proyek_id');
+        return $this->hasMany('App\Pembiayaan', 'idProyek');
     }
 }

@@ -10,7 +10,7 @@ class Gaji extends Model
     protected $primaryKey = 'idGaji';
     protected $fillable =
     [
-        'pegawai_id',
+        'nik',
         'gajibulan',
         'bulan',
         'totaluangmakan',
@@ -24,6 +24,6 @@ class Gaji extends Model
 
     public function pegawai()
     {
-        return $this->belongsTo('App\Pegawai', 'pegawai_id');
+        return $this->belongsTo('App\Pegawai','nik');
     }
 }

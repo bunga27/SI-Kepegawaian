@@ -12,7 +12,7 @@
                 <div class="col-md-9 hidden">
                     <select class="form-control" id="pegawai_id" name="pegawai_id" required>
                         @foreach ($pegawai as $pgw)
-                        <option value="{{$pgw->idPegawai}}" @if ($pgw->idPegawai == $detailkehadiran->pegawai_id)
+                        <option value="{{$pgw->nik}}" @if ($pgw->nik == $detailkehadiran->pegawai_id)
                             selected
                             @endif
                             >{{$pgw->nama}}</option>

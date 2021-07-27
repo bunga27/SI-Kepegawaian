@@ -28,10 +28,21 @@ Route::group(['Ceklevel' => 'super'], function () {
     Route::resource('proyek', 'ProyekController');
     Route::resource('detailkehadiran', 'DetailKehadiranController');
     Route::resource('detailproyek', 'DetailProyekController');
+    // Route::post('detailproyek/{id}', 'DetailProyekController@store');
+
+    Route::patch('/jabatan/update', 'JabatanController@update');
+
 
     Route::resource('gambarprogres', 'GambarProgresController');
     Route::resource('pembiayaan', 'PembiayaanController');
     Route::resource('jabatan', 'JabatanController');
+    // Route::get('edjabatan', 'JabatanController@edit');
+
+    Route::resource('alur', 'AlurProyekController');
+    Route::get('alur/{id}/read', 'AlurproyekController@index');
+    // Route::delete('alur/{id}/del', 'AlurproyekController@destroy');
+
+
 
     Route::resource('progres', 'DetailProyekController');
 
@@ -51,6 +62,7 @@ Route::group(['Ceklevel' => 'super'], function () {
     Route::resource('lappenggajian', 'LaporanPenggajianController');
     Route::resource('lapprogres', 'LaporanProgresController');
     Route::get('lapprogres/{id}/progres', 'LaporanProgresController@progres');
+    Route::post('lapprogres/{id}/progress', 'LaporanProgresController@search');
     Route::get('mobileprofil', 'PegawaiController@mobile');
 });
 

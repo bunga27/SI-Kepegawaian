@@ -17,7 +17,7 @@
         closeOnCancel: true,
         confirmButtonText: 'OK',
         confirmButtonClass: 'btn-primary',
-        cancelButtonText: 'Cancel',
+        cancelButtonText: 'Batal',
         cancelButtonClass: 'btn-default',
         containerClass: '',
         titleClass: '',
@@ -552,7 +552,7 @@
     } else {
       hide($cancelBtn);
     }
-    
+
     //Confirm button
     modal.setAttribute('data-has-confirm-button', params.showConfirmButton);
     if (params.showConfirmButton) {
@@ -560,7 +560,7 @@
     } else {
       hide($confirmBtn);
     }
-    
+
 
     // Edit text on cancel and confirm buttons
     if (params.cancelButtonText) {

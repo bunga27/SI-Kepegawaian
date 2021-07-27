@@ -14,16 +14,16 @@ class CreateDetailkehadiranTable extends Migration
     public function up()
     {
         Schema::create('detailkehadiran', function (Blueprint $table) {
-            $table->increments('idDetailKehadiran')->unsigned();
-            $table->integer('pegawai_id')->unsigned();
-            $table->foreign('pegawai_id')->references('idPegawai')->on('pegawai')->onUpdate('cascade');
-            $table->string('buktidatang')->nullable();
-            $table->string('ketdatang')->nullable();
-            $table->string('buktipulang')->nullable();
-            $table->string('ketpulang')->nullable();
-            $table->string('bulan')->nullable();
-            $table->string('keterangan');
-            $table->string('ketepatanhadir');
+            $table->smallInteger('idDetailKehadiran')->autoIncrement()->unsigned();
+            $table->bigInteger('nik')->unsigned();
+            $table->foreign('nik')->references('nik')->on('pegawai')->onUpdate('cascade');
+            $table->string('buktidatang',100)->nullable();
+            $table->string('ketdatang',50)->nullable();
+            $table->string('buktipulang',100)->nullable();
+            $table->string('ketpulang', 50)->nullable();
+            $table->string('bulan',6)->nullable();
+            $table->string('keterangan',20);
+            $table->string('ketepatanhadir',20);
 
             $table->timestamps();
         });

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Proyek;
 use App\DetailProyek;
 use App\Pegawai;
+use Illuminate\Support\Facades\DB;
 
 class LaporanProgresController extends Controller
 {
@@ -22,6 +23,24 @@ class LaporanProgresController extends Controller
         return view('laporan.lapprogres', compact('detailproyek', 'proyek', 'pegawai'));
     }
 
+    public function search(Request $request, $id)
+    {
+        $proyek = Proyek::find($id);
+        $pegawai = Pegawai::all();
+        $tanggalpengerjaan = $request->tanggalpengerjaan;
+        $tanggalberakhir = $request->tanggalberakhir;
+
+        // $detailproyek = DB::table('detailproyek')
+        //     ->where('tanggal', '>=', $tanggalpengerjaan)
+        //     ->where('tanggal', '<=', $tanggalberakhir)
+        //     ->get();
+
+        $detailproyek = DetailProyek::whereBetween('tanggal', [$tanggalpengerjaan, $tanggalberakhir])->get();
+
+        return view('laporan.detailprogres', compact('detailproyek', 'proyek', 'pegawai'));
+
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -29,7 +48,13 @@ class LaporanProgresController extends Controller
      */
     public function create()
     {
-        //
+        // $tanggalpengerjaan = $request->tanggalpengerjaan;
+        // $tanggalberhenti = $request->tanggalberhenti;
+
+        // $detailproyek = DB::table('detailproyek')
+        // ->where('tanggal', '>=', $tanggalpengerjaan)
+        //     ->where('tanggal', '>=', $tanggalberhenti)
+        //     ->get();
     }
 
     /**
@@ -70,6 +95,7 @@ class LaporanProgresController extends Controller
         $proyek = Proyek::find($id);
         $pegawai = Pegawai::all();
         $detailproyek = DetailProyek::all();
+
         return view('laporan.detailprogres', compact('detailproyek', 'proyek', 'pegawai'));
     }
     /**

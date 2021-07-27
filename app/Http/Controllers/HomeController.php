@@ -30,7 +30,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $dataPegawai = Pegawai::count('idPegawai');
+        $dataPegawai = Pegawai::count('nik');
         $dataUser = User::count('id');
         $dataProyek = Proyek::count('idProyek');
         $dataJabatan = Jabatan::count('idJabatan');

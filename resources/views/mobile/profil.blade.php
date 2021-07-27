@@ -6,7 +6,7 @@
 <div class="alert alert-success">{{ session('success') }}</div>
 @endif
 <div class="row">
-    <form class="form-horizontal" method="GET" action="/pegawai/{{ auth()->user()->pegawai->idPegawai }}"
+    <form class="form-horizontal" method="GET" action="/pegawai/{{ auth()->user()->pegawai->nik }}"
         enctype="multipart/form-data">
         @csrf
         @method('get')
@@ -25,7 +25,7 @@
                     <span>Setting Akun</span>
                 </a>
 
-                <a href="{{ url('/pegawai/'.auth()->user()->pegawai->idPegawai.'/edit') }}"
+                <a href="{{ url('/pegawai/'.auth()->user()->pegawai->nik.'/edit') }}"
                     class="btn btn-warning btn-custom waves-effect waves-light pull-right">
                     <i class="fa fa-pencil"></i>
                     <span> Ubah Data Diri</span>

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDetailproyekTable extends Migration
+class CreateAlurproyekTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,12 @@ class CreateDetailproyekTable extends Migration
      */
     public function up()
     {
-        Schema::create('detailproyek', function (Blueprint $table) {
-            $table->smallInteger('idDetailProyek')->autoIncrement()->unsigned();
+        Schema::create('alurproyek', function (Blueprint $table) {
+            $table->smallInteger('idAlurProyek')->autoIncrement()->unsigned();
             $table->smallInteger('idProyek')->unsigned();
             $table->foreign('idProyek')->references('idProyek')->on('proyek')->onUpdate('cascade');
-            $table->smallInteger('idAlurProyek')->unsigned();
-            $table->foreign('idAlurProyek')->references('idAlurProyek')->on('alurproyek')->onUpdate('cascade');
-            $table->date('tanggal');
-            $table->string('keterangan',50);
-            $table->string('gambar',100);
+            $table->string('tahapan',150);
+            $table->tinyInteger('progres');
             $table->timestamps();
         });
     }
@@ -33,6 +30,6 @@ class CreateDetailproyekTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('detailproyek');
+        Schema::dropIfExists('alurproyek');
     }
 }

@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Ramsey\Uuid\Uuid;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class DetailProyekController extends Controller
 {
@@ -40,7 +41,10 @@ class DetailProyekController extends Controller
     public function create($id)
     {
         $proyek = Proyek::find($id);
-        return view('sistem.proyek.createdetailproyek', compact('proyek'));
+        $alurproyek = DB::table('alurproyek')
+        ->where('idProyek', '=', $id)
+        ->get();
+        return view('sistem.proyek.createdetailproyek', compact('proyek','alurproyek'));
     }
 
     /**
@@ -63,7 +67,8 @@ class DetailProyekController extends Controller
         $data['gambar'] = asset("/storage/progresproyek/{$filename}");
         $data['proyek_id'] = $request->proyek_id;
         $detailproyek = new DetailProyek([
-            'proyek_id'=>$data['proyek_id'],
+            'idProyek'=>$data['proyek_id'],
+            'idAlurProyek' => $request->idAlurProyek,
             'tanggal'=>$request->tanggal,
             'progres'=>$request->progres,
             'keterangan'=>$request->keterangan,
@@ -80,13 +85,13 @@ class DetailProyekController extends Controller
                 $datas['gambar2'] = asset("/storage/progresproyek/{$filename}");
 
                 $gambarprogres = new Gambarprogres([
-                    'detailproyek_id' => $detailproyek->idDetailProyek,
+                    'idDetailProyek' => $detailproyek->idDetailProyek,
                     'gambar2' => $datas['gambar2']
                 ]);
                 $gambarprogres->save();
              }
         }
-        return redirect('/detailproyek')->with(['success' => 'Data Progres Berhasil Ditambahkan!']);
+        return redirect()->back()->with(['success' => 'Data Progres Berhasil Ditambahkan!']);
 
 
     }
@@ -101,9 +106,11 @@ class DetailProyekController extends Controller
     {
         $proyek = Proyek::find($id);
         $pegawai = Pegawai::all();
-        $detailproyek = DetailProyek::all();
-        $g = Gambarprogres::all();
-        return view('sistem.proyek.readprogres', compact('proyek', 'detailproyek','g'));
+        $detailproyek = DetailProyek::where('idProyek', $id)->get();
+        $alurproyek= DB::table('alurproyek')->where('idProyek', '=', $id)->get();
+        // $d = DB::table('detailproyek')->where('idProyek', '=', $id)->get('idDetailProyek');
+        // $g = DB::table('gambarprogres')->where('idDetailProyek', '=', $d)->get();
+        return view('sistem.proyek.readprogres', compact('proyek', 'detailproyek','alurproyek'));
     }
 
     /**
@@ -115,14 +122,18 @@ class DetailProyekController extends Controller
     public function edit($id)
     {
         $detailproyek = DetailProyek::find($id);
-        $proyek = Proyek::where('idProyek', $detailproyek->proyek_id)->get();
-        $gambarprogres = Gambarprogres::where('detailproyek_id', $id)->get();
+        $proyek = Proyek::where('idProyek', $detailproyek->idProyek)->get();
+        $gambarprogres = Gambarprogres::where('idDetailProyek', $id)->get();
+        $alurproyek = DB::table('alurproyek')
+        ->where('idProyek', '=', $detailproyek->idProyek)
+        ->get();
+
         if (Auth::user()->level == "karyawan") {
             $pegawai = auth()->user()->pegawai;
         } else {
             $pegawai = Pegawai::all();
         }
-        return view('sistem.proyek.editprogres', compact( 'proyek', 'gambarprogres', 'detailproyek', 'pegawai'));
+        return view('sistem.proyek.editprogres', compact( 'alurproyek','proyek', 'gambarprogres', 'detailproyek', 'pegawai'));
     }
 
     /**

@@ -4,7 +4,7 @@
 @section('content')
 
 <div class="row" >
-<form class="form-horizontal" method="GET" action="/pegawai/{{ $pegawai->idPegawai }}" enctype="multipart/form-data">
+<form class="form-horizontal" method="GET" action="/pegawai/{{ $pegawai->nik }}" enctype="multipart/form-data">
     @csrf
     @method('get')
     <div class="col-sm-4 center">

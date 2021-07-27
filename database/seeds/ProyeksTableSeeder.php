@@ -17,7 +17,7 @@ class ProyeksTableSeeder extends Seeder
                 'nama' => 'Rumah',
                 'alamat' => 'Malang',
                 'tanggalpengerjaan' => '2021-05-05',
-                'pegawai_id'  => '1',
+                'nik'  => '1234567891234567',
                 'created_at'      => \Carbon\Carbon::now('Asia/Jakarta')
             ],
         ]);

@@ -14,14 +14,14 @@ class CreateJabatanTable extends Migration
     public function up()
     {
         Schema::create('jabatan', function (Blueprint $table) {
-            $table->increments('idJabatan')->unsigned();
-            $table->string('jabatan');
-            $table->string('gajiharian');
-            $table->string('gajilembur');
-            $table->string('uangmakan');
-            $table->string('bonusproyek');
-            $table->string('hariraya');
-            $table->string('potongantelat');
+            $table->smallInteger('idJabatan')->autoIncrement()->unsigned();
+            $table->string('jabatan', 25);
+            $table->integer('gajiharian');
+            $table->integer('gajilembur');
+            $table->integer('uangmakan');
+            $table->integer('bonusproyek');
+            $table->integer('hariraya');
+            $table->integer('potongantelat');
 
             $table->timestamps();
         });
